@@ -10,6 +10,7 @@ List team members and/or short bio's here...
 *
 * My name is Yifei
 * My name is Peter Senyk, and I'm excited to work on this project and learn about designing and creating a web app. 
+* My name is Jaiden Duncan. I'm excited to work on this to gain experience with working with a team and web design.cool
 	
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
