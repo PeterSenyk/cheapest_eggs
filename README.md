@@ -6,9 +6,9 @@ This browser based web application to ...
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
-* Yifei Zeng
+* I am Yifei Zeng
 * ...
-* My name is Peter Senyk, and I'm excited to work on this project and learn about designing and creating a web app. 
+* My name is Yifei, and I'm excited to work on this project and learn about designing and creating a web app. 
 	
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
