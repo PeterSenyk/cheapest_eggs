@@ -13,8 +13,8 @@ List team members and/or short bio's here...
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
 * HTML, CSS, JavaScript
-* Bootstrap 5.0 (Frontend library)
-* Firebase 8.0 (BAAS - Backend as a Service)
+* SQL
+* 
 * ...
 
 ## 4. Complete setup/installion/usage
