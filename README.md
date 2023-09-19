@@ -7,7 +7,8 @@ This browser based web application to ...
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
 * Hi, my name is Cai Chun (Steven) Yan! I am excited to be here!
-* 
+*
+* My name is Yifei
 * My name is Peter Senyk, and I'm excited to work on this project and learn about designing and creating a web app. 
 	
 ## 3. Technologies and Resources Used
