@@ -8,3 +8,13 @@
 .welcome_banner_one {
     text-align: center;
 }
+
+.share_card {
+    text-align: center;
+    height: 400px;
+    margin-top: -200px;
+}
+
+.share_card img {
+    justify-content: center;
+}
