@@ -22,3 +22,13 @@
 a {
     text-decoration: none;
 }
+
+footer {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    footer{
+        display: flex;
+    }
+}

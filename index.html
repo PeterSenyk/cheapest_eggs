@@ -114,15 +114,29 @@
         </div>
     </section>
     
-    <!--Preliminary sticky footer based on what we had in class-->
-    <footer>
+    <!--sticky footer-->
+    <footer class="container">
 
-        <div class="fixed-bottom py-3 bg-info bg-warning-subtle">
-            <div class="container text-center">
-                Cheapest Eggs &copy; 2023 BCIT CST Program
+        <!--Left justified content, copyright and logo(?)-->
+        <div class="container-fluid fixed-bottom py-3 bg-info bg-warning-subtle d-flex">
+            <!--copyright-->
+            <div class="container text-center d-flex align-items-center">
+                Cheapest Eggs &copy; 2023 BCIT CST COMP 1800
             </div>
-            <div class="container text-center">
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Paypal?</a>
+
+            <!--Right justified content, link list-->
+            <div class="container text-center justify-content-end d-flex">
+                <ul class="nav justify-content-center border-bottom">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-muted">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-muted">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="nav-link text-muted">Paypal</a>
+                    </li>
+                </ul>
             </div>
         </div>
     
