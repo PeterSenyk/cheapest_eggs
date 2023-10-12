@@ -22,3 +22,25 @@
 a {
     text-decoration: none;
 }
+
+/*prevents weird padding on sides of footer*/
+footer.container-fluid {
+    padding: 0;
+}
+
+/*
+This is all commented out due to not wanting to make the final decision for it
+    
+    these lines make the footer stick to the bottom of the page 
+    rather than the bottom of the viewport when the screen is large enough
+
+.fixed-bottom {
+    position: relative;
+}
+
+@media (min-width:576px) {
+    .fixed-bottom {
+        position: fixed;
+    }
+}
+*/
