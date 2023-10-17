@@ -3,11 +3,30 @@
     justify-content: center;
     align-items: center;
     height: 400px;
+    background-image: url('/images/grocery_welcome\ 2.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+    box-sizing: content-box;
 }
 
 .welcome_banner_one {
+    color: white;
     text-align: center;
 }
+
+.welcome_banner_two {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    background-image: url('/images/egghand.png');
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+    box-sizing: content-box;
+}
+
 
 .share_card {
     text-align: center;
