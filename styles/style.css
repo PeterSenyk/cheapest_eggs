@@ -47,6 +47,80 @@ footer.container-fluid {
     padding: 0;
 }
 
+/*-------------------------------------
+ * NAVBAR
+ *-------------------------------------
+ */
+
+.small_nav {
+    display: none;
+}
+
+.nav_hamburger {
+    display: none;
+}
+
+.small_nav ul {
+    list-style: none;
+}
+
+.small_nav li {
+    display: inline-block;
+    padding: 0 10px;
+}
+
+#nav_center {
+    display: flex;
+    justify-content: center;
+}
+
+#color_white {
+    color: white;
+}
+
+
+
+/*-------------------------------------
+ * FOOTER
+ *-------------------------------------
+ */
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    color: white;
+}
+
+.footer_icon {
+    text-align: center;
+}
+
+.footer_icon p {
+    color: white;
+}
+
+
+
+/*-------------------------------------
+ * MEDIUM SCREENS
+ *-------------------------------------
+ */
+@media screen and (max-width: 992px) {
+    .search_bar {
+        padding-top: 7px;
+        width: 100%;
+    }
+
+    .small_nav {
+        display: block;
+        width: 100%;
+    }
+}
+
+
 /*
 This is all commented out due to not wanting to make the final decision for it
     
