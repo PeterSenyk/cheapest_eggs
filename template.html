@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Cheapest Eggs</title>
     <meta name="comp1800 template" content="My 1800 App">
-    
+
     <!------------------------>
     <!-- Required meta tags -->
     <!------------------------>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!------------------------------------------>
     <!-- Bootstrap Library CSS JS CDN go here -->
     <!------------------------------------------>
@@ -18,7 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
         </script>
-    
+
     <!-------------------------------------------------------->
     <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
     <!-------------------------------------------------------->
@@ -28,16 +29,129 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+
+    <!------------------>
+    <!-- Google fonts -->
+    <!------------------>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@400;600&family=Oswald:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Load icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .small_nav {
+            display: none;
+        }
+
+        .nav_hamburger {
+            display: none;
+        }
+
+        .small_nav ul {
+            list-style: none;
+        }
+
+        .small_nav li {
+            display: inline-block;
+            padding: 0 10px;
+        }
+
+        #nav_center {
+            display: flex;
+            justify-content: center;
+        }
+
+        #color_white {
+            color: white;
+        }
+
+        @media screen and (max-width: 992px) {
+            .search_bar {
+                padding-top: 7px;
+                width: 100%;
+            }
+
+            .small_nav {
+                display: block;
+                width: 100%;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    
-    <!-- navbar -->
-    <nav id="navbar_eggs"></nav>
+
+    <!-- navbar id="navbar_eggs"-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+        <div class="container-fluid">
+            <a class="navbar-brand" id="color_white" href="#">
+                <img src="./images/logo.jpg" height="36">
+                CHEAPEST EGGS</a>
+            <button class="nav_hamburger navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav_center">
+                    <li class="nav-item" id="nav_center">
+                        <a class="nav-link" id="color_white" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="color_white" href="#">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="color_white" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="color_white" href="#">Lists</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+            <form class="d-flex search_bar">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-warning" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+
+        <div class="small_nav">
+            <div class="container-fluid">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="flex-direction: row; justify-content: center;">
+                    <li class="nav-item">
+                        <a class="nav-link" id="color_white" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="color_white" href="#">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="color_white" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="color_white" href="#">Lists</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+
+    </nav>
 
 
 
     <!-- footer -->
-    <nav id="footer_eggs"></nav>
-    
+    <footer id="footer_eggs">
+
+    </footer>
+
 </body>
+
 </html>
