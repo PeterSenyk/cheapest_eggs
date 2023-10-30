@@ -102,6 +102,14 @@ footer.container-fluid {
     color: white;
 }
 
+/*
+    Firebase
+        
+    Uses integer literal for color, will change to variable if used more than this
+*/
+.mdl-button--colored {
+    background-color: #198754 !important;
+}
 
 
 /*-------------------------------------
