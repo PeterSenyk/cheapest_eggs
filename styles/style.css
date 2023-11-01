@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 400px;
-    background-image: url('/images/grocery_welcome\ 2.jpg');
+    background-image: url('/images/grocery_welcome_blur.jpg');
     background-size: cover;
     background-repeat: repeat;
     background-position: center;
@@ -20,7 +20,7 @@
     justify-content: center;
     align-items: center;
     height: 400px;
-    background-image: url('/images/egghand.png');
+    background-image: url('/images/egghand_blur.png');
     background-size: cover;
     background-repeat: repeat;
     background-position: center;
