@@ -57,15 +57,44 @@
     <!-- navbar -->
     <nav id="navbarPlaceholder"></nav>
 
-    <main>
-        <div class="container-fluid">
+    <!-- <main> -->
+    <!-- <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
-                    <h1>TEST</h1>
-                </div>
+                <div class="col-12"> -->
+
+    <div class="container">
+        <h1>Search Results</h1>
+        <!-- Here is the container for cards  -->
+        <div class="container">
+            <div id="products-go-here" class="row row-cols-auto">
             </div>
         </div>
-    </main>
+    </div>
+
+
+    <!-- Templates for general use, not displayed -->
+    <template id="product_card_template">
+        <div class="card py-2 mx-2">
+            <img class="card-image card-img-top" src=" ..." alt="..." />
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-length">placeholder</p>
+                <br />
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the
+                    bulk of the card's content.
+                </p>
+                <a class="btn btn-primary card-href">Add</a>
+            </div>
+        </div>
+    </template>
+
+
+
+    <!-- </div>
+            </div>
+        </div> -->
+    <!-- </main> -->
 
     <!-- footer -->
     <footer id="footerPlaceholder"></footer>
@@ -75,6 +104,7 @@
     <!---------------------------------------------->
     <script src="./scripts/firebaseAPI_Team08.js"></script>
     <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/db_product_add.js"></script>
 </body>
 
 </html>
