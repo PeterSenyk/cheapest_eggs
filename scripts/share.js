@@ -17,10 +17,14 @@ form.addEventListener("submit", (e) =>
         photo: form.photo.value,
         last_updated: firebase.firestore.FieldValue.serverTimestamp()
     });
-    // form.product.value = "";
-    // form.price.value = "";
-    // form.amount.value = "";
-    // form.location.value = "";
-    // form.photo.value = "";
+    form.product.value = "";
+    form.price.value = "";
+    form.amount.value = "";
+    form.location.value = "";
+    form.photo.value = "";
 })
+
+function btnClicked(){
+    document.location.href="./share_review.html"
+}
 

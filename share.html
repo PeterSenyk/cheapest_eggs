@@ -62,41 +62,39 @@
             <div class="text_box">
                 <form id="share-price-form">
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Product</label>
+                        <label form="exampleFormControlInput1">Product</label>
                         <input type="text" class="form-control" id="product" placeholder="Eggs">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Amount</label>
-                        <input type="text" class="form-control" id="amount"
-                            placeholder="1 dozen, 1 Kg, single">
+                        <label form="exampleFormControlInput1">Amount</label>
+                        <input type="text" class="form-control" id="amount" placeholder="1 dozen, 1 Kg, single">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Price</label>
+                        <label form="exampleFormControlInput1">Price</label>
                         <input type="text" class="form-control" id="price" placeholder="4.99">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Location</label>
+                        <label form="exampleFormControlInput1">Location</label>
                         <input type="text" class="form-control" id="location" placeholder="Store Name">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlFile1">Attach Photo</label>
+                        <label form="exampleFormControlFile1">Attach Photo</label>
                         <input type="file" class="form-control-file" id="photo">
                     </div>
-                    
-                    <div class="container">
-                        <button id="submit" class="btn btn-success btn-lg" role="button">Share</button>
-                    </div>
 
-                    <div id="tasks-container" class="col-mb-6">
-                        <!------tasks go here-->
-                    </div>
+                    <div class="form-group">
+                        <!-- <button type="submit" value="submit" class="btn btn-success btn-lg" role="button"><a
+                                href="./share_review.html">Share</a></button> -->
+                        <!-- <button type="submit" value="submit" class="btn btn-success btn-lg" role="button"
+                            onclick="window.location.href='./share_review.html';">>Share</button> -->
+                        <!-- <a href="./share_review.html" class="btn btn-success btn-lg"><input type="submit"/>Share</a> -->
 
-                    <!-- <div>
-                        <a href="share_review.html">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        </a>
-                    </div> -->
-                </form>
+                    <button type="submit" class="btn btn-success btn-lg">Share</button>
+                    </div>
+                </form> 
+                <!-- <form action="share_review.html" method="get">
+                    <button type="submit" class="btn btn-success btn-lg">Share</button>
+                </form> -->
     </main>
 
     <!-- footer -->
