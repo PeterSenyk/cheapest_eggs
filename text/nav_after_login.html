@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-success">
     <div class="container-fluid">
-        <a class="navbar-brand" id="color_white" href="#">
+        <a class="navbar-brand" id="color_white" href="../main.html">
             <img src="./images/egg_logo.png" height="36">
             CHEAPEST EGGS</a>
         <button class="nav_hamburger navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -12,16 +12,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav_center">
                 <li class="nav-item" id="nav_center">
-                    <a class="nav-link" id="color_white" href="#">Home</a>
+                    <a class="nav-link" id="color_white" href="../main.html">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="color_white" href="#">Search</a>
+                    <a class="nav-link" id="color_white" href="../search.html">Search</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="color_white" href="#">Profile</a>
+                    <a class="nav-link" id="color_white" href="../share.html">Share</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="color_white" href="#">Lists</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="color_white" href="../profile.html">Profile</a>
                 </li>
             </ul>
         </div>
@@ -29,28 +32,69 @@
 
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
-        <form class="d-flex search_bar">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-warning" type="submit"><i class="fa fa-search"></i></button>
-        </form>
+        <div class="d-flex search_bar">
+            <input class="form-control me-2" id="search" type="search" autocomplete="off" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-warning" id="searchBtn"><i class="fa fa-search"></i></button>
+        </div>
     </div>
 
     <div class="small_nav">
         <div class="container-fluid">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="flex-direction: row; justify-content: center;">
                 <li class="nav-item">
-                    <a class="nav-link" id="color_white" href="#">Home</a>
+                    <a class="nav-link" id="color_white" href="../index.html">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="color_white" href="#">Search</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="color_white" href="#">Profile</a>
+                    <a class="nav-link" id="color_white" href="../profile.html">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="color_white" href="#">Lists</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="color_white" href="#">Sign Out</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
+<div class="container py-3" id="search_dropdown">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Search Options</h1>
+            <p>Select your filter options, then search your item in the navbar!</p>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12 row">
+            <div class="col-md-6">
+                <h2>Sort By</h2>
+            <hr>
+                <input type="radio" name="sort" id="price" checked="checked" value="0">
+                <label for="price">Price</label><br><br>
+                <input type="radio" name="sort" id="store" value="1">
+                <label for="store">Store</label><br><br>
+                <input type="radio" name="sort" id="upload" value="2">
+                <label for="upload">Upload Date</label><br><br>
+            </div>
+            
+            <div class="col-md-6">
+                <h2>Sort Order</h2>
+                <hr>
+                    <input type="radio" name="order" id="desc" checked="checked" value="0">
+                    <label for="desc">Descending</label><br><br>                             
+                    <input type="radio" name="order" id="asc" value="1">
+                    <label for="asc">Ascending</label><br><br>
+            </div>
+            <button class="btn btn-success btn-lg" id="close">Close</button>
+        </div>
+
+    </div>
+</div>
+
+<script src="/scripts/search.js"></script>

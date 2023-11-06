@@ -60,32 +60,35 @@
     <main style="height: 2000px;">
         <div class="container-fluid">
             <div class="text_box">
-                <form>
+                <form id="share-price-form">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Product</label>
-                        <input type="text" class="form-control" id="formControlInput1" placeholder="Eggs">
+                        <input type="text" class="form-control" id="product" placeholder="Eggs">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Amount</label>
-                        <input type="text" class="form-control" id="formControlInput1"
+                        <input type="text" class="form-control" id="amount"
                             placeholder="1 dozen, 1 Kg, single">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Price</label>
-                        <input type="text" class="form-control" id="formControlInput1" placeholder="4.99">
+                        <input type="text" class="form-control" id="price" placeholder="4.99">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Location</label>
-                        <input type="text" class="form-control" id="formControlInput1" placeholder="Store Name">
+                        <input type="text" class="form-control" id="location" placeholder="Store Name">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlFile1">Attach Photo</label>
-                        <input type="file" class="form-control-file" id="formControlFile1">
+                        <input type="file" class="form-control-file" id="photo">
+                    </div>
+                    
+                    <div class="container">
+                        <button id="submit" class="btn btn-success btn-lg" role="button">Share</button>
                     </div>
 
-
-                    <div class="container">
-                        <a class="btn btn-success btn-lg" href="share_review.html" role="button">Share</a>
+                    <div id="tasks-container" class="col-mb-6">
+                        <!------tasks go here-->
                     </div>
 
                     <!-- <div>
@@ -105,7 +108,86 @@
     <!---------------------------------------------->
     <!--- Your own JavaScript functions go here  --->
     <!---------------------------------------------->
+    <script src="./scripts/firebaseAPI_Team08.js"></script>
     <script src="./scripts/skeleton.js"></script>
+    <!-- <script src="/scripts/firebase.js"></script> ---------------------------------------------------->
+    <!-- <script src="/scripts/share.js"></script> ----------------------------------------------------->
+
+    <!------------------------------------------------>
+    <!-------------imports-and-configs---------------->
+    <!------------------------------------------------>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import {initializeApp} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+    
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBOxR4LkvaHq_dPzp4eqhvI7VlCQVqRwcs",
+        authDomain: "dtc08-699f5.firebaseapp.com",
+        projectId: "dtc08-699f5",
+        storageBucket: "dtc08-699f5.appspot.com",
+        messagingSenderId: "1015517868592",
+        appId: "1:1015517868592:web:b56f1e75236f087a1633f5"
+        };
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        
+        import {
+            getFirestore, doc, getDoc, setDoc, collection, getDocs, query, where, orderBy, limit, addDoc, deleteDoc
+        } 
+        from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+
+        const db = getFirestore();
+
+//-------------references---------------->
+        let product = document.querySelector("product");
+        let amount = document.querySelector("amount");
+        let price = document.querySelector("price");
+        let location = document.querySelector("location");
+        let photo = document.querySelector("photo");
+
+        let submit = document.querySelector("submit");
+
+
+
+//-------------submit---------------->
+
+        async function AddDocument_AutoID() {
+            // const docRef = await addDoc(collection(db, "share"), {
+            //     product: product.value,
+            //     amount: amount.value,
+            //     price: price.value,
+            //     location: location.value,
+            //     photo: photo.value
+            // });
+            // console.log("Document written with ID: ", docRef.id);
+
+            var ref = collection(db, "pending_uploads");
+
+            const docRef = await addDoc(ref, {
+                product: product.value,
+                amount: amount.value,
+                price: price.value,
+                location: location.value,
+                photo: photo.value
+            })
+
+            console.log("Document written with ID: ", docRef.id);
+            then(()=> {
+                alert("Document successfully written!");
+            })
+        }
+        
+//-------------assign event listener---------------->
+        submit.addEventListener("click", AddDocument_AutoID);
+
+
+    </script>
+
 </body>
 
 </html>

@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 400px;
-    background-image: url('/images/grocery_welcome\ 2.jpg');
+    background-image: url('/images/grocery_welcome_blur.jpg');
     background-size: cover;
     background-repeat: repeat;
     background-position: center;
@@ -20,7 +20,7 @@
     justify-content: center;
     align-items: center;
     height: 400px;
-    background-image: url('/images/egghand.png');
+    background-image: url('/images/egghand_blur.png');
     background-size: cover;
     background-repeat: repeat;
     background-position: center;
@@ -40,6 +40,7 @@
 
 a {
     text-decoration: none;
+    color: white;
 }
 
 /*prevents weird padding on sides of footer*/
@@ -78,7 +79,13 @@ footer.container-fluid {
     color: white;
 }
 
-
+#search_dropdown {
+    width: 100%;
+    display: none;
+    z-index: 1;
+    position: absolute;
+    background-color: white;
+}
 
 /*-------------------------------------
  * FOOTER
@@ -171,3 +178,35 @@ This is all commented out due to not wanting to make the final decision for it
     }
 }
 */
+
+
+/*-------------------------------------
+ * PROFILE
+ *-------------------------------------
+ */
+.profile-card {
+    width: 90%;
+    margin: 20px auto;
+    border-radius: 10px;
+    background-color: rgba(156, 179, 128, 0.2);
+    padding: 5px;
+}
+
+#profile {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.text {
+    width: 60%;
+    padding: 10px 40px;
+}
+
+.img-container {
+    width: 30%;
+    padding-bottom: 20px;
+}
+
+.sign-out {
+    margin-bottom: 100px;
+}

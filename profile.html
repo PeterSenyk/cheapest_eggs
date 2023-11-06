@@ -50,7 +50,6 @@
     <!-- Load css styles -->
     <!--------------------->
     <link rel="stylesheet" href="./styles/style.css">
-    
 </head>
 
 <body>
@@ -60,10 +59,45 @@
 
     <main>
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <h1>TEST</h1>
+            <div class="account row profile-card">
+                <h2>Account</h2>
+                <div class="text col-12">
+                    <p>Name: <span id="name"></span></p>
+                    <p>Email: <span id="email"></span></p>
+                    <p>Title: <span id="title"></span></p>
+                    <p>Country: <span id="country"></span></p>
                 </div>
+                <div class="img-container col-12">
+                    <img id="profile" class="responsive" src="images/default_profile_pic.png" alt="profile picture">
+                </div>
+            </div>
+            <div class="about row profile-card">
+                <h2>About</h2>
+                <p>The Cheapest Egg is a web application we will develop to combat rising grocery prices. Let’s be
+                    honest, no one wants to
+                    pay $4 for one cucumber. Our application will bring you price data from big box stores, local
+                    stores, the random
+                    neighborhood farmer too!! If someone is selling something cheap, we want our users to know about it.
+                </p>
+                <p>How will this be possible? Large retailers have shop flyers and API data that we will import to our
+                    web application. As
+                    for local stores, this is where you come in! This is why we are different from all other apps.</p>
+                <p>With your help we want to develop a community driven web application where we, as a community, report
+                    the cheapest
+                    products in our local stores. Together we will share the cheapest prices with others because we all
+                    deserve the cheapest
+                    eggs.</p>
+                <p>Save money, stay organized and go on that vacation you’ve been dreaming about!</p>
+            </div>
+            <div class="contact row profile-card">
+                <h2>Contact Us</h2>
+                <p>Email: cheapestegg@gmail.com</p>
+                <p>Social Media:</p>
+                <p>Instagram: cheapesteggs</p>
+                <p>Twitter: cheapesteggs</p>
+            </div>
+            <div class="sign-out row profile-card">
+                <button id="sign-out">Sign Out</button>
             </div>
         </div>
     </main>
@@ -74,9 +108,10 @@
     <!---------------------------------------------->
     <!--- Your own JavaScript functions go here  --->
     <!---------------------------------------------->
-    <script src="./scripts/firebaseAPI_Team08.js"></script>
-    <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/db_product_add.js"></script>
+    <script src="/scripts/firebaseAPI_Team08.js"></script>
+    <script src="/scripts/skeleton.js"></script>
+    <script src="/scripts/script.js"></script>
+    <script src="./scripts/profile.js"></script>
 </body>
 
 </html>
