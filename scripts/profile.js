@@ -5,7 +5,7 @@ function getNameFromAuth() {
             // Do something for the currently logged-in user here: 
             console.log(user.uid); //print the uid in the browser console
             console.log(user.displayName);  //print the user name in the browser console
-            userName = user.displayName; 
+            userName = user.displayName;
             userId = user.uid;
 
             // insert user name using jquery
@@ -18,3 +18,12 @@ function getNameFromAuth() {
     });
 }
 getNameFromAuth(); //run the function
+
+
+// Add a click event listener to the button
+document.getElementById("sign-out").addEventListener("click", function () {
+    // Call the logout function when the button is clicked
+    logout();
+    // Redirect to "index.html"
+    window.location.href = "index.html";
+});
