@@ -19,6 +19,26 @@ function getNameFromAuth() {
 }
 getNameFromAuth(); //run the function
 
+function getOtherInfoFromDB() {
+    db.collection("users").get()   // Replace "users" with the collection name as a string
+        .then((allUsers) => {
+            allUsers.forEach((doc) => {
+                var title = doc.data().title;
+                var country = doc.data().country;
+
+                // Update the elements with the retrieved values
+                $("#title").text(title);
+                $("#country").text(country);
+            });
+        })
+        .catch((error) => {
+            console.error("Error getting data from Firestore: ", error);
+        });
+}
+
+getOtherInfoFromDB(); // Run the function to fetch and update data
+
+
 
 // Add a click event listener to the button
 document.getElementById("sign-out").addEventListener("click", function () {
