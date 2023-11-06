@@ -40,6 +40,7 @@
 
 a {
     text-decoration: none;
+    color: white;
 }
 
 /*prevents weird padding on sides of footer*/
@@ -167,3 +168,35 @@ This is all commented out due to not wanting to make the final decision for it
     }
 }
 */
+
+
+/*-------------------------------------
+ * PROFILE
+ *-------------------------------------
+ */
+.profile-card {
+    width: 90%;
+    margin: 20px auto;
+    border-radius: 10px;
+    background-color: rgba(156, 179, 128, 0.2);
+    padding: 5px;
+}
+
+#profile {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.text {
+    width: 60%;
+    padding: 10px 40px;
+}
+
+.img-container {
+    width: 30%;
+    padding-bottom: 20px;
+}
+
+.sign-out {
+    margin-bottom: 160px;
+}

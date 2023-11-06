@@ -1,22 +1,20 @@
-// function loadSkeleton() {
-
-//     firebase.auth().onAuthStateChanged(function (user) {
-//         if (user) {
-//             // logged in
-//             console.log($('#navbarPlaceholder').load('./text/nav_after_login.html'));
-//             console.log($('#footerPlaceholder').load('./text/footer.html'));
-//         } else {
-//             // not logged in
-//             console.log($('#navbarPlaceholder').load('./text/nav_before_login.html'));
-//             console.log($('#footerPlaceholder').load('./text/footer.html'));
-//         }
-//     });
-// }
-
+//---------------------------------------------------
+// This function loads the parts of your skeleton 
+// (navbar, footer, and other things) into html doc. 
+//---------------------------------------------------
 function loadSkeleton() {
-    // not logged in
-    console.log($('#navbarPlaceholder').load('./text/nav_before_login.html'));
-    console.log($('#footerPlaceholder').load('./text/footer.html'));
-}
 
-loadSkeleton();
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {                   //if the pointer to "user" object is not null, then someone is logged in
+            // User is signed in.
+            // Do something for the user here.
+            console.log($('#navbarPlaceholder').load('./text/nav_after_login.html'));
+            console.log($('#footerPlaceholder').load('./text/footer_after_login.html'));
+        } else {
+            // No user is signed in.
+            console.log($('#navbarPlaceholder').load('./text/nav_before_login.html'));
+            console.log($('#footerPlaceholder').load('./text/footer_before_login.html'));
+        }
+    });
+}
+loadSkeleton(); //invoke the function
