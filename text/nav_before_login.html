@@ -26,10 +26,10 @@
 
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
-        <form class="d-flex search_bar">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-warning" type="submit"><i class="fa fa-search"></i></button>
-        </form>
+        <div class="d-flex search_bar">
+            <input class="form-control me-2" id="search" autocomplete="off" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-warning" id="searchBtn"><i class="fa fa-search"></i></button>
+        </div>
     </div>
 
     <div class="small_nav">
@@ -48,3 +48,40 @@
         </div>
     </div>
 </nav>
+
+<div class="container py-3" id="search_dropdown">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Search Options</h1>
+            <p>Select your filter options, then search your item in the navbar!</p>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12 row">
+            <div class="col-md-6">
+                <h2>Sort By</h2>
+            <hr>
+                <input type="radio" name="sort" id="price" checked="checked" value="0">
+                <label for="price">Price</label><br><br>
+                <input type="radio" name="sort" id="store" value="1">
+                <label for="store">Store</label><br><br>
+                <input type="radio" name="sort" id="upload" value="2">
+                <label for="upload">Upload Date</label><br><br>
+            </div>
+            
+            <div class="col-md-6">
+                <h2>Sort Order</h2>
+                <hr>
+                    <input type="radio" name="order" id="desc" checked="checked" value="0">
+                    <label for="desc">Descending</label><br><br>                             
+                    <input type="radio" name="order" id="asc" value="1">
+                    <label for="asc">Ascending</label><br><br>
+            </div>
+            <button class="btn btn-success btn-lg" id="close">Close</button>
+        </div>
+    </div>
+</div>
+
+<script src="/scripts/search.js"></script>
