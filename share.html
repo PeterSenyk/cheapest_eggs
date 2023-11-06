@@ -63,29 +63,32 @@
                 <form>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Product</label>
-                        <input type="text" class="form-control" id="formControlInput1" placeholder="Eggs">
+                        <input type="text" class="form-control" id="product" placeholder="Eggs">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Amount</label>
-                        <input type="text" class="form-control" id="formControlInput1"
+                        <input type="text" class="form-control" id="amount"
                             placeholder="1 dozen, 1 Kg, single">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Price</label>
-                        <input type="text" class="form-control" id="formControlInput1" placeholder="4.99">
+                        <input type="text" class="form-control" id="price" placeholder="4.99">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Location</label>
-                        <input type="text" class="form-control" id="formControlInput1" placeholder="Store Name">
+                        <input type="text" class="form-control" id="location" placeholder="Store Name">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlFile1">Attach Photo</label>
-                        <input type="file" class="form-control-file" id="formControlFile1">
+                        <input type="file" class="form-control-file" id="photo">
+                    </div>
+                    
+                    <div class="container">
+                        <a id="btn-task-form" class="btn btn-success btn-lg" href="share_review.html" role="button">Share</a>
                     </div>
 
-
-                    <div class="container">
-                        <a class="btn btn-success btn-lg" href="share_review.html" role="button">Share</a>
+                    <div id="tasks-container" class="col-mb-6">
+                        <!------tasks go here-->
                     </div>
 
                     <!-- <div>
@@ -106,7 +109,7 @@
     <!--- Your own JavaScript functions go here  --->
     <!---------------------------------------------->
     <script src="./scripts/skeleton.js"></script>
-    <script src="/scripts/firebaseAPI_Team08.js"></script>
+    <script src="/scripts/share.js"></script>
 </body>
 
 </html>
