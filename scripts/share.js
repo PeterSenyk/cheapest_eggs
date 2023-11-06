@@ -1,23 +1,29 @@
-// form and button
+// constants linked to share.html pafe
 
-const taskForm = document.getElementId('#task-form');
+const product = document.getElementById("product");
+const price = document.getElementById("price");
+const amount = document.getElementById("amount");
+const location = document.getElementById("location");
+const photo = document.getElementById("photo");
+const form = document.getElementById("share-price-form");
 
-const taskContainer = document.getElementId('#task-container');
 
-taskForm.addEventListener('submit', async (e) => {
+// add a product to the database
+Form.addEventListener("submit", (e) =>
+{
     e.preventDefault();
+    db.collection("pending_uploads").add({
+        product: form.product.value,
+        price: form.price.value,
+        amount: form.amount.value,
+        location: form.location.value,
+        photo: form.photo.value,
+        last_updated: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    // form.product.value = "";
+    // form.price.value = "";
+    // form.amount.value = "";
+    // form.location.value = "";
+    // form.photo.value = "";
+})
 
-    // get values from form
-    const task = {
-        product: taskForm['product'].value,
-        amount: taskForm['amount'].value,
-        price: taskForm['price'].value,
-        location: taskForm['location'].value,
-        photo: taskForm['photo'].value,
-    };
-
-    await createTask(task);
-
-    taskForm.reset();
-    taskForm['task-title'].focus();
-});

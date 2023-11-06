@@ -15,3 +15,17 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// reference to firebase database
+
+export const db = getFirestore("pending_uploads");
+
+export const saveTask = (product, price, amount, location, photo) => {
+    addDoc(collection(db, "pending_uploads"), {
+        product,
+        price,
+        amount,
+        location,
+        photo,
+    });
+}
