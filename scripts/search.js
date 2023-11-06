@@ -1,7 +1,6 @@
 // Adds the search function to the search button
 $("#searchBtn").on("click", function(){
-    var search = $("#search").val();
-    var url = "search_result.html?q=" + search;
+    var url = "search_result.html?q=" + $("#search").val();
     
         let sort = document.getElementsByName("sort");
         for (var i = 0; i < url.length; i++) {
