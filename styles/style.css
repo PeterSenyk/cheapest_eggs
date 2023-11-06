@@ -151,6 +151,10 @@ footer.container-fluid {
 
 }
 
+.form-group {
+    margin-bottom: 10px;
+}
+
 /*
 This is all commented out due to not wanting to make the final decision for it
     
