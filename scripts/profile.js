@@ -6,11 +6,11 @@ function getNameFromAuth() {
             console.log(user.uid); //print the uid in the browser console
             console.log(user.displayName);  //print the user name in the browser console
             userName = user.displayName;
-            userId = user.uid;
+            userEmail = user.email;
 
             // insert user name using jquery
             $("#name").text(userName);
-            $("#id").text(userId);
+            $("#email").text(userEmail);
 
         } else {
             // No user is signed in.
@@ -18,6 +18,26 @@ function getNameFromAuth() {
     });
 }
 getNameFromAuth(); //run the function
+
+function getOtherInfoFromDB() {
+    db.collection("users").get()   // Replace "users" with the collection name as a string
+        .then((allUsers) => {
+            allUsers.forEach((doc) => {
+                var title = doc.data().title;
+                var country = doc.data().country;
+
+                // Update the elements with the retrieved values
+                $("#title").text(title);
+                $("#country").text(country);
+            });
+        })
+        .catch((error) => {
+            console.error("Error getting data from Firestore: ", error);
+        });
+}
+
+getOtherInfoFromDB(); // Run the function to fetch and update data
+
 
 
 // Add a click event listener to the button
