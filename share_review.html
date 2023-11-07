@@ -73,32 +73,34 @@
 
         <div class="container-fluid">
             <div class="text_box">
-                <form  action="share_review.jsp">
+                <form id="share-price-form">
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Product</label>
-                        <input type="text" class="form-control" id="formControlInput1" placeholder="Eggs">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Amount</label>
-                        <input type="text" class="form-control" id="formControlInput1"
-                            placeholder="1 dozen, 1 Kg, single">
+                        <label form="formControlInputProduct">Product</label>
+                        <input type="text" class="form-control" id="product" placeholder="Eggs">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Price</label>
-                        <input type="text" class="form-control" id="formControlInput1" placeholder="4.99">
+                        <label form="formControlInputAmount">Amount</label>
+                        <input type="text" class="form-control" id="amount" placeholder="1 dozen, 1 Kg, single">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Location</label>
-                        <input type="text" class="form-control" id="formControlInput1" placeholder="Store Name">
+                        <label form="formControlInputPrice">Price</label>
+                        <input type="text" class="form-control" id="price" placeholder="4.99">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlFile1">Attach Photo</label>
-                        <input type="file" class="form-control-file" id="formControlFile1">
+                        <label form="formControlInputLocation">Location</label>
+                        <input type="text" class="form-control" id="location" placeholder="Store Name">
                     </div>
-                    <div>
-                        <button type="submit" class="btn btn-primary">Revise</button>
+                    <div class="form-group">
+                        <label form="formControlFilePhoto">Attach Photo</label>
+                        <input type="file" class="form-control-file" id="photo">
                     </div>
+        
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-lg">Share</button>
+                    </div>
+                </form>
             </div>
+        </div>
 
         </div>
         </form>
@@ -113,6 +115,7 @@
     <script src="./scripts/firebaseAPI_Team08.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/share.js"></script>
+    <script src="./scripts/share_review.js"></script>
 </body>
 
 </html>

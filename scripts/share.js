@@ -15,8 +15,13 @@ form.addEventListener("submit", (e) => {
     const locationBox = locationField.value
     const userId = firebase.auth().currentUser.uid
     const timeStamp = new Date().toISOString();
+    // Save the form data to localStorage
+    localStorage.setItem('product', productField);
+    localStorage.setItem('price', priceField);
+    localStorage.setItem('amount', amountField);
+    localStorage.setItem('location', locationBox);
+    // Upload to firestore database
     db.collection("pending_uploads").doc(userId).collection("user_uploads").doc(timeStamp).set({
-        
         product: productField,
         price: priceField,
         amount: amountField,
