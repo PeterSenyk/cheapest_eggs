@@ -44,7 +44,7 @@ function displayListCards(collection, user){
                     // add event listeners to the buttons
                     addCardEvents(newCard);
                     // append the card to the div
-                    document.getElementById(collection).appendChild(newCard);
+                    document.getElementById("user_list").appendChild(newCard);
                     // update the total cost
                     totalCost += doc.data().price * list.data().quantity;
                     // display the total cost
@@ -62,7 +62,7 @@ function displayListCards(collection, user){
 // confirm a user is logged in. also allows the program to access the uid
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        displayListCards("list-cart", user);
+        displayListCards("users", user);
     }
     else {
         // redirect to the login page
