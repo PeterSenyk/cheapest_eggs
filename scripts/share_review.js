@@ -1,15 +1,9 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    // Check if we have saved values in localStorage
-    if (localStorage.getItem('product')) {
-        document.getElementById('formControlInputProduct').value = localStorage.getItem('product');
-    }
-    if (localStorage.getItem('price')) {
-        document.getElementById('formControlInputPrice').value = localStorage.getItem('price');
-    }
-    if (localStorage.getItem('amount')) {
-        document.getElementById('formControlInputAmount').value = localStorage.getItem('amount');
-    }
-    if (localStorage.getItem('location')) {
-        document.getElementById('formControlInputLocation').value = localStorage.getItem('location');
-    }
+    // Retrieve the values from localStorage and set them as the current values of the form fields
+    document.getElementById('product').value = localStorage.getItem('product') || '';
+    document.getElementById('price').value = localStorage.getItem('price') || '';
+    document.getElementById('amount').value = localStorage.getItem('amount') || '';
+    document.getElementById('location').value = localStorage.getItem('location') || '';
+    // If you also want to handle the photo, you will need additional logic since file inputs cannot be set directly
 });
+
