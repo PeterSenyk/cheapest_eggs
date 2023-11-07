@@ -21,7 +21,7 @@ form.addEventListener("submit", (e) => {
     localStorage.setItem('documentTimestamp', timeStamp);
 
     // Upload to firestore database
-    db.collection("pending_uploads").doc(userId).collection("user_uploads").doc(timeStamp).set({
+    db.collection("users").doc(userId).collection("user_uploads").doc(timeStamp).set({
         product: productField,
         price: priceField,
         amount: amountField,
