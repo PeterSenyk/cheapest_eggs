@@ -11,8 +11,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
                     // Populate the form fields
                     document.getElementById('product').value = data.product || '';
-                    document.getElementById('price').value = "10.00"; // Use a test value
-                    document.getElementById('price').value = data.price || '';
+                    document.getElementById('price_box').value = data.price || '';
                     document.getElementById('amount').value = data.amount || '';
                     document.getElementById('location').value = data.location || '';
                     
