@@ -50,10 +50,20 @@
     <!-- Load css styles -->
     <!--------------------->
     <link rel="stylesheet" href="./styles/style.css">
+    <style>
+        main img {
+    width: 20vw;
+    justify-self: center;
+    align-self: center;
+        }
+        .form-control {
+            text-align: center;
+        }
+    </style>
     
 </head>
 
-<body>
+<body style="height: 2000px;">
 
     <!-- navbar -->
     <nav id="navbarPlaceholder"></nav>
@@ -77,7 +87,7 @@
             <div class="row">
                 <!--Total cost-->
                 <div class="col-md-6">
-                    <p>Total Item Cost:<span id="cost"></span></p>
+                    <p>Total Item Cost: <span id="cost"></span></p>
                 </div>
                 <!--Clear all button-->
                 <div class="col-md-6">
@@ -89,7 +99,7 @@
 
     <template id="list_card">
         <div class="card py-3 px-3 my-2 mx-2">
-            <img class="card_img" src="." alt=".">
+            <img class="card_img" src="..." alt="...">
             <div>
                 <h5 class="card_title">title</h5>
                 <p class="card_cost">cost</p>
@@ -101,12 +111,12 @@
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <button class="btn btn-outline-secondary" type="button">-</button>
+                  <button class="btn btn-outline-secondary subtract" type="button">-</button>
                 </div>
                 <input type="text" class="form-control card_quantity" value=".">
-              </div>
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">+</button>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary subtract" type="button">+</button>
+                </div>
               </div>
         </div>
     </template>
