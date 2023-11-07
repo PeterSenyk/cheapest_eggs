@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const documentTimestamp = localStorage.getItem('documentTimestamp');
 
     if (userId && documentTimestamp) {
-        db.collection("pending_uploads").doc(userId).collection("user_uploads").doc(documentTimestamp).get()
+        db.collection("users").doc(userId).collection("user_uploads").doc(documentTimestamp).get()
             .then((doc) => {
                 if (doc.exists) {
                     const data = doc.data();

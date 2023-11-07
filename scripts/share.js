@@ -1,18 +1,24 @@
-const product = document.getElementById("product");
-const price = document.getElementById("price");
-const amount = document.getElementById("amount");
-const locationField = document.getElementById("location");  
-const photo = document.getElementById("photo");
+const product = document.getElementById("productBox");
+const price = document.getElementById("priceBox");
+const amount = document.getElementById("amountBox");
+const variety = document.getElementById("varietyBox");
+const plu = document.getElementById("pluBox");
+const storeName = document.getElementById("storeNameBox"); 
+const address = document.getElementById("addressBox");
+const photo = document.getElementById("photoBox");
 const form = document.getElementById("share-price-form");
 
 
 // add a product to the database
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const productField = product.value
-    const priceField = price.value
-    const amountField = amount.value
-    const locationBox = locationField.value
+    const productBox = product.value
+    const priceBox = price.value
+    const amountBox = amount.value
+    const varietyBox = variety.value
+    const pluBox = plu.value
+    const storeNameBox = storeName.value
+    const addressBox = address.value
     const userId = firebase.auth().currentUser.uid
     const timeStamp = new Date().toISOString();
     // Save the form data to localStorage
@@ -22,10 +28,13 @@ form.addEventListener("submit", (e) => {
 
     // Upload to firestore database
     db.collection("users").doc(userId).collection("user_uploads").doc(timeStamp).set({
-        product: productField,
-        price: priceField,
-        amount: amountField,
-        location: locationBox,
+        product: productBox,
+        price: priceBox,
+        amount: amountBox,
+        variety: varietyBox,
+        plu: pluBox,
+        storeName: storeNameBox,
+        address: addressBox,
         last_updated: firebase.firestore.FieldValue.serverTimestamp(),
         user_id: userId,
     }, { merge: true })
