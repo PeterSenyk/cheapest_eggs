@@ -22,6 +22,7 @@ form.addEventListener("submit", (e) =>
     form.amount.value = "";
     form.location.value = "";
     form.photo.value = "";
+    window.location.href = "./share_review.html";
 })
 
 function btnClicked(){
