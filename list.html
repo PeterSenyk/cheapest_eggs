@@ -50,48 +50,76 @@
     <!-- Load css styles -->
     <!--------------------->
     <link rel="stylesheet" href="./styles/style.css">
+    <style>
+        main img {
+    width: 20vw;
+    justify-self: center;
+    align-self: center;
+        }
+        .form-control {
+            text-align: center;
+        }
+    </style>
+    
 </head>
 
-<body>
+<body style="height: 2000px;">
 
     <!-- navbar -->
     <nav id="navbarPlaceholder"></nav>
 
-    <!-- <main> -->
-    <!-- <div class="container-fluid">
-            <div class="row">
-                <div class="col-12"> -->
-
-    <div class="container">
-        <h1>Search Results</h1>
+    <main>
         <div class="container">
-            <div id="products-go-here" class="row row-cols-auto">
+            <!--Header-->
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center">Shopping List</h1>
+                </div>
+            </div>
+            <!--Item container-->
+            <div class="row">
+                <div class="col-12">
+                    <div id="list-cart"></div>
+                </div>
+            </div>
+            <hr>
+            
+            <div class="row">
+                <!--Total cost-->
+                <div class="col-md-6">
+                    <p>Total Item Cost: <span id="cost"></span></p>
+                </div>
+                <!--Clear all button-->
+                <div class="col-md-6">
+                    <button class="btn btn-danger" id="clear">Clear List</button>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 
-
-    <template id="product_card_template">
-        <div class="card py-2 mx-2">
-            <img class="card-image card-img-top" src=" ..." alt="..." />
-            <div class="card-body">
-                <h5 class="card-title">title</h5>
-                <p class="card-length">placeholder</p>
-                <br />
-                <p class="card-text">
-                    Placeholder text
-                </p>
-                <a class="btn btn-primary card-href">Add</a>
+    <template id="list_card">
+        <div class="card py-3 px-3 my-2 mx-2">
+            <img class="card_img" src="..." alt="...">
+            <div>
+                <h5 class="card_title">title</h5>
+                <p class="card_cost">cost</p>
+                <p class="card_store">store</p>
+                <br>
             </div>
+            <div>
+                <p class="card_text">description</p>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-secondary subtract" type="button">-</button>
+                </div>
+                <input type="text" class="form-control card_quantity" value=".">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary subtract" type="button">+</button>
+                </div>
+              </div>
         </div>
     </template>
-
-
-
-    <!-- </div>
-            </div>
-        </div> -->
-    <!-- </main> -->
 
     <!-- footer -->
     <footer id="footerPlaceholder"></footer>
@@ -101,7 +129,7 @@
     <!---------------------------------------------->
     <script src="./scripts/firebaseAPI_Team08.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/db_product_add.js"></script>
+    <script src="/scripts/list.js"></script>
 </body>
 
 </html>
