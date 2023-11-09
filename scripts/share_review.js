@@ -69,7 +69,7 @@ form.addEventListener("submit", (e) => {
     }, { merge: true })
         .then(() => {
             // This will execute after the set() operation is successful
-            window.location = "./share_review.html";
+            // window.location = "./share_review.html";
         })
         .catch((error) => {
             // Handle any errors here
