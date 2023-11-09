@@ -31,11 +31,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 });
 
-// function editUserInfo() {
-//     //Enable the form fields
-//     document.getElementById('reviewPriceForm').disabled = false;
-//     document.getElementById('reviseBtn').disabled = false;
-// }
+
+
+function editUserInfo() {
+    //Enable the form fields
+    document.getElementById('reviewPriceForm').disabled = false;
+    document.getElementById('reviseBtn').disabled = false;
+}
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -77,7 +79,6 @@ form.addEventListener("submit", (e) => {
 
 
 
-//----------------NOT WORKING-------------------//
 // function reviseInfo() {
 //     console.log("Inside reviseInfo")
 //     productValue = document.getElementById('productBox').value;
