@@ -3,7 +3,7 @@ const price = document.getElementById("priceBox");
 const amount = document.getElementById("amountBox");
 const variety = document.getElementById("varietyBox");
 const plu = document.getElementById("pluBox");
-const storeName = document.getElementById("storeNameBox"); 
+const storeName = document.getElementById("storeNameBox");
 const address = document.getElementById("addressBox");
 const photo = document.getElementById("photoBox");
 const form = document.getElementById("sharePriceForm");
@@ -37,9 +37,13 @@ form.addEventListener("submit", (e) => {
         address: addressBox,
         last_updated: firebase.firestore.FieldValue.serverTimestamp(),
         user_id: userId,
+        score: firebase.firestore.FieldValue.increment(1)
     }, { merge: true })
+    // add 1 to user's score
+    db.collection("users").doc(userId).update({
+        score: firebase.firestore.FieldValue.increment(1)
+    })
         .then(() => {
-            // This will execute after the set() operation is successful
             window.location = "./share_review.html";
         })
         .catch((error) => {
