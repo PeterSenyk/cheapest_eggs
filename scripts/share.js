@@ -37,7 +37,7 @@ form.addEventListener("submit", (e) => {
         address: addressBox,
         last_updated: firebase.firestore.FieldValue.serverTimestamp(),
         user_id: userId,
-        score: firebase.firestore.FieldValue.increment(1)
+        // score: firebase.firestore.FieldValue.increment(1) --- do we need both ?
     }, { merge: true })
     // add 1 to user's score
     db.collection("users").doc(userId).update({
