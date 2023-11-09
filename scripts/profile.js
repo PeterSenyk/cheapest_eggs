@@ -79,7 +79,10 @@ function getOtherInfoFromDB() {
 
 getOtherInfoFromDB(); // Run the function to fetch and update data
 
-
+function editUserInfo() {
+    //Enable the form fields
+    document.getElementById('personalInfoFields').disabled = false;
+}
 
 // Add a click event listener to the button
 document.getElementById("sign-out").addEventListener("click", function () {

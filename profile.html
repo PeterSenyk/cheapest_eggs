@@ -79,15 +79,14 @@
                     <div class="d-flex justify-content-end mt-5">
                         <button type="button" class="btn btn-secondary">Edit</button>
                         <span style="width: 10px"></span>
-                        <button type="button" class="btn btn-info">Save</button>
+                        <!-- event-listener that call the function editUserInfo after clicking on the button. -->
+                        <button type="button" class="btn btn-info" onclick="editUserInfo()">Save</button>
                     </div>
                 </form>
                 <div class="text col-12">
-                    <!-- <p>Name: <span id="name"></span></p> -->
                     <p>Email: <span id="email"></span></p>
                     <p>Sore: <span id="score"></span></p>
                     <p>Title: <span id="title"></span></p>
-                    <!-- <p>Country: <span id="country"></span></p> -->
                 </div>
                 <div class="img-container col-12">
                     <img id="profile" class="responsive" src="images/default_profile_pic.png" alt="profile picture">
