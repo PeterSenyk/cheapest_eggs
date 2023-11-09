@@ -6,7 +6,7 @@ const plu = document.getElementById("pluBox");
 const storeName = document.getElementById("storeNameBox"); 
 const address = document.getElementById("addressBox");
 const photo = document.getElementById("photoBox");
-const form = document.getElementById("share-price-form");
+const form = document.getElementById("sharePriceForm");
 
 
 // add a product to the database
