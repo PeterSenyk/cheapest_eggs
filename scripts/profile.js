@@ -84,6 +84,21 @@ function editUserInfo() {
     document.getElementById('personalInfoFields').disabled = false;
 }
 
+function saveUserInfo() {
+    userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
+    userCountry = document.getElementById('countryInput').value;     //get the value of the field with id="schoolInput"
+    userCity = document.getElementById('cityInput').value;       //get the value of the field with id="cityInput"
+    currentUser.update({
+        name: userName,
+        country: userCountry,
+        city: userCity
+    })
+        .then(() => {
+            console.log("Document successfully updated!");
+        })
+    document.getElementById('personalInfoFields').disabled = true;
+}
+
 // Add a click event listener to the button
 document.getElementById("sign-out").addEventListener("click", function () {
     // Call the logout function when the button is clicked
