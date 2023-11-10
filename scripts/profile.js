@@ -1,5 +1,3 @@
-var currentUser;  // define a global variable to store the current user
-
 var currentUser;               //points to the document of the user who is logged in
 function populateUserInfo() {
     firebase.auth().onAuthStateChanged(user => {
@@ -37,6 +35,26 @@ function populateUserInfo() {
 //call the function to run it 
 populateUserInfo();
 
+function editUserInfo() {
+    //Enable the form fields
+    document.getElementById('personalInfoFields').disabled = false;
+}
+
+function saveUserInfo() {
+    userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
+    userCountry = document.getElementById('countryInput').value;     //get the value of the field with id="schoolInput"
+    userCity = document.getElementById('cityInput').value;       //get the value of the field with id="cityInput"
+    currentUser.update({
+        name: userName,
+        country: userCountry,
+        city: userCity
+    })
+        .then(() => {
+            console.log("Document successfully updated!");
+        })
+    document.getElementById('personalInfoFields').disabled = true;
+}
+
 // function getNameFromAuth() {
 //     firebase.auth().onAuthStateChanged(user => {
 //         // Check if a user is signed in:
@@ -59,45 +77,39 @@ populateUserInfo();
 // getNameFromAuth(); //run the function
 
 function getOtherInfoFromDB() {
-    db.collection("users").get()   // Replace "users" with the collection name as a string
-        .then((allUsers) => {
-            allUsers.forEach((doc) => {
-                var email = doc.data().email;
-                var score = doc.data().score;
-                var title = doc.data().title;
+    // Check if the currentUser variable is set
+    firebase.auth().onAuthStateChanged(user => {
+        // Check if user is signed in:
+        if (user) {
+            // Retrieve user information based on their UID
+            db.collection("users").doc(user.uid).get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        var email = doc.data().email;
+                        var score = doc.data().score;
+                        var title = doc.data().title;
 
-                // Update the elements with the retrieved values
-                $("#email").text(email);
-                $("#score").text(score);
-                $("#title").text(title);
-            });
-        })
-        .catch((error) => {
-            console.error("Error getting data from Firestore: ", error);
-        });
+                        // Update the elements with the retrieved values
+                        $("#email").text(email);
+                        $("#score").text(score);
+                        $("#title").text(title);
+                    } else {
+                        console.log("User document with UID " + user.uid + " does not exist.");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error getting data from Firestore: ", error);
+                });
+        } else {
+            // Handle the case when currentUser is not set
+            console.log("No user is currently signed in.");
+        }
+    });
 }
+
+
 
 getOtherInfoFromDB(); // Run the function to fetch and update data
-
-function editUserInfo() {
-    //Enable the form fields
-    document.getElementById('personalInfoFields').disabled = false;
-}
-
-function saveUserInfo() {
-    userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
-    userCountry = document.getElementById('countryInput').value;     //get the value of the field with id="schoolInput"
-    userCity = document.getElementById('cityInput').value;       //get the value of the field with id="cityInput"
-    currentUser.update({
-        name: userName,
-        country: userCountry,
-        city: userCity
-    })
-        .then(() => {
-            console.log("Document successfully updated!");
-        })
-    document.getElementById('personalInfoFields').disabled = true;
-}
 
 // Add a click event listener to the button
 document.getElementById("sign-out").addEventListener("click", function () {
