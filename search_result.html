@@ -51,14 +51,30 @@
     <!--------------------->
     <link rel="stylesheet" href="./styles/style.css">
     <style>
+        .product_card {
+            padding-top: 3%;
+        }
+
         .container_products {
             display: flex;
             
         }
         
         .card {
-            flex: 0 0 50%;
+            flex: 0 0 33.3333%;
             box-sizing: border-box;
+            padding: 2%;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container_products {
+                flex-direction: column;
+                flex-wrap: nowrap;
+            }
+            .card {
+                flex: 0 0 100%;
+            }
+            
         }
     </style>
 </head>
@@ -83,7 +99,7 @@
 
 
     <template id="product_card_template">
-        <div class="card py-2 mx-2">
+        <div class="card">
             <img class="card-image card-img-top" src=" ..." alt="..." />
             <div class="card-body">
                 <h5 class="card-title">title</h5>
