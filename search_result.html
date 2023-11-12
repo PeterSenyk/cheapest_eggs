@@ -50,6 +50,17 @@
     <!-- Load css styles -->
     <!--------------------->
     <link rel="stylesheet" href="./styles/style.css">
+    <style>
+        .container_products {
+            display: flex;
+            
+        }
+        
+        .card {
+            flex: 0 0 50%;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 
 <body>
@@ -62,10 +73,10 @@
             <div class="row">
                 <div class="col-12"> -->
 
-    <div class="container">
+    <div class="container product_card">
         <h1>Search Results</h1>
         <div class="container">
-            <div id="products-go-here" class="row row-cols-auto">
+            <div id="products-go-here" class="row row-cols-auto container_products">
             </div>
         </div>
     </div>
