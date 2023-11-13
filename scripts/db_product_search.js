@@ -11,6 +11,7 @@ function displayCardsDynamically(collection) {
 
         allProducts.forEach(doc => {
             if (doc.id == search_item) {
+                document.getElementById('products-go-here').innerHTML = ''
 
                 db.collection(collection).doc('apple').collection('details').get().then(allProducts => {
                     allProducts.forEach(doc => {
