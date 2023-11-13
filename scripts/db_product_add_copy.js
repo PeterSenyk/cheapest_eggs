@@ -1,5 +1,3 @@
-// Code will be added later
-
 function writeProducts() {
     //define a variable for the collection you want to create in Firestore to populate data
     var products_ref = db.collection("products");
@@ -27,19 +25,19 @@ function writeProducts() {
 // Input parameter is a string representing the collection we are reading from
 //------------------------------------------------------------------------------
 function displayCardsDynamically(collection) {
-    let cardTemplate = document.getElementById("product_card_template"); 
-    // search_item = document.getElementById("search").value;
+    let cardTemplate = document.getElementById("product_card_template");
+    let search_item = document.getElementById("search-input").value;
+    console.log(search_item)
 
     var products_ref = db.collection("products");
     db.collection(collection).get().then(allProducts => {
 
-        allProducts.forEach(doc => { 
-            if (doc.id == 'apple') {
-                console.log("test appleeeeee")
+        allProducts.forEach(doc => {
+            if (doc.id == search_item) {
 
                 db.collection(collection).doc('apple').collection('details').get().then(allProducts => {
                     allProducts.forEach(doc => {
-                        var title = doc.data().produce_name;     
+                        var title = doc.data().produce_name;
                         var details = doc.data().details;
                         var pluCode = doc.data().plu_code;
                         var productPrice = doc.data().price;
@@ -58,6 +56,9 @@ function displayCardsDynamically(collection) {
             }
         })
     })
+
+
+
 
     // db.collection(collection).get()   
     //     .then(allProducts => {
@@ -81,7 +82,7 @@ function displayCardsDynamically(collection) {
     //     })
 }
 
-displayCardsDynamically("products");  //input param is the name of the collection
+// displayCardsDynamically("products");  //input param is the name of the collection
 
 
 
