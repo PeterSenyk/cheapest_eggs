@@ -139,8 +139,6 @@ function getOtherInfoFromDB() {
     });
 }
 
-
-
 getOtherInfoFromDB(); // Run the function to fetch and update data
 
 // Add a click event listener to the button
@@ -170,3 +168,47 @@ function chooseFileListener() {
     })
 }
 chooseFileListener();
+
+function populateShare() {
+    let shareCardTemplate = document.getElementById("shareCardTemplate");
+    let shareCardGroup = document.getElementById("shareCardGroup");
+
+    firebase.auth().onAuthStateChanged(user => {
+        // Check if user is signed in:
+        if (user) {
+            // Reference to the user_uploads collection for the specific user UID
+            let userUploadsCollection = db.collection("users").doc(user.uid).collection("user_uploads");
+
+            // Get documents from the user_uploads collection
+            userUploadsCollection.get().then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    // Access the data inside the document
+                    var product = doc.data().product;
+                    var price = doc.data().price;
+                    var amount = doc.data().amount;
+                    var storeName = doc.data().storeName;
+                    var address = doc.data().address;
+
+                    // Clone the share card template
+                    let shareCard = shareCardTemplate.content.cloneNode(true);
+
+                    // Populate the cloned template with data
+                    shareCard.querySelector(".product").innerHTML = `Product: ${product}`;
+                    shareCard.querySelector(".price").innerHTML = `Price: ${price}`;
+                    shareCard.querySelector(".amount").innerHTML = `Amount: ${amount}`;
+                    shareCard.querySelector(".storeName").innerHTML = `StoreName: ${storeName}`;
+                    shareCard.querySelector(".address").innerHTML = `Address: ${address}`;
+
+                    // Append the cloned and populated template to the share card group
+                    shareCardGroup.appendChild(shareCard);
+                });
+            });
+        }
+    });
+}
+
+populateShare();
+
+
+
+
