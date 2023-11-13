@@ -3,7 +3,6 @@ function populateUserInfo() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in:
         if (user) {
-
             //go to the correct user document by referencing to the user uid
             currentUser = db.collection("users").doc(user.uid)
             //get the document for current user.
@@ -54,6 +53,39 @@ function saveUserInfo() {
         })
     document.getElementById('personalInfoFields').disabled = true;
 }
+
+// function saveUserInfo() {
+//     firebase.auth().onAuthStateChanged(function (user) {
+//         var storageRef = storage.ref("images/" + user.uid + ".jpg");
+
+//         //Asynch call to put File Object (global variable ImageFile) onto Cloud
+//         storageRef.put(ImageFile)
+//             .then(function () {
+//                 console.log('Uploaded to Cloud Storage.');
+
+//                 //Asynch call to get URL from Cloud
+//                 storageRef.getDownloadURL()
+//                     .then(function (url) { // Get "url" of the uploaded file
+//                         console.log("Got the download URL.");
+//                         userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
+//                         userCountry = document.getElementById('countryInput').value;     //get the value of the field with id="schoolInput"
+//                         userCity = document.getElementById('cityInput').value;       //get the value of the field with id="cityInput"
+//                         //Asynch call to save the form fields into Firestore.
+//                         db.collection("users").doc(user.uid).update({
+//                             name: userName,
+//                             country: userCountry,
+//                             city: userCity,
+//                             profilePic: url // Save the URL into users collection
+//                         })
+//                             .then(function () {
+//                                 console.log('Added Profile Pic URL to Firestore.');
+//                                 console.log('Saved use profile info');
+//                                 document.getElementById('personalInfoFields').disabled = true;
+//                             })
+//                     })
+//             })
+//     })
+// }
 
 // function getNameFromAuth() {
 //     firebase.auth().onAuthStateChanged(user => {
