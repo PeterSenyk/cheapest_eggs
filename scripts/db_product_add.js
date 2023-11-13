@@ -1,6 +1,28 @@
 // Code will be added later
-
 function writeProducts() {
+    //define a variable for the collection you want to create in Firestore to populate data
+    var products_ref = db.collection("products");
+
+    var products_detail_ref = products_ref.doc('apple').collection('details');
+
+    products_detail_ref.add({
+        plu_code: 4099,
+        produce_name: "Apple",
+        price: 0.99,
+        variety: "Fiji",
+        size: 'Small',
+        net_price: "per lb",
+        store: "Safeway",
+        city: "Burnaby",
+        province: "BC",
+        postal_code: "V5A 1S6",
+        details: "Largest apples in town",
+        last_updated: firebase.firestore.FieldValue.serverTimestamp(),  //current system time
+        sale_date: firebase.firestore.Timestamp.fromDate(new Date("December 10, 2020")),
+    })
+}
+
+function writeProducts_doc() {
     //define a variable for the collection you want to create in Firestore to populate data
     var products_ref = db.collection("products");
 
@@ -53,35 +75,35 @@ function writeProducts() {
     })
 }
 
-//------------------------------------------------------------------------------
-// Input parameter is a string representing the collection we are reading from
-//------------------------------------------------------------------------------
-function displayCardsDynamically(collection) {
-    let cardTemplate = document.getElementById("product_card_template"); 
+// //------------------------------------------------------------------------------
+// // Input parameter is a string representing the collection we are reading from
+// //------------------------------------------------------------------------------
+// function displayCardsDynamically(collection) {
+//     let cardTemplate = document.getElementById("product_card_template"); 
 
-    db.collection(collection).get()   
-        .then(allProducts => {
+//     db.collection(collection).get()   
+//         .then(allProducts => {
 
-            allProducts.forEach(doc => { 
-                var title = doc.data().produce_name;     
-                var details = doc.data().details;  
-                var pluCode = doc.data().plu_code;   
-                var productPrice = doc.data().price; 
-                var docID = doc.id;
-                let newcard = cardTemplate.content.cloneNode(true); 
+//             allProducts.forEach(doc => { 
+//                 var title = doc.data().produce_name;     
+//                 var details = doc.data().details;  
+//                 var pluCode = doc.data().plu_code;   
+//                 var productPrice = doc.data().price; 
+//                 var docID = doc.id;
+//                 let newcard = cardTemplate.content.cloneNode(true); 
 
-                newcard.querySelector('.card-title').innerHTML = title;
-                newcard.querySelector('.card-length').innerHTML = productPrice + " CAD";
-                newcard.querySelector('.card-text').innerHTML = details;
-                newcard.querySelector('.card-image').src = `./images/${pluCode}.png`; 
-                newcard.querySelector('a').href = "eachProduct.html?docID=" + docID;
+//                 newcard.querySelector('.card-title').innerHTML = title;
+//                 newcard.querySelector('.card-length').innerHTML = productPrice + " CAD";
+//                 newcard.querySelector('.card-text').innerHTML = details;
+//                 newcard.querySelector('.card-image').src = `./images/${pluCode}.png`; 
+//                 newcard.querySelector('a').href = "eachProduct.html?docID=" + docID;
 
-                document.getElementById(collection + "-go-here").appendChild(newcard);
-            })
-        })
-}
+//                 document.getElementById(collection + "-go-here").appendChild(newcard);
+//             })
+//         })
+// }
 
-displayCardsDynamically("products");  //input param is the name of the collection
+// displayCardsDynamically("products");  //input param is the name of the collection
 
 
 

@@ -17,6 +17,11 @@ $("#searchBtn").on("click", function(){
         }
     window.location.href = url
 })
+
+
+
+
+
 $("#search").on("click", function(){
     $("#search_dropdown").css("display", "block")
     $("body").css({"background-color":"grey"})
@@ -27,3 +32,5 @@ $("#close").on("click", function(){
     $("body").css({"background-color":"white"})
     $("main").css("opacity", "1")
 }) 
+
+

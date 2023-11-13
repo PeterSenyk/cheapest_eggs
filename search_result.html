@@ -50,6 +50,33 @@
     <!-- Load css styles -->
     <!--------------------->
     <link rel="stylesheet" href="./styles/style.css">
+    <style>
+        .product_card {
+            padding-top: 3%;
+        }
+
+        .container_products {
+            display: flex;
+            
+        }
+        
+        .card {
+            flex: 0 0 33.3333%;
+            box-sizing: border-box;
+            padding: 2%;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container_products {
+                flex-direction: column;
+                flex-wrap: nowrap;
+            }
+            .card {
+                flex: 0 0 100%;
+            }
+            
+        }
+    </style>
 </head>
 
 <body>
@@ -62,17 +89,17 @@
             <div class="row">
                 <div class="col-12"> -->
 
-    <div class="container">
+    <div class="container product_card">
         <h1>Search Results</h1>
         <div class="container">
-            <div id="products-go-here" class="row row-cols-auto">
+            <div id="products-go-here" class="row row-cols-auto container_products">
             </div>
         </div>
     </div>
 
 
     <template id="product_card_template">
-        <div class="card py-2 mx-2">
+        <div class="card">
             <img class="card-image card-img-top" src=" ..." alt="..." />
             <div class="card-body">
                 <h5 class="card-title">title</h5>
@@ -102,6 +129,17 @@
     <script src="./scripts/firebaseAPI_Team08.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/db_product_add.js"></script>
+    <script src="./scripts/db_product_search.js"></script>
+    <!-- <script>
+        function performSearch() {
+                // Get the value from the search input
+                var searchQuery = document.getElementById('search-input').value;
+
+                // Perform actions based on the search query
+                console.log('Search query:', searchQuery);
+                // Add logic to perform search or other actions
+            }
+    </script> -->
 </body>
 
 </html>
