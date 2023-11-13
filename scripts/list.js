@@ -1,7 +1,4 @@
 editCard = function(card, item, identifier) {
-    let tempDiv = document.createElement('div');
-tempDiv.appendChild(card.cloneNode(true));
-console.log(tempDiv.innerHTML);
     card.querySelector(".card_img").src = `./images/${item.plu_code}.png`;
     card.querySelector(".card_title").innerHTML = item.produce_name;
     card.querySelector(".card_cost").innerHTML = "$" + item.price + " CAD";
@@ -21,88 +18,61 @@ updateTotalCost = function(identifier, previous_quantity=0) {
     total -= cost * previous_quantity;
     //add the cost of the new quantity of the item
     total += cost * document.getElementById(`quantity_${identifier}`).value;
+    //update total cost
+    document.getElementById("total_cost").innerHTML = total;
 }
 
-removeCard = function(identifier, lastQuantity=1) {
+removeCard = function(identifier, lastQuantity=1, list_item) {
     let card = document.getElementById(`card_${identifier}`);
+    let previous_info = card.innerHTML;
     let undoBlock = document.getElementById("undo_block");
     let itemName = card.querySelector(".card_title").innerHTML;
 
-    let blockClone = undoBlock.innerHTML.cloneNode(true);
+    let blockClone = undoBlock.content.cloneNode(true);
     blockClone.querySelector(".item_name").innerHTML = itemName;
 
     blockClone.querySelector(".undo").addEventListener("click", function(){
-        card.innerHTML = undoBlock.innerHTML;
+        card.innerHTML = previous_info;
         document.getElementById(`quantity_${identifier}`).value = lastQuantity;
     });
-
+    blockClone.querySelector(".hide").addEventListener("click", function(){
+        card.remove();
+        list_item.ref.delete().then(() => {
+            console.log("Document successfully deleted!");
+        }).catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+    });
     card.innerHTML = undoBlock.innerHTML;
 }
 
+async function handleQuantityChange(identifier, list_item, change) {
+    list_item = await list_item.ref.get();
+    let previous_quantity = list_item.data().quantity;
+    let new_quantity = previous_quantity + change;
+    console.log(new_quantity, previous_quantity, change);
+    document.getElementById(`quantity_${identifier}`).value = new_quantity;
+
+    if (new_quantity <= 0) {
+        removeCard(identifier, previous_quantity, list_item);
+    } else {
+        list_item.ref.update({quantity: new_quantity});
+        updateTotalCost(identifier, previous_quantity);
+    }
+}
+
 addCardEvents = function(card, identifier, list_item) {
-    card.querySelector(".subtract").addEventListener("click", function(){
-        //get quantity from database
-        previous_quantity = list_item.data().quantity;
-        // change quantity in page
-        document.getElementById("quantity_" + identifier).value = previous_quantity - 1;
-        //check if quantity is 0
-        if (previous_quantity - 1 <= 0) {
-            //remove card
-            removeCard(identifier);
-            //remove from database
-            list_item.delete().then(() => {
-                console.log("Document successfully deleted!");
-            }).catch((error) => {
-                console.error("Error removing document: ", error);
-            });
-        } else {
-            //subtract one from quantity in database
-            list_item.update({quantity: previous_quantity - 1})
-            //update total cost
-            updateTotalCost(identifier, previous_quantity);
-        }
+    card.querySelector(".subtract").addEventListener("click", function() {
+        handleQuantityChange(identifier, list_item, -1);
     });
-    card.querySelector(".card_quantity").addEventListener("change", function(){
-        //get quantity from database
-        previous_quantity = list_item.data().quantity;
-        //check if quantity is 0
-        if (document.getElementById("quantity_" + identifier).value <= 0) {
-            //remove card
-            removeCard(identifier);
-            //remove from database
-            list_item.delete().then(() => {
-                console.log("Document successfully deleted!");
-            }).catch((error) => {
-                console.error("Error removing document: ", error);
-            });
-        } else {
-            //update quantity in database
-            list_item.update({quantity: Number(document.getElementById("quantity_" + identifier).value)})
-            //update total cost
-            updateTotalCost(identifier, previous_quantity);
-        }
-    })
-    card.querySelector(".add").addEventListener("click", function(){
-        //get quantity from database
-        previous_quantity = list_item.data().quantity;
-        // change quantity in page
-        document.getElementById("quantity_" + identifier).value = previous_quantity + 1;
-        //check if quantity is 0
-        if (previous_quantity + 1 <= 0) {
-            //remove card
-            removeCard(identifier);
-            //remove from database
-            list_item.delete().then(() => {
-                console.log("Document successfully deleted!");
-            }).catch((error) => {
-                console.error("Error removing document: ", error);
-            });
-        } else {
-            //add one to quantity in database
-            list_item.update({quantity: previous_quantity + 1})
-            //update total cost
-            updateTotalCost(identifier, previous_quantity);
-        }
+
+    card.querySelector(".card_quantity").addEventListener("change", function() {
+        let new_quantity = Number(document.getElementById(`quantity_${identifier}`).value);
+        handleQuantityChange(identifier, list_item, new_quantity - list_item.data().quantity);
+    });
+
+    card.querySelector(".add").addEventListener("click", function() {
+        handleQuantityChange(identifier, list_item, 1);
     });
 }
 
@@ -131,7 +101,7 @@ async function generateListCards(collection){
             // add event listeners to the buttons
             addCardEvents(newCard, identifier, list_item);
             // add the quantity to the card
-            updateQuantity(newCard, list_item.ref, identifier);
+            newCard.querySelector(".card_quantity").value = list_item.data().quantity;
             // append the card to the div
             document.getElementById("user_list").appendChild(newCard);
             updateTotalCost(identifier);
