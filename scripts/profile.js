@@ -12,6 +12,7 @@ function populateUserInfo() {
                     var userName = userDoc.data().name;
                     var userCountry = userDoc.data().country;
                     var userCity = userDoc.data().city;
+                    var picUrl = userDoc.data().profilePic;
 
                     //if the data fields are not empty, then write them in to the form.
                     if (userName != null) {
@@ -22,6 +23,12 @@ function populateUserInfo() {
                     }
                     if (userCity != null) {
                         document.getElementById("cityInput").value = userCity;
+                    }
+                    if (picUrl != null) {
+                        console.log(picUrl);
+                        // use this line if "mypicdiv" is a "div"
+                        //$("#mypicdiv").append("<img src='" + picUrl + "'>")
+                        $("#mypic-goes-here").attr("src", picUrl);
                     }
                 })
         } else {
@@ -39,53 +46,53 @@ function editUserInfo() {
     document.getElementById('personalInfoFields').disabled = false;
 }
 
-function saveUserInfo() {
-    userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
-    userCountry = document.getElementById('countryInput').value;     //get the value of the field with id="schoolInput"
-    userCity = document.getElementById('cityInput').value;       //get the value of the field with id="cityInput"
-    currentUser.update({
-        name: userName,
-        country: userCountry,
-        city: userCity
-    })
-        .then(() => {
-            console.log("Document successfully updated!");
-        })
-    document.getElementById('personalInfoFields').disabled = true;
-}
-
 // function saveUserInfo() {
-//     firebase.auth().onAuthStateChanged(function (user) {
-//         var storageRef = storage.ref("images/" + user.uid + ".jpg");
-
-//         //Asynch call to put File Object (global variable ImageFile) onto Cloud
-//         storageRef.put(ImageFile)
-//             .then(function () {
-//                 console.log('Uploaded to Cloud Storage.');
-
-//                 //Asynch call to get URL from Cloud
-//                 storageRef.getDownloadURL()
-//                     .then(function (url) { // Get "url" of the uploaded file
-//                         console.log("Got the download URL.");
-//                         userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
-//                         userCountry = document.getElementById('countryInput').value;     //get the value of the field with id="schoolInput"
-//                         userCity = document.getElementById('cityInput').value;       //get the value of the field with id="cityInput"
-//                         //Asynch call to save the form fields into Firestore.
-//                         db.collection("users").doc(user.uid).update({
-//                             name: userName,
-//                             country: userCountry,
-//                             city: userCity,
-//                             profilePic: url // Save the URL into users collection
-//                         })
-//                             .then(function () {
-//                                 console.log('Added Profile Pic URL to Firestore.');
-//                                 console.log('Saved use profile info');
-//                                 document.getElementById('personalInfoFields').disabled = true;
-//                             })
-//                     })
-//             })
+//     userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
+//     userCountry = document.getElementById('countryInput').value;     //get the value of the field with id="schoolInput"
+//     userCity = document.getElementById('cityInput').value;       //get the value of the field with id="cityInput"
+//     currentUser.update({
+//         name: userName,
+//         country: userCountry,
+//         city: userCity
 //     })
+//         .then(() => {
+//             console.log("Document successfully updated!");
+//         })
+//     document.getElementById('personalInfoFields').disabled = true;
 // }
+
+function saveUserInfo() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        var storageRef = storage.ref("images/" + user.uid + ".jpg");
+
+        //Asynch call to put File Object (global variable ImageFile) onto Cloud
+        storageRef.put(ImageFile)
+            .then(function () {
+                console.log('Uploaded to Cloud Storage.');
+
+                //Asynch call to get URL from Cloud
+                storageRef.getDownloadURL()
+                    .then(function (url) { // Get "url" of the uploaded file
+                        console.log("Got the download URL.");
+                        userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
+                        userCountry = document.getElementById('countryInput').value;     //get the value of the field with id="schoolInput"
+                        userCity = document.getElementById('cityInput').value;       //get the value of the field with id="cityInput"
+                        //Asynch call to save the form fields into Firestore.
+                        db.collection("users").doc(user.uid).update({
+                            name: userName,
+                            country: userCountry,
+                            city: userCity,
+                            profilePic: url // Save the URL into users collection
+                        })
+                            .then(function () {
+                                console.log('Added Profile Pic URL to Firestore.');
+                                console.log('Saved use profile info');
+                                document.getElementById('personalInfoFields').disabled = true;
+                            })
+                    })
+            })
+    })
+}
 
 // function getNameFromAuth() {
 //     firebase.auth().onAuthStateChanged(user => {

@@ -192,8 +192,8 @@ This is all commented out due to not wanting to make the final decision for it
     padding: 5px;
 }
 
-#profile {
-    width: 100%;
+#mypic-goes-here {
+    /* width: 100%; */
     border-radius: 50%;
 }
 
