@@ -13,7 +13,7 @@ function displayCardsDynamically(collection) {
             if (doc.id == search_item) {
                 document.getElementById('products-go-here').innerHTML = ''
 
-                db.collection(collection).doc('apple').collection('details').get().then(allProducts => {
+                db.collection(collection).doc(search_item).collection('details').get().then(allProducts => {
                     allProducts.forEach(doc => {
                         var title = doc.data().produce_name;
                         var details = doc.data().details;

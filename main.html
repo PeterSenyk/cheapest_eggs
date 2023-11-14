@@ -48,6 +48,35 @@
     <!--------------------->
     <link rel="stylesheet" href="./styles/style.css">
 
+    <style>
+        .sale_product_container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            /* height: 20%; */
+        }
+
+        .sale_product_container img {
+            width: 100%;
+        }
+
+        .sale_product_card {
+            padding: 1%;
+            background-color: white;
+            text-align: center;
+            border-radius: 10px;
+            margin: 2px;
+        }
+
+        button {
+            button-style: none;
+            background-color: green;
+            color: white;
+            border-radius: 10px;
+            border-style: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -59,7 +88,7 @@
     <!------------------------------>
     <!-- Stuff for body goes here -->
     <div class="welcome_banner container-fluid row">
-        <div>
+        <div class="sale_product_container" id="product-goes-here">
             <div class="welcome_banner_one container">
                 <h1>Eat well, spend less</h1>
                 <p>Save time and money on your weekly groceries</p>
@@ -90,6 +119,8 @@
     <!---------------------------------------------->
     <script src="/scripts/firebaseAPI_Team08.js"></script>
     <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/db_top_product.js"></script>
+    <!-- <script src="./scripts/db_product_add.js"></script> -->
 </body>
 
 </html>
