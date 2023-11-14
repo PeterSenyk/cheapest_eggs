@@ -187,7 +187,7 @@ function populateShare() {
             let userUploadsCollection = db.collection("users").doc(user.uid).collection("user_uploads");
 
             // Get documents from the user_uploads collection
-            userUploadsCollection.get().then(querySnapshot => {
+            userUploadsCollection.orderBy("last_updated", "desc").limit(5).get().then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     // Access the data inside the document
                     var product = doc.data().product;
