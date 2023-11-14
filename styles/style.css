@@ -225,7 +225,24 @@ search confirmation animation
         background-color: #0275d8;
     }
 }
+
+@keyframes search_deny{
+    0%{
+        background-color: #0275d8;
+    }
+    50%{
+        background-color: #d9534f;
+    }
+    100%{
+        background-color: #0275d8;
+    }
+}
+
 .confirm{
     animation-name: search_confirm;
+    animation-duration: 0.5s;
+}
+.deny{
+    animation-name: search_deny;
     animation-duration: 0.5s;
 }
