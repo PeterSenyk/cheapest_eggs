@@ -1,13 +1,13 @@
 function display_sale_products(collection) {
     console.log('display sale products')
     document.getElementById('product-goes-here').innerHTML = '';
-    let counter = 4;
 
     db.collection(collection).get().then(allProducts => {
         console.log('success')
         allProducts.forEach(doc => {
+            // apple is placeholder for now
             if (doc.id == 'apple') {
-                console.log("test appleeeeee")
+                console.log("success apple")
 
                 db.collection(collection).doc('apple').collection('details').get().then(allProducts => {
                     allProducts.forEach(doc => {
