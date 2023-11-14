@@ -54,6 +54,8 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
+            padding-bottom: 20px;
             /* height: 20%; */
         }
 
@@ -70,11 +72,19 @@
         }
 
         button {
-            button-style: none;
             background-color: green;
             color: white;
             border-radius: 10px;
             border-style: none;
+        }
+
+        .welcome_banner {
+            overflow: hidden;
+            text-align: center;
+        }
+
+        h1 {
+            color: white !important;
         }
     </style>
 </head>
@@ -88,6 +98,7 @@
     <!------------------------------>
     <!-- Stuff for body goes here -->
     <div class="welcome_banner container-fluid row">
+        <h1>Cheap Deals</h1>
         <div class="sale_product_container" id="product-goes-here">
             <div class="welcome_banner_one container">
                 <h1>Eat well, spend less</h1>
