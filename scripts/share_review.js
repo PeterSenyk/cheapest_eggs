@@ -24,6 +24,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     document.getElementById('pluBox').value = data.plu || '';
                     document.getElementById('storeNameBox').value = data.storeName || '';
                     document.getElementById('addressBox').value = data.address || '';
+
+                    // Populate the photo if it exists
+                    if (data.photo) {
+                        document.getElementById('photoPreview').src = data.photo;
+                    }
                 } else {
                     console.log("No such document!");
                 }
@@ -32,16 +37,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 console.error("Error getting document:", error);
             });
     }
-});
-//call the function to run it 
-populateUserInfo();
 
-function editShareInfo() {
-    //Enable the form fields
-    console.log("Inside edituserinfo")
-    document.getElementById('reviewPriceForm').disabled = false;
+    // Set event listeners for the buttons and file input
+    document.getElementById('photoBox').addEventListener('change', handleFileSelect, false);
+    document.getElementById('editBtn').addEventListener('click', editShareInfo);
+    document.getElementById('saveBtn').addEventListener('click', saveShareInfo);
+});
+
+function handleFileSelect(event) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        // Update the photo preview
+        document.getElementById('photoPreview').src = e.target.result;
+    };
+
+    // Read the selected file as a data URL
+    reader.readAsDataURL(event.target.files[0]);
 }
 
+function editShareInfo() {
+    // Enable the form fields
+    console.log("Inside editShareInfo");
+    var formElements = document.getElementById('reviewPriceForm').elements;
+    for (var i = 0, len = formElements.length; i < len; ++i) {
+        formElements[i].disabled = false;
+    }
+}
 
 function saveShareInfo() {
     // Retrieve values from the form fields
@@ -52,17 +73,39 @@ function saveShareInfo() {
     var pluValue = document.getElementById('pluBox').value;
     var storeNameValue = document.getElementById('storeNameBox').value;
     var addressValue = document.getElementById('addressBox').value;
+    const photoFile = document.getElementById('photoBox').files[0];
 
     // Retrieve user ID and document timestamp from localStorage
     const userId = localStorage.getItem('userId');
     const documentTimestamp = localStorage.getItem('documentTimestamp');
 
-    // Ensure we have a user ID and a document timestamp
-    if (userId && documentTimestamp) {
-        // Define currentUser within this function's scope
-        var currentUser = db.collection("users").doc(userId);
-
-        // Update the document in the user_uploads collection
+    // Check if a new photo was selected for upload
+    if (photoFile) {
+        // Upload the new photo to Firebase Storage first
+        firebase.storage().ref(`photos/${userId}/${documentTimestamp}`).put(photoFile)
+            .then(snapshot => snapshot.ref.getDownloadURL())
+            .then(photoURL => {
+                // Update the document with the new photo URL and other form data
+                return currentUser.collection("user_uploads").doc(documentTimestamp).update({
+                    product: productValue,
+                    price: priceValue,
+                    amount: amountValue,
+                    variety: varietyValue,
+                    plu: pluValue,
+                    storeName: storeNameValue,
+                    address: addressValue,
+                    photo: photoURL, // Store the new photo URL
+                    last_updated: firebase.firestore.FieldValue.serverTimestamp(),
+                });
+            })
+            .then(() => {
+                console.log("Document successfully updated with new photo!");
+            })
+            .catch(error => {
+                console.error("Error updating document with new photo: ", error);
+            });
+    } else {
+        // If no new photo is selected, update other form data only
         currentUser.collection("user_uploads").doc(documentTimestamp).update({
             product: productValue,
             price: priceValue,
@@ -72,22 +115,12 @@ function saveShareInfo() {
             storeName: storeNameValue,
             address: addressValue,
             last_updated: firebase.firestore.FieldValue.serverTimestamp(),
-            user_id: userId
-        }).then(() => {
-            console.log("Document successfully updated!");
-        }).catch(error => {
-            console.error("Error updating document: ", error);
-        });
-    } else {
-        console.log("User ID or Document Timestamp not found in localStorage.");
+        })
+            .then(() => {
+                console.log("Document successfully updated!");
+            })
+            .catch(error => {
+                console.error("Error updating document: ", error);
+            });
     }
 }
-
-// Event listeners should be set inside the DOMContentLoaded event listener to ensure elements are loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // ... your existing code to populate the form ...
-
-    // Set event listeners for the buttons
-    document.getElementById('reviseBtn').addEventListener('click', editShareInfo);
-    document.getElementById('saveBtn').addEventListener('click', saveShareInfo);
-});
