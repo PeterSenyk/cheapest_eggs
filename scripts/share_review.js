@@ -1,104 +1,93 @@
-//------------------populate the form field------------------//
+// Global reference to the current user's document
+var currentUser;
 
 document.addEventListener('DOMContentLoaded', (event) => {
+    // Attempt to retrieve user ID and document timestamp from localStorage
     const userId = localStorage.getItem('userId');
     const documentTimestamp = localStorage.getItem('documentTimestamp');
-    console.log(documentTimestamp)
+    console.log("Timestamp:", documentTimestamp);
 
     if (userId && documentTimestamp) {
-        db.collection("users").doc(userId).collection("user_uploads").doc(documentTimestamp).get()
+        // Reference to the specific document in the user_uploads collection
+        currentUser = db.collection("users").doc(userId);
+        currentUser.collection("user_uploads").doc(documentTimestamp).get()
             .then((doc) => {
                 if (doc.exists) {
                     const data = doc.data();
-                    console.log("Retrieved data:", data); // Log the retrieved data to see what's available
+                    console.log("Retrieved data:", data);
 
-                    // Populate the form fields
+                    // Populate the form fields with the data
                     document.getElementById('productBox').value = data.product || '';
                     document.getElementById('priceBox').value = data.price || '';
                     document.getElementById('amountBox').value = data.amount || '';
                     document.getElementById('varietyBox').value = data.variety || '';
-                    document.getElementById('pluBox').value = data.pluBox || '';
+                    document.getElementById('pluBox').value = data.plu || '';
                     document.getElementById('storeNameBox').value = data.storeName || '';
                     document.getElementById('addressBox').value = data.address || '';
-
                 } else {
                     console.log("No such document!");
                 }
             })
             .catch((error) => {
-                console.log("Error getting document:", error);
+                console.error("Error getting document:", error);
             });
     }
 });
+//call the function to run it 
+populateUserInfo();
 
-
-
-function editUserInfo() {
+function editShareInfo() {
     //Enable the form fields
+    console.log("Inside edituserinfo")
     document.getElementById('reviewPriceForm').disabled = false;
-    document.getElementById('reviseBtn').disabled = false;
 }
 
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const productBox = product.value
-    const priceBox = price.value
-    const amountBox = amount.value
-    const varietyBox = variety.value
-    const pluBox = plu.value
-    const storeNameBox = storeName.value
-    const addressBox = address.value
-    const userId = firebase.auth().currentUser.uid
-    const timeStamp = new Date().toISOString();
-    // Save the form data to localStorage
-    // Upon successful Firebase submission:
-    // localStorage.setItem('userId', userId);
-    // localStorage.setItem('documentTimestamp', timeStamp);
 
-    // Upload to firestore database
-    db.collection("users").doc(userId).collection("user_uploads").doc(documentTimestamp).update({
-        product: productBox,
-        price: priceBox,
-        amount: amountBox,
-        variety: varietyBox,
-        plu: pluBox,
-        storeName: storeNameBox,
-        address: addressBox,
-        last_updated: firebase.firestore.FieldValue.serverTimestamp(),
-        user_id: userId,
-    }, { merge: true })
-        .then(() => {
-            // This will execute after the set() operation is successful
-            // window.location = "./share_review.html";
-        })
-        .catch((error) => {
-            // Handle any errors here
-            console.error("Error writing document: ", error);
+function saveShareInfo() {
+    // Retrieve values from the form fields
+    var productValue = document.getElementById('productBox').value;
+    var priceValue = document.getElementById('priceBox').value;
+    var amountValue = document.getElementById('amountBox').value;
+    var varietyValue = document.getElementById('varietyBox').value;
+    var pluValue = document.getElementById('pluBox').value;
+    var storeNameValue = document.getElementById('storeNameBox').value;
+    var addressValue = document.getElementById('addressBox').value;
+
+    // Retrieve user ID and document timestamp from localStorage
+    const userId = localStorage.getItem('userId');
+    const documentTimestamp = localStorage.getItem('documentTimestamp');
+
+    // Ensure we have a user ID and a document timestamp
+    if (userId && documentTimestamp) {
+        // Define currentUser within this function's scope
+        var currentUser = db.collection("users").doc(userId);
+
+        // Update the document in the user_uploads collection
+        currentUser.collection("user_uploads").doc(documentTimestamp).update({
+            product: productValue,
+            price: priceValue,
+            amount: amountValue,
+            variety: varietyValue,
+            plu: pluValue,
+            storeName: storeNameValue,
+            address: addressValue,
+            last_updated: firebase.firestore.FieldValue.serverTimestamp(),
+            user_id: userId
+        }).then(() => {
+            console.log("Document successfully updated!");
+        }).catch(error => {
+            console.error("Error updating document: ", error);
         });
-})
+    } else {
+        console.log("User ID or Document Timestamp not found in localStorage.");
+    }
+}
 
+// Event listeners should be set inside the DOMContentLoaded event listener to ensure elements are loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // ... your existing code to populate the form ...
 
-
-// function reviseInfo() {
-//     console.log("Inside reviseInfo")
-//     productValue = document.getElementById('productBox').value;
-//     console.log(productValue)
-//     priceBox = document.getElementById('priceBox').value
-//     amountBox = document.getElementById('amountBox').value
-//     varietyBox = document.getElementById('varietyBox').value 
-//     pluBox = document.getElementById('pluBox').value
-//     storeNameBox = document.getElementById('storeNameBox').value
-//     addressBox = document.getElementById('addressBox').value
-//     //Update current user info
-//     users.userId.user_uploads.documentTimestamp.update({
-//         product: productValue,
-//         price: priceBox,
-//         amount: amountBox,
-//         variety: varietyBox,
-//         plu: pluBox,
-//         storeName: storeNameBox,
-//         address: addressBox,
-//         last_updated: firebase.firestore.FieldValue.serverTimestamp(),
-//         user_id: userId,
-//     })
-// }
+    // Set event listeners for the buttons
+    document.getElementById('reviseBtn').addEventListener('click', editShareInfo);
+    document.getElementById('saveBtn').addEventListener('click', saveShareInfo);
+});
