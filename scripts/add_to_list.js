@@ -1,44 +1,43 @@
 // this function adds the corresponding item to the list from the search_results page
 function add_to_list_from_search() {
-    let uid = localStorage.getItem("uid");
-    let item_id = new URL(this.getAttribute("href")).searchParams.get("docID");
+    const uid = localStorage.getItem("uid");
+    const item_id = this.id.split(" ")[0];
+    const produce = this.id.split(" ")[1].toLowerCase();
+    this.classList.remove("confirm");
+    void this.offsetWidth; // trick to restart animation
+    this.classList.add("confirm");
     db.collection("users").doc(uid).collection("user_list").add({
+        produce_name: produce,
         itemid: item_id,
         quantity: 1
     })
 }
 
 // this function adds the corresponding item to the list from the eachProduct page
-async function add_to_list_from_product() {
-    let uid = localStorage.getItem("uid");
-    let item_id = new URL(window.location.href).searchParams.get("docID");
-    let productDoc = await db.collection("products").doc(item_id).collection("details").doc(item_id).get();
-    db.collection("users").doc(uid).collection("user_list").add({
-        produce_name: productDoc.data().produce_name,
-        itemid: item_id,
-        quantity: 1
-    })
-}
+// async function add_to_list_from_product() {
+//     const uid = localStorage.getItem("uid");
+//     const item_id = new URL(window.location.href).searchParams.get("docID");
+//     const productDoc = await db.collection("products").doc(item_id).collection("details").doc(item_id).get();
+//     db.collection("users").doc(uid).collection("user_list").add({
+//         produce_name: productDoc.data().produce_name,
+//         itemid: item_id,
+//         quantity: 1
+//     })
+// }
 
-addButtons = function(button_class, from_search=true) {
-    let buttons = document.getElementsByClassName(button_class);
-    if (from_search){
-        for (let i = 0; i < buttons.length; i++) {
-            buttons[i].addEventListener("click", add_to_list_from_search);
-        }
-    }
+// addButtons = function(button_class) {
+//     const buttons = Array.from(document.getElementsByClassName(button_class));
+//     console.log(buttons)
+//     buttons.forEach(button => {
+//         button.addEventListener("click", add_to_list_from_search);
+//     });
+    
 
-}
+// }
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         localStorage.setItem("uid", user.uid);
-        if (window.location.href.includes("search_result.html")) {
-            addButtons("card-href")
-        } 
-        // else { // to be added with the eachProduct page
-        //     addButtons("add-to-list")
-        // } 
     }
     else {
         // todo
