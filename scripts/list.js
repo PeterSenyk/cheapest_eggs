@@ -136,8 +136,10 @@ addClearListEvent = function() {
         list.get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 doc.ref.delete();
-            });
-        });
+            })
+        }).then(() => {
+            document.getElementById("user_list").innerHTML = "Your list is empty, add some items!";
+        })
     });
 }
 
