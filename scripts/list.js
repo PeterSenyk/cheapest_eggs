@@ -94,7 +94,7 @@ async function generateListCards(collection){
         listSnapshot.docs.forEach(async listItem =>  {
             const identifier = listItem.id;
             let newCard = cardTemplate.content.cloneNode(true);
-            let productDoc = await db.collection("products").doc(listItem.data().itemid).get();
+            let productDoc = await db.collection("products").doc(listItem.data().produce_name).collection("details").doc(listItem.data().itemid).get();
 
             editCard(newCard, productDoc.data(), identifier);
             addCardEvents(newCard, identifier, listItem);
