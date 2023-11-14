@@ -2,13 +2,13 @@
 var currentUser;
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    // Attempt to retrieve user ID and document timestamp from localStorage
+    // Attempt to retrieve user ID and document timestamp from localStorage from the previous page share.html to populate the form fields
     const userId = localStorage.getItem('userId');
     const documentTimestamp = localStorage.getItem('documentTimestamp');
     console.log("Timestamp:", documentTimestamp);
 
     if (userId && documentTimestamp) {
-        // Reference to the specific document in the user_uploads collection
+        // Reference to the specific document in the user_uploads collection based on the document timestamp
         currentUser = db.collection("users").doc(userId);
         currentUser.collection("user_uploads").doc(documentTimestamp).get()
             .then((doc) => {
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     const data = doc.data();
                     console.log("Retrieved data:", data);
 
-                    // Populate the form fields with the data
+                    // Populate the form fields with the data from the previous share.html page
                     document.getElementById('productBox').value = data.product || '';
                     document.getElementById('priceBox').value = data.price || '';
                     document.getElementById('amountBox').value = data.amount || '';
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 function handleFileSelect(event) {
     const reader = new FileReader();
     reader.onload = function (e) {
-        // Update the photo preview
+        // Update the photo preview from the previous share.html page   **** change CSS to better fit the page and be responsive
         document.getElementById('photoPreview').src = e.target.result;
     };
 
@@ -56,7 +56,7 @@ function handleFileSelect(event) {
 }
 
 function editShareInfo() {
-    // Enable the form fields
+    // Enable the form fields      **** change the form fields to start out disabled
     console.log("Inside editShareInfo");
     var formElements = document.getElementById('reviewPriceForm').elements;
     for (var i = 0, len = formElements.length; i < len; ++i) {
@@ -65,7 +65,7 @@ function editShareInfo() {
 }
 
 function saveShareInfo() {
-    // Retrieve values from the form fields
+    // Retrieve values from the form fields and update the Firestore document with any changes
     var productValue = document.getElementById('productBox').value;
     var priceValue = document.getElementById('priceBox').value;
     var amountValue = document.getElementById('amountBox').value;
@@ -75,7 +75,7 @@ function saveShareInfo() {
     var addressValue = document.getElementById('addressBox').value;
     const photoFile = document.getElementById('photoBox').files[0];
 
-    // Retrieve user ID and document timestamp from localStorage
+    // Retrieve user ID and document timestamp from localStorage to make sure the previously shared document is updated
     const userId = localStorage.getItem('userId');
     const documentTimestamp = localStorage.getItem('documentTimestamp');
 
