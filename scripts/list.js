@@ -38,10 +38,27 @@ removeCard = function(identifier, lastQuantity=1, listItem) {
     let blockClone = undoBlock.content.cloneNode(true);
     blockClone.querySelector(".item_name").innerHTML = itemName;
 
+    let deleteTimer = setTimeout(async function() {
+        card.remove();
+        const listItemSnapshot = await listItem.ref.get();
+        if (listItemSnapshot.data().quantity <= 0) {
+            listItem.ref.delete().then(() => {
+                console.log("Document successfully deleted!");
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+        }
+    }, 10000)
+
     blockClone.querySelector(".undo").addEventListener("click", function(){
         card.innerHTML = previous_info;
         document.getElementById(`quantity_${identifier}`).value = lastQuantity;
+        listItem.ref.update({quantity: lastQuantity});
+        updateTotalCost(identifier);
+
+        clearTimeout(deleteTimer);
     });
+
     blockClone.querySelector(".hide").addEventListener("click", function(){
         card.remove();
         listItem.ref.delete().then(() => {
@@ -51,7 +68,9 @@ removeCard = function(identifier, lastQuantity=1, listItem) {
         });
         checkIfListEmpty();
     });
-    card.innerHTML = undoBlock.innerHTML; 
+
+    card.innerHTML = "";
+    card.appendChild(blockClone); 
 }
 
 async function handleQuantityChange(identifier, listItem, change) {
@@ -60,13 +79,12 @@ async function handleQuantityChange(identifier, listItem, change) {
     let newQuantity = previousQuantity + change;
     console.log(newQuantity, previousQuantity, change);
     document.getElementById(`quantity_${identifier}`).value = newQuantity;
-
+    
+    listItem.ref.update({quantity: newQuantity});
+    updateTotalCost(identifier, previousQuantity);
     if (newQuantity <= 0) {
         removeCard(identifier, previousQuantity, listItem);
-    } else {
-        listItem.ref.update({quantity: newQuantity});
-        updateTotalCost(identifier, previousQuantity);
-    }
+    } 
 }
 
 addCardEvents = function(card, identifier, listItem) {
