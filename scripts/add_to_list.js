@@ -1,12 +1,21 @@
 // this function adds the corresponding item to the list from the search_results page
-function add_to_list_from_search() {
+async function add_to_list_from_search() {
     const uid = localStorage.getItem("uid");
     const item_id = this.id.split(" ")[0];
     const produce = this.id.split(" ")[1].toLowerCase();
-    this.classList.remove("confirm");
-    void this.offsetWidth; // trick to restart animation
-    this.classList.add("confirm");
-    db.collection("users").doc(uid).collection("user_list").add({
+    const doc = await db.collection("users").doc(uid).collection("user_list").doc(item_id).get();
+    if (doc.exists) {
+        console.log("item already in list");
+        this.classList.remove("deny");
+        void this.offsetWidth; // trick to restart animation
+        this.classList.add("deny");
+    } else {
+        console.log("item added to list");
+        this.classList.remove("confirm");
+        void this.offsetWidth; // trick to restart animation
+        this.classList.add("confirm");
+    }
+    db.collection("users").doc(uid).collection("user_list").doc(item_id).set({
         produce_name: produce,
         itemid: item_id,
         quantity: 1

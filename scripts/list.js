@@ -19,7 +19,7 @@ updateTotalCost = function(identifier, previousQuantity=0) {
     //add the cost of the new quantity of the item
     total += cost * document.getElementById(`quantity_${identifier}`).value;
     //update total cost
-    document.getElementById("total_cost").innerHTML = total;
+    document.getElementById("total_cost").innerHTML = (Math.round(total * 100) / 100).toFixed(2);;
 }
 
 checkIfListEmpty = function() {
