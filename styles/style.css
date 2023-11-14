@@ -210,3 +210,22 @@ This is all commented out due to not wanting to make the final decision for it
 .contact {
     margin-bottom: 100px;
 }
+
+/*
+search confirmation animation
+*/
+@keyframes search_confirm{
+    0%{
+        background-color: #0275d8;
+    }
+    50%{
+        background-color: #198754;
+    }
+    100%{
+        background-color: #0275d8;
+    }
+}
+.confirm{
+    animation-name: search_confirm;
+    animation-duration: 0.5s;
+}
