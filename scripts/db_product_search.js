@@ -26,7 +26,9 @@ function displayCardsDynamically(collection) {
                         newcard.querySelector('.card-length').innerHTML = productPrice + " CAD";
                         newcard.querySelector('.card-text').innerHTML = details;
                         newcard.querySelector('.card-image').src = `./images/${pluCode}.png`;
-                        newcard.querySelector('a').href = "eachProduct.html?docID=" + docID;
+                        // newcard.querySelector('a').href = "eachProduct.html?docID=" + docID; for later
+                        newcard.querySelector('.card-href').setAttribute("id", `${docID} ${title}`);
+                        newcard.querySelector('.card-href').addEventListener("click", add_to_list_from_search);
 
                         document.getElementById(collection + "-go-here").appendChild(newcard);
                     })
