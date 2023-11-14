@@ -5,17 +5,20 @@
     <title>Cheapest Eggs</title>
     <meta name="comp1800 template" content="My 1800 App">
 
+    <!------------------------>
     <!-- Required meta tags -->
+    <!------------------------>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap Library CSS CDN go here -->
+    <!------------------------------------------>
+    <!-- Bootstrap Library CSS JS CDN go here -->
+    <!------------------------------------------>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <!-- Boostrap Library JS CDN  go here -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
 
     <!-------------------------------------------------------->
     <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
@@ -47,91 +50,34 @@
     <!-- Load css styles -->
     <!--------------------->
     <link rel="stylesheet" href="./styles/style.css">
-
-    <style>
-        .sale_product_container {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            padding-bottom: 20px;
-            /* height: 20%; */
-        }
-
-        .sale_product_container img {
-            width: 100%;
-        }
-
-        .sale_product_card {
-            padding: 1%;
-            background-color: white;
-            text-align: center;
-            border-radius: 10px;
-            margin: 2px;
-        }
-
-        button {
-            background-color: green;
-            color: white;
-            border-radius: 10px;
-            border-style: none;
-        }
-
-        .welcome_banner {
-            overflow: hidden;
-            text-align: center;
-        }
-
-        h1 {
-            color: white !important;
-        }
-    </style>
+    
 </head>
 
 <body>
-    <header>
-        <nav id="navbarPlaceholder"></nav>
-    </header>
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
-    <!-- Stuff for body goes here -->
-    <div class="welcome_banner container-fluid row">
-        <h1>Cheap Deals</h1>
-        <div class="sale_product_container" id="product-goes-here">
-            <div class="welcome_banner_one container">
-                <h1>Eat well, spend less</h1>
-                <p>Save time and money on your weekly groceries</p>
-            </div>
-            <div class="welcome_banner_one container">
-                <a class="btn btn-success btn-lg" href="./search_result.html" role="button">Search</a>
+
+    <!-- navbar -->
+    <nav id="navbarPlaceholder"></nav>
+
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <h1>TEST</h1>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <div class="welcome_banner_two container-fluid row">
-        <div>
-            <div class="welcome_banner_one container">
-                <h1>Share your finds</h1>
-                <p>Share the great prices that you find with the community.</p>
-            </div>
-            <div class="welcome_banner_one container">
-                <a class="btn btn-success btn-lg" href="share.html" role="button">Share</a>
-            </div>
-        </div>
-    </div>
-
-
-    <!--sticky footer-->
+    <!-- footer -->
     <footer id="footerPlaceholder"></footer>
+
     <!---------------------------------------------->
     <!--- Your own JavaScript functions go here  --->
     <!---------------------------------------------->
-    <script src="/scripts/firebaseAPI_Team08.js"></script>
+    <script src="./scripts/firebaseAPI_Team08.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/db_top_product.js"></script>
-    <script src="./scripts/db_product_add.js"></script>
+    <script src="./scripts/db_inject.js"></script>
+    
 </body>
 
 </html>
