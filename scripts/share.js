@@ -20,9 +20,9 @@ const form = document.getElementById("sharePriceForm");
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const userId = firebase.auth().currentUser.uid;
-    const timeStamp = new Date().toISOString();
-    const photoFile = document.getElementById('photoBox').files[0];
+    const userId = firebase.auth().currentUser.uid;  // Get the user ID
+    const timeStamp = new Date().toISOString();      // save the current timestamp to use as the document ID in Firestore and import doc for share_review.js
+    const photoFile = document.getElementById('photoBox').files[0];  // Get the file selected by the user
 
     if (!photoFile) {
         console.error("No file selected for upload.");
