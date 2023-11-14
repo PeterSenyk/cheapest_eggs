@@ -9,24 +9,31 @@ editCard = function(card, item, identifier) {
     card.querySelector(".card_quantity").setAttribute("id", "quantity_" + identifier);
 }
 
-updateTotalCost = function(identifier, previous_quantity=0) {
+updateTotalCost = function(identifier, previousQuantity=0) {
     //get total cost
     total = document.getElementById("total_cost").innerHTML
     //get cost of item without dollar sign and " CAD"
     cost = document.getElementById(`cost_${identifier}`).innerHTML.slice(1, this.length - 4);
     //calculate what the total cost is without the item
-    total -= cost * previous_quantity;
+    total -= cost * previousQuantity;
     //add the cost of the new quantity of the item
     total += cost * document.getElementById(`quantity_${identifier}`).value;
     //update total cost
     document.getElementById("total_cost").innerHTML = total;
 }
 
-removeCard = function(identifier, lastQuantity=1, list_item) {
+checkIfListEmpty = function() {
+    let list = document.getElementById("user_list");
+    if (list.innerHTML == "") {
+        list.innerHTML = "Your list is empty, add some items!";
+    }
+}
+
+removeCard = function(identifier, lastQuantity=1, listItem) {
     let card = document.getElementById(`card_${identifier}`);
-    let previous_info = card.innerHTML;
-    let undoBlock = document.getElementById("undo_block");
-    let itemName = card.querySelector(".card_title").innerHTML;
+    const previous_info = card.innerHTML;
+    const undoBlock = document.getElementById("undo_block");
+    const itemName = card.querySelector(".card_title").innerHTML;
 
     let blockClone = undoBlock.content.cloneNode(true);
     blockClone.querySelector(".item_name").innerHTML = itemName;
@@ -37,91 +44,77 @@ removeCard = function(identifier, lastQuantity=1, list_item) {
     });
     blockClone.querySelector(".hide").addEventListener("click", function(){
         card.remove();
-        list_item.ref.delete().then(() => {
+        listItem.ref.delete().then(() => {
             console.log("Document successfully deleted!");
         }).catch((error) => {
             console.error("Error removing document: ", error);
         });
+        checkIfListEmpty();
     });
-    card.innerHTML = undoBlock.innerHTML;
+    card.innerHTML = undoBlock.innerHTML; 
 }
 
-async function handleQuantityChange(identifier, list_item, change) {
-    list_item = await list_item.ref.get();
-    let previous_quantity = list_item.data().quantity;
-    let new_quantity = previous_quantity + change;
-    console.log(new_quantity, previous_quantity, change);
-    document.getElementById(`quantity_${identifier}`).value = new_quantity;
+async function handleQuantityChange(identifier, listItem, change) {
+    listItem = await listItem.ref.get();
+    let previousQuantity = listItem.data().quantity;
+    let newQuantity = previousQuantity + change;
+    console.log(newQuantity, previousQuantity, change);
+    document.getElementById(`quantity_${identifier}`).value = newQuantity;
 
-    if (new_quantity <= 0) {
-        removeCard(identifier, previous_quantity, list_item);
+    if (newQuantity <= 0) {
+        removeCard(identifier, previousQuantity, listItem);
     } else {
-        list_item.ref.update({quantity: new_quantity});
-        updateTotalCost(identifier, previous_quantity);
+        listItem.ref.update({quantity: newQuantity});
+        updateTotalCost(identifier, previousQuantity);
     }
 }
 
-addCardEvents = function(card, identifier, list_item) {
+addCardEvents = function(card, identifier, listItem) {
     card.querySelector(".subtract").addEventListener("click", function() {
-        handleQuantityChange(identifier, list_item, -1);
+        handleQuantityChange(identifier, listItem, -1);
     });
 
     card.querySelector(".card_quantity").addEventListener("change", function() {
         let new_quantity = Number(document.getElementById(`quantity_${identifier}`).value);
-        handleQuantityChange(identifier, list_item, new_quantity - list_item.data().quantity);
+        handleQuantityChange(identifier, listItem, new_quantity - listItem.data().quantity);
     });
 
     card.querySelector(".add").addEventListener("click", function() {
-        handleQuantityChange(identifier, list_item, 1);
+        handleQuantityChange(identifier, listItem, 1);
     });
 }
 
 async function generateListCards(collection){
-    // get the user's uid
-    let user = localStorage.getItem("uid");
-    // get the template
-    let card = document.getElementById("list_card");
-    // gets a snapshot of the list
-    let list_docs = await db.collection(collection).doc(user).collection("user_list").get();
-    // if there are items in the list, uses loose equality to check if the list is empty
-    // an empty list returns 0, which is falsy, but a list itself is always truthy
-    if (list_docs != 0) {
-        //initialize index for identifiers
-        var identifier = "";
-        // for each item in the list
-        for (i = 0; i < list_docs.docs.length; i++) {
-            list_item = list_docs.docs[i];
-            identifier = list_item.id;
-            // clone the template
-            let newCard = card.content.cloneNode(true);
-            // access the item in the products collection
-            let doc = await db.collection("products").doc(list_item.data().itemid).get();
-            // edit the card
-            editCard(newCard, doc.data(), identifier);
-            // add event listeners to the buttons
-            addCardEvents(newCard, identifier, list_item);
-            // add the quantity to the card
-            newCard.querySelector(".card_quantity").value = list_item.data().quantity;
-            // append the card to the div
+    const user = localStorage.getItem("uid");
+    const cardTemplate = document.getElementById("list_card");
+    const listSnapshot = await db.collection(collection).doc(user).collection("user_list").get();
+    const list = document.getElementById("user_list");
+
+    if (!listSnapshot.empty) {
+        listSnapshot.docs.forEach(async listItem =>  {
+            const identifier = listItem.id;
+            let newCard = cardTemplate.content.cloneNode(true);
+            let productDoc = await db.collection("products").doc(listItem.data().itemid).get();
+
+            editCard(newCard, productDoc.data(), identifier);
+            addCardEvents(newCard, identifier, listItem);
+            newCard.querySelector(".card_quantity").value = listItem.data().quantity;
+
             document.getElementById("user_list").appendChild(newCard);
             updateTotalCost(identifier);
-        }
+        });
     } else {
-        // if there are no items in the list
         document.getElementById("user_list").innerHTML = "Your list is empty, add some items!";
     }
 }
 
 addClearListEvent = function() {
-    // get the user's uid
-    let user = localStorage.getItem("uid");
-    // get the button
-    let clearButton = document.getElementById("clear");
-    // add event listener
+    const user = localStorage.getItem("uid");
+    const clearButton = document.getElementById("clear");
+
     clearButton.addEventListener("click", function(){
-        // get the list
-        let list = db.collection("users").doc(user).collection("user_list");
-        // delete all documents in the list
+        const list = db.collection("users").doc(user).collection("user_list");
+        
         list.get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 doc.ref.delete();
@@ -130,15 +123,13 @@ addClearListEvent = function() {
     });
 }
 
-// confirm a user is logged in. also allows the program to access the uid
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         localStorage.setItem("uid", user.uid);
         generateListCards("users");
-        // addClearListEvent(user.uid);
+        addClearListEvent();
     }
     else {
-        // redirect to the login page
         window.location.href = "login.html";
     }
 });
