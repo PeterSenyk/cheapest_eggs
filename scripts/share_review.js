@@ -1,104 +1,126 @@
-//------------------populate the form field------------------//
+// Global reference to the current user's document
+var currentUser;
 
 document.addEventListener('DOMContentLoaded', (event) => {
+    // Attempt to retrieve user ID and document timestamp from localStorage
     const userId = localStorage.getItem('userId');
     const documentTimestamp = localStorage.getItem('documentTimestamp');
-    console.log(documentTimestamp)
+    console.log("Timestamp:", documentTimestamp);
 
     if (userId && documentTimestamp) {
-        db.collection("users").doc(userId).collection("user_uploads").doc(documentTimestamp).get()
+        // Reference to the specific document in the user_uploads collection
+        currentUser = db.collection("users").doc(userId);
+        currentUser.collection("user_uploads").doc(documentTimestamp).get()
             .then((doc) => {
                 if (doc.exists) {
                     const data = doc.data();
-                    console.log("Retrieved data:", data); // Log the retrieved data to see what's available
+                    console.log("Retrieved data:", data);
 
-                    // Populate the form fields
+                    // Populate the form fields with the data
                     document.getElementById('productBox').value = data.product || '';
                     document.getElementById('priceBox').value = data.price || '';
                     document.getElementById('amountBox').value = data.amount || '';
                     document.getElementById('varietyBox').value = data.variety || '';
-                    document.getElementById('pluBox').value = data.pluBox || '';
+                    document.getElementById('pluBox').value = data.plu || '';
                     document.getElementById('storeNameBox').value = data.storeName || '';
                     document.getElementById('addressBox').value = data.address || '';
 
+                    // Populate the photo if it exists
+                    if (data.photo) {
+                        document.getElementById('photoPreview').src = data.photo;
+                    }
                 } else {
                     console.log("No such document!");
                 }
             })
             .catch((error) => {
-                console.log("Error getting document:", error);
+                console.error("Error getting document:", error);
             });
     }
+
+    // Set event listeners for the buttons and file input
+    document.getElementById('photoBox').addEventListener('change', handleFileSelect, false);
+    document.getElementById('editBtn').addEventListener('click', editShareInfo);
+    document.getElementById('saveBtn').addEventListener('click', saveShareInfo);
 });
 
+function handleFileSelect(event) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        // Update the photo preview
+        document.getElementById('photoPreview').src = e.target.result;
+    };
 
-
-function editUserInfo() {
-    //Enable the form fields
-    document.getElementById('reviewPriceForm').disabled = false;
-    document.getElementById('reviseBtn').disabled = false;
+    // Read the selected file as a data URL
+    reader.readAsDataURL(event.target.files[0]);
 }
 
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const productBox = product.value
-    const priceBox = price.value
-    const amountBox = amount.value
-    const varietyBox = variety.value
-    const pluBox = plu.value
-    const storeNameBox = storeName.value
-    const addressBox = address.value
-    const userId = firebase.auth().currentUser.uid
-    const timeStamp = new Date().toISOString();
-    // Save the form data to localStorage
-    // Upon successful Firebase submission:
-    // localStorage.setItem('userId', userId);
-    // localStorage.setItem('documentTimestamp', timeStamp);
+function editShareInfo() {
+    // Enable the form fields
+    console.log("Inside editShareInfo");
+    var formElements = document.getElementById('reviewPriceForm').elements;
+    for (var i = 0, len = formElements.length; i < len; ++i) {
+        formElements[i].disabled = false;
+    }
+}
 
-    // Upload to firestore database
-    db.collection("users").doc(userId).collection("user_uploads").doc(documentTimestamp).update({
-        product: productBox,
-        price: priceBox,
-        amount: amountBox,
-        variety: varietyBox,
-        plu: pluBox,
-        storeName: storeNameBox,
-        address: addressBox,
-        last_updated: firebase.firestore.FieldValue.serverTimestamp(),
-        user_id: userId,
-    }, { merge: true })
-        .then(() => {
-            // This will execute after the set() operation is successful
-            // window.location = "./share_review.html";
+function saveShareInfo() {
+    // Retrieve values from the form fields
+    var productValue = document.getElementById('productBox').value;
+    var priceValue = document.getElementById('priceBox').value;
+    var amountValue = document.getElementById('amountBox').value;
+    var varietyValue = document.getElementById('varietyBox').value;
+    var pluValue = document.getElementById('pluBox').value;
+    var storeNameValue = document.getElementById('storeNameBox').value;
+    var addressValue = document.getElementById('addressBox').value;
+    const photoFile = document.getElementById('photoBox').files[0];
+
+    // Retrieve user ID and document timestamp from localStorage
+    const userId = localStorage.getItem('userId');
+    const documentTimestamp = localStorage.getItem('documentTimestamp');
+
+    // Check if a new photo was selected for upload
+    if (photoFile) {
+        // Upload the new photo to Firebase Storage first
+        firebase.storage().ref(`photos/${userId}/${documentTimestamp}`).put(photoFile)
+            .then(snapshot => snapshot.ref.getDownloadURL())
+            .then(photoURL => {
+                // Update the document with the new photo URL and other form data
+                return currentUser.collection("user_uploads").doc(documentTimestamp).update({
+                    product: productValue,
+                    price: priceValue,
+                    amount: amountValue,
+                    variety: varietyValue,
+                    plu: pluValue,
+                    storeName: storeNameValue,
+                    address: addressValue,
+                    photo: photoURL, // Store the new photo URL
+                    last_updated: firebase.firestore.FieldValue.serverTimestamp(),
+                });
+            })
+            .then(() => {
+                console.log("Document successfully updated with new photo!");
+            })
+            .catch(error => {
+                console.error("Error updating document with new photo: ", error);
+            });
+    } else {
+        // If no new photo is selected, update other form data only
+        currentUser.collection("user_uploads").doc(documentTimestamp).update({
+            product: productValue,
+            price: priceValue,
+            amount: amountValue,
+            variety: varietyValue,
+            plu: pluValue,
+            storeName: storeNameValue,
+            address: addressValue,
+            last_updated: firebase.firestore.FieldValue.serverTimestamp(),
         })
-        .catch((error) => {
-            // Handle any errors here
-            console.error("Error writing document: ", error);
-        });
-})
-
-
-
-// function reviseInfo() {
-//     console.log("Inside reviseInfo")
-//     productValue = document.getElementById('productBox').value;
-//     console.log(productValue)
-//     priceBox = document.getElementById('priceBox').value
-//     amountBox = document.getElementById('amountBox').value
-//     varietyBox = document.getElementById('varietyBox').value 
-//     pluBox = document.getElementById('pluBox').value
-//     storeNameBox = document.getElementById('storeNameBox').value
-//     addressBox = document.getElementById('addressBox').value
-//     //Update current user info
-//     users.userId.user_uploads.documentTimestamp.update({
-//         product: productValue,
-//         price: priceBox,
-//         amount: amountBox,
-//         variety: varietyBox,
-//         plu: pluBox,
-//         storeName: storeNameBox,
-//         address: addressBox,
-//         last_updated: firebase.firestore.FieldValue.serverTimestamp(),
-//         user_id: userId,
-//     })
-// }
+            .then(() => {
+                console.log("Document successfully updated!");
+            })
+            .catch(error => {
+                console.error("Error updating document: ", error);
+            });
+    }
+}

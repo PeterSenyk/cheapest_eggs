@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 400px;
+    /* height: 400px; */
     background-image: url('/images/grocery_welcome_blur.jpg');
     background-size: cover;
     background-repeat: repeat;

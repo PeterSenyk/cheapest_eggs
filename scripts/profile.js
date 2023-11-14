@@ -215,7 +215,3 @@ function populateShare() {
 }
 
 populateShare();
-
-
-
-
