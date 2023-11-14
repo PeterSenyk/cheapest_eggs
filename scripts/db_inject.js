@@ -1,8 +1,6 @@
-// Code will be added later
-function writeProducts() {
+function addTomato() {
     //define a variable for the collection you want to create in Firestore to populate data
     var products_ref = db.collection("products");
-
     var products_detail_ref = products_ref.doc('tomato').collection('details'); // change doc('name') based on item you inject
 
     products_detail_ref.add({
