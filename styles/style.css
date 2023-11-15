@@ -219,6 +219,13 @@ This is all commented out due to not wanting to make the final decision for it
     margin: 10px;
 }
 
+.quote {
+    font-style: italic;
+    font-size: 20px;
+    text-align: center;
+
+}
+
 /*
 search confirmation animation
 */
