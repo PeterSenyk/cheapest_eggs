@@ -84,9 +84,9 @@
                     </fieldset>
                     <div class="d-flex justify-content-end mt-5">
                         <!-- event-listener that call the functions after clicking on the buttons. -->
-                        <button type="button" class="btn btn-secondary" onclick="editUserInfo()">Edit</button>
+                        <button type="button" class="btn btn-success" onclick="editUserInfo()">Edit</button>
                         <span style="width: 10px"></span>
-                        <button type="button" class="btn btn-success" onclick="saveUserInfo()">Save</button>
+                        <button type="button" class="btn btn-secondary" onclick="saveUserInfo()">Save</button>
                     </div>
                 </form>
                 <div class="col-12">
@@ -97,7 +97,7 @@
             </div>
 
             <div class="sign-out row profile-card">
-                <button id="sign-out">Sign Out</button>
+                <button id="sign-out" class="btn btn-success">Sign Out</button>
             </div>
 
             <div class="container row profile-card">
@@ -113,16 +113,25 @@
             </div>
 
             <template id="shareCardTemplate">
-                <div class="card bg-secondary">
-                    <img class="card-img-top">
+                <!-- <div class="card bg-secondary">
+                    <img class="photo" width="150px">
                     <div class="card-body bg-light">
                         <h5 class="product">placeholder</h5>
                         <p class="price">placeholder</p>
                         <p class="amount">placeholder</p>
                         <p class="storeName">placeholder</p>
                         <p class="address">placeholder</p>
-                        <img class="photo" src="" alt="" width="150px">
                         <br>
+                    </div>
+                </div> -->
+                <div class="card" style="width: 18rem;">
+                    <img class="photo" src="./images/no_img.jpg">
+                    <div class="card-body">
+                        <h5 class="product">placeholder</h5>
+                        <p class="price">placeholder</p>
+                        <p class="amount">placeholder</p>
+                        <p class="storeName">placeholder</p>
+                        <p class="address">placeholder</p>
                     </div>
                 </div>
             </template>
