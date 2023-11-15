@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 .welcome_banner {
     display: flex;
     justify-content: center;
@@ -181,7 +185,7 @@ This is all commented out due to not wanting to make the final decision for it
 
 
 /*-------------------------------------
- * PROFILE
+ * PROFILE AND ABOUT
  *-------------------------------------
  */
 .profile-card {
@@ -207,8 +211,12 @@ This is all commented out due to not wanting to make the final decision for it
     padding-bottom: 20px;
 }
 
-.contact {
+.aboutbtn, .contact {
     margin-bottom: 100px;
+}
+
+.card {
+    margin: 10px;
 }
 
 /*

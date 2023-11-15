@@ -148,12 +148,18 @@ function getOtherInfoFromDB() {
 
 getOtherInfoFromDB(); // Run the function to fetch and update data
 
-// Add a click event listener to the button
+// Add a click event listener to the sign out button
 document.getElementById("sign-out").addEventListener("click", function () {
     // Call the logout function when the button is clicked
     logout();
     // Redirect to "index.html"
     window.location.href = "index.html";
+});
+
+// Add a click event listener to the about button
+document.getElementById("about").addEventListener("click", function () {
+    // Redirect to "about.html"
+    window.location.href = "about.html";
 });
 
 var ImageFile;      //global variable to store the File Object reference
