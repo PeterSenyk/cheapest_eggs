@@ -206,7 +206,9 @@ function populateShare() {
                     shareCard.querySelector(".amount").innerHTML = `Amount: ${amount}`;
                     shareCard.querySelector(".storeName").innerHTML = `StoreName: ${storeName}`;
                     shareCard.querySelector(".address").innerHTML = `Address: ${address}`;
-                    shareCard.querySelector(".photo").src = photo
+                    if (photo) {
+                        shareCard.querySelector(".photo").src = photo
+                    }
 
                     // Append the cloned and populated template to the share card group
                     shareCardGroup.appendChild(shareCard);
