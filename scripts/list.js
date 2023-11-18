@@ -26,6 +26,7 @@ checkIfListEmpty = function() {
     let list = document.getElementById("user_list");
     if (list.innerHTML == "") {
         list.innerHTML = "Your list is empty, add some items!";
+        document.getElementById("total_cost").innerHTML = "0.00";
     }
 }
 
@@ -138,7 +139,8 @@ addClearListEvent = function() {
                 doc.ref.delete();
             })
         }).then(() => {
-            document.getElementById("user_list").innerHTML = "Your list is empty, add some items!";
+            document.getElementById("user_list").innerHTML = "";
+            checkIfListEmpty();
         })
     });
 }
