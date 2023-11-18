@@ -1,7 +1,7 @@
 var currentUser;               //points to the document of the user who is logged in
 function populateUserInfo() {
     firebase.auth().onAuthStateChanged(user => {
-        // Check if user is signed in:
+        // Check if user is signed in
         if (user) {
             //go to the correct user document by referencing to the user uid
             currentUser = db.collection("users").doc(user.uid)
