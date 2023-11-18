@@ -41,6 +41,11 @@ populateUserInfo();
 function editUserInfo() {
     //Enable the form fields
     document.getElementById('personalInfoFields').disabled = false;
+    //Change button colors
+    document.querySelector('.save').classList.remove('btn-secondary');
+    document.querySelector('.save').classList.add('btn-success');
+    document.querySelector('.edit').classList.remove('btn-success');
+    document.querySelector('.edit').classList.add('btn-secondary');
 }
 
 function saveUserInfo() {
@@ -69,6 +74,11 @@ function saveUserInfo() {
                     })
             })
     })
+    //Change button colors
+    document.querySelector('.save').classList.remove('btn-success');
+    document.querySelector('.save').classList.add('btn-secondary');
+    document.querySelector('.edit').classList.remove('btn-secondary');
+    document.querySelector('.edit').classList.add('btn-success');
 }
 
 function getOtherInfoFromDB() {
