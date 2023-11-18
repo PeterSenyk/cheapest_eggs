@@ -1,3 +1,26 @@
+/* color standard  */
+.green_subtle {
+    color: #D4E09B;
+}
+
+.green_mute {
+    color: #9CB380;
+}
+
+.blue_mute {
+    color: #94A89A;
+}
+
+.brown_mute {
+    color: #C7AC92;
+}
+
+.orange_strong {
+    color: #ECA753;
+}
+/* color standard  */
+
+
 * {
     box-sizing: border-box;
 }
