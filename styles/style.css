@@ -189,6 +189,10 @@ footer.container-fluid {
 
 }
 
+.center {
+    text-align: center;
+}
+
 .form-group {
     margin-bottom: 10px;
 }
