@@ -25,9 +25,6 @@ function populateUserInfo() {
                         document.getElementById("cityInput").value = userCity;
                     }
                     if (picUrl != null) {
-                        console.log(picUrl);
-                        // use this line if "mypicdiv" is a "div"
-                        //$("#mypicdiv").append("<img src='" + picUrl + "'>")
                         $("#mypic-goes-here").attr("src", picUrl);
                     }
                 })
@@ -46,21 +43,6 @@ function editUserInfo() {
     document.getElementById('personalInfoFields').disabled = false;
 }
 
-// function saveUserInfo() {
-//     userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
-//     userCountry = document.getElementById('countryInput').value;     //get the value of the field with id="schoolInput"
-//     userCity = document.getElementById('cityInput').value;       //get the value of the field with id="cityInput"
-//     currentUser.update({
-//         name: userName,
-//         country: userCountry,
-//         city: userCity
-//     })
-//         .then(() => {
-//             console.log("Document successfully updated!");
-//         })
-//     document.getElementById('personalInfoFields').disabled = true;
-// }
-
 function saveUserInfo() {
     firebase.auth().onAuthStateChanged(function (user) {
         var storageRef = storage.ref("images/" + user.uid + ".jpg");
@@ -68,12 +50,9 @@ function saveUserInfo() {
         //Asynch call to put File Object (global variable ImageFile) onto Cloud
         storageRef.put(ImageFile)
             .then(function () {
-                console.log('Uploaded to Cloud Storage.');
-
                 //Asynch call to get URL from Cloud
                 storageRef.getDownloadURL()
                     .then(function (url) { // Get "url" of the uploaded file
-                        console.log("Got the download URL.");
                         userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
                         userCountry = document.getElementById('countryInput').value;     //get the value of the field with id="schoolInput"
                         userCity = document.getElementById('cityInput').value;       //get the value of the field with id="cityInput"
@@ -85,35 +64,12 @@ function saveUserInfo() {
                             profilePic: url // Save the URL into users collection
                         })
                             .then(function () {
-                                console.log('Added Profile Pic URL to Firestore.');
-                                console.log('Saved use profile info');
                                 document.getElementById('personalInfoFields').disabled = true;
                             })
                     })
             })
     })
 }
-
-// function getNameFromAuth() {
-//     firebase.auth().onAuthStateChanged(user => {
-//         // Check if a user is signed in:
-//         if (user) {
-//             // Do something for the currently logged-in user here: 
-//             console.log(user.uid); //print the uid in the browser console
-//             console.log(user.displayName);  //print the user name in the browser console
-//             userName = user.displayName;
-//             userEmail = user.email;
-
-//             // insert user name using jquery
-//             $("#name").text(userName);
-//             $("#email").text(userEmail);
-
-//         } else {
-//             // No user is signed in.
-//         }
-//     });
-// }
-// getNameFromAuth(); //run the function
 
 function getOtherInfoFromDB() {
     // Check if the currentUser variable is set
