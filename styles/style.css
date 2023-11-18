@@ -3,6 +3,10 @@
     color: #D4E09B;
 }
 
+#green_subtle_background {
+    background-color: #D4E09B !important;
+}
+
 .green_mute {
     color: #9CB380;
 }
