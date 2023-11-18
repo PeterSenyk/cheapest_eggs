@@ -47,46 +47,6 @@
     <!-- Load css styles -->
     <!--------------------->
     <link rel="stylesheet" href="./styles/style.css">
-
-    <style>
-        .sale_product_container {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            padding-bottom: 20px;
-            /* height: 20%; */
-        }
-
-        .sale_product_container img {
-            width: 100%;
-        }
-
-        .sale_product_card {
-            padding: 1%;
-            background-color: white;
-            text-align: center;
-            border-radius: 10px;
-            margin: 2px;
-        }
-
-        button {
-            background-color: green;
-            color: white;
-            border-radius: 10px;
-            border-style: none;
-        }
-
-        .welcome_banner {
-            overflow: hidden;
-            text-align: center;
-        }
-
-        h1 {
-            color: white !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -98,40 +58,31 @@
     <!------------------------------>
     <!-- Stuff for body goes here -->
     <div class="welcome_banner container-fluid row">
-        <h1>Cheap Deals</h1>
-        <div class="sale_product_container" id="product-goes-here">
-            <div class="welcome_banner_one container">
-                <h1>Eat well, spend less</h1>
-                <p>Save time and money on your weekly groceries</p>
-            </div>
-            <div class="welcome_banner_one container">
-                <a class="btn btn-success btn-lg" href="./search_result.html" role="button">Search</a>
+        <h1 class="title">Cheap Deals</h1>
+        <div class="sale_product_container" id="product-goes-here"></div>
+
+        <div class="welcome_banner_two container-fluid row">
+            <div>
+                <div class="welcome_banner_one container">
+                    <h1>Share your finds</h1>
+                    <p>Share the great prices that you find with the community.</p>
+                </div>
+                <div class="welcome_banner_one container">
+                    <a class="btn btn-success btn-lg" href="share.html" role="button">Share</a>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="welcome_banner_two container-fluid row">
-        <div>
-            <div class="welcome_banner_one container">
-                <h1>Share your finds</h1>
-                <p>Share the great prices that you find with the community.</p>
-            </div>
-            <div class="welcome_banner_one container">
-                <a class="btn btn-success btn-lg" href="share.html" role="button">Share</a>
-            </div>
-        </div>
-    </div>
 
 
-    <!--sticky footer-->
-    <footer id="footerPlaceholder"></footer>
-    <!---------------------------------------------->
-    <!--- Your own JavaScript functions go here  --->
-    <!---------------------------------------------->
-    <script src="/scripts/firebaseAPI_Team08.js"></script>
-    <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/db_top_product.js"></script>
-    <script src="./scripts/db_product_add.js"></script>
+        <!--sticky footer-->
+        <footer id="footerPlaceholder"></footer>
+        <!---------------------------------------------->
+        <!--- Your own JavaScript functions go here  --->
+        <!---------------------------------------------->
+        <script src="/scripts/firebaseAPI_Team08.js"></script>
+        <script src="./scripts/skeleton.js"></script>
+        <script src="./scripts/db_top_product.js"></script>
+        <script src="./scripts/db_product_add.js"></script>
 </body>
 
 </html>

@@ -151,20 +151,46 @@ footer.container-fluid {
 
 
 /*-------------------------------------
- * MEDIUM SCREENS
+ * INDEX and MAIN
  *-------------------------------------
  */
-@media screen and (max-width: 992px) {
-    .search_bar {
-        padding-top: 7px;
-        width: 100%;
-    }
+ .sale_product_container {
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+     overflow: hidden;
+     padding-bottom: 20px;
+     /* height: 20%; */
+ }
 
-    .small_nav {
-        display: block;
-        width: 100%;
-    }
-}
+ .sale_product_container img {
+     width: 100%;
+ }
+
+ .sale_product_card {
+     padding: 1%;
+     background-color: white;
+     text-align: center;
+     border-radius: 10px;
+     margin: 2px;
+ }
+
+ button {
+     background-color: green;
+     color: white;
+     border-radius: 10px;
+     border-style: none;
+ }
+
+ .welcome_banner {
+     overflow: hidden;
+     text-align: center;
+ }
+
+ .title {
+     color: white;
+ }
 
 /*-------------------------------------
  * SHARE
@@ -291,4 +317,20 @@ search confirmation animation
 .deny{
     animation-name: search_deny;
     animation-duration: 0.5s;
+}
+
+/*-------------------------------------
+ * MEDIUM SCREENS
+ *-------------------------------------
+ */
+@media screen and (max-width: 992px) {
+    .search_bar {
+        padding-top: 7px;
+        width: 100%;
+    }
+
+    .small_nav {
+        display: block;
+        width: 100%;
+    }
 }
