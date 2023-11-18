@@ -1,7 +1,9 @@
+console.log('db_product_search.js loaded');
 //------------------------------------------------------------------------------
 // Input parameter is a string representing the collection we are reading from
 //------------------------------------------------------------------------------
 function displayCardsDynamically(collection) {
+    console.log('displayCardsDynamically called')
     let cardTemplate = document.getElementById("product_card_template");
     let search_item = document.getElementById("search-input").value;
     console.log(search_item)
@@ -37,3 +39,18 @@ function displayCardsDynamically(collection) {
         })
     })
 }
+
+// eventlistener
+
+searchButton = document.getElementById('search_button');
+searchButton.addEventListener('click', function () {
+    // try defining variable with search input
+    console.log('search button clicked')
+    then.window.location.href = "search_result.html";
+    // on new page pull up search input and use in function
+
+    displayCardsDynamically('products')
+});
+
+
+// onclick = "displayCardsDynamically('products')"
