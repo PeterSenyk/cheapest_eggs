@@ -46,7 +46,7 @@ searchButton = document.getElementById('search_button');
 searchButton.addEventListener('click', function () {
     // try defining variable with search input
     console.log('search button clicked')
-    then.window.location.href = "search_result.html";
+    // window.location.href = "search_result.html";
     // on new page pull up search input and use in function
 
     displayCardsDynamically('products')

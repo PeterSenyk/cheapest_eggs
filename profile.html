@@ -60,8 +60,10 @@
 
     <main>
         <div class="container-fluid">
+            <!-- Basic user info -->
             <div class="account profile-card">
                 <h2>Account</h2>
+                <!-- Users can modify their info here -->
                 <form>
                     <fieldset class="mb-3" id="personalInfoFields" disabled>
                         <div class="profile-container text-center">
@@ -84,12 +86,13 @@
                     </fieldset>
                     <div class="d-flex justify-content-end mt-5">
                         <!-- event-listener that call the functions after clicking on the buttons. -->
-                        <button type="button" class="btn btn-success" onclick="editUserInfo()">Edit</button>
+                        <button type="button" class="btn btn-success edit" onclick="editUserInfo()">Edit</button>
                         <span style="width: 10px"></span>
-                        <button type="button" class="btn btn-secondary" onclick="saveUserInfo()">Save</button>
+                        <button type="button" class="btn btn-secondary save" onclick="saveUserInfo()">Save</button>
                     </div>
                 </form>
                 <div class="col-12">
+                    <!-- info read from database -->
                     <p>Email: <span id="email"></span></p>
                     <p>Sore: <span id="score"></span></p>
                     <p>Title: <span id="title"></span></p>
@@ -100,11 +103,10 @@
                 <button id="sign-out" class="btn btn-success">Sign Out</button>
             </div>
 
+            <!-- Display user's latest sharing items -->
             <div class="sharing container row profile-card">
                 <h2>My Latest Sharing</h2>
                 <p>Share more items to get scores, you can become the next Egg King!</p>
-                <div id="details-go-here"></div>
-                <!-- Here is the container for cards with horizontal scrolling -->
                 <div class="card-container">
                     <div id="shareCardGroup" class="row row-cols-auto">
                         <!-- Card templates here -->
@@ -124,7 +126,7 @@
                 </div>
             </div>
 
-
+<!-- Link to about page -->
             <div class="aboutbtn row profile-card">
                 <button id="about" class="btn btn-success">About</button>
             </div>
