@@ -19,11 +19,13 @@ updateTotalCost = function(identifier, previousQuantity=0) {
     //add the cost of the new quantity of the item
     total += cost * document.getElementById(`quantity_${identifier}`).value;
     //update total cost
-    document.getElementById("total_cost").innerHTML = (Math.round(total * 100) / 100).toFixed(2);;
+    document.getElementById("total_cost").innerHTML = (Math.round(total * 100) / 100).toFixed(2);
 }
 
 checkIfListEmpty = function() {
+    // fetch list
     let list = document.getElementById("user_list");
+    // if list is empty, display message
     if (list.innerHTML == "") {
         list.innerHTML = "Your list is empty, add some items!";
         document.getElementById("total_cost").innerHTML = "0.00";
@@ -31,14 +33,16 @@ checkIfListEmpty = function() {
 }
 
 removeCard = function(identifier, lastQuantity=1, listItem) {
+    // fetch card
     let card = document.getElementById(`card_${identifier}`);
+    // store previous info
     const previous_info = card.innerHTML;
     const undoBlock = document.getElementById("undo_block");
     const itemName = card.querySelector(".card_title").innerHTML;
 
     let blockClone = undoBlock.content.cloneNode(true);
     blockClone.querySelector(".item_name").innerHTML = itemName;
-
+    // start timer to delete card
     let deleteTimer = setTimeout(async function() {
         card.remove();
         const listItemSnapshot = await listItem.ref.get();
@@ -74,7 +78,7 @@ removeCard = function(identifier, lastQuantity=1, listItem) {
     card.appendChild(blockClone); 
 }
 
-async function handleQuantityChange(identifier, listItem, change) {
+handleQuantityChange = async function(identifier, listItem, change) {
     listItem = await listItem.ref.get();
     let previousQuantity = listItem.data().quantity;
     let newQuantity = previousQuantity + change;
@@ -103,7 +107,7 @@ addCardEvents = function(card, identifier, listItem) {
     });
 }
 
-async function generateListCards(collection){
+generateListCards = async function(collection){
     const user = localStorage.getItem("uid");
     const cardTemplate = document.getElementById("list_card");
     const listSnapshot = await db.collection(collection).doc(user).collection("user_list").get();
