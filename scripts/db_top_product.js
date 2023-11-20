@@ -1,13 +1,12 @@
 function display_sale_products(collection) {
     firebase.auth().onAuthStateChanged(user => {
-        // Check if user is signed in, only signed in users can see add button
         // Choose 4 random items from the collection
         const items = ['apple', 'banana', 'lettuce', 'kiwi', 'tomato', 'mango']
         random1 = Math.floor(Math.random() * items.length)
         random2 = Math.floor(Math.random() * items.length)
         random3 = Math.floor(Math.random() * items.length)
         random4 = Math.floor(Math.random() * items.length)
-
+        // Check if user is signed in, only signed in users can see add button
         if (user) {
             // Random item 1
             db.collection(collection).get().then(allProducts => {
