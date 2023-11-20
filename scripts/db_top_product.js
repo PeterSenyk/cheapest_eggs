@@ -29,7 +29,6 @@ function display_sale_products(collection) {
                 })
             })
         } else {
-            // document.getElementById('product-goes-here').innerHTML += (`<p class="title">Login to add them into your shopping list!</p>`)
             db.collection(collection).get().then(allProducts => {
                 allProducts.forEach(doc => {
                     // apple is placeholder for now

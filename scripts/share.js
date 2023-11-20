@@ -64,38 +64,37 @@ form.addEventListener("submit", (e) => {
             }, { merge: true });
         })
         .then(() => {
-            // Add 1 to user's score and update title based on new score
+            // Increase user's score by 1
             return db.collection("users").doc(userId).update({
                 score: firebase.firestore.FieldValue.increment(1),
                 last_updated: firebase.firestore.FieldValue.serverTimestamp(),
             });
         })
         .then(() => {
-            // Get the updated score and update the title
             return db.collection("users").doc(userId).get();
         })
         .then((userDoc) => {
             const currentScore = userDoc.data().score;
             let newTitle = "";
 
-            // Logic to determine the new title based on the score
+            // User title based on the score
             if (currentScore >= 0 && currentScore <= 10) {
                 newTitle = "Egg Peasant";
-            } else if (currentScore >= 11 && currentScore <= 20) {
+            } else if (currentScore <= 20) {
                 newTitle = "Egg Baron";
-            } else if (currentScore >= 21 && currentScore <= 30) {
+            } else if (currentScore <= 30) {
                 newTitle = "Egg Viscount";
-            } else if (currentScore >= 31 && currentScore <= 40) {
+            } else if (currentScore <= 40) {
                 newTitle = "Egg Earl";
-            } else if (currentScore >= 41 && currentScore <= 50) {
+            } else if (currentScore <= 50) {
                 newTitle = "Egg Marquess";
-            } else if (currentScore >= 51 && currentScore <= 60) {
+            } else if (currentScore <= 60) {
                 newTitle = "Egg Duke";
-            } else if (currentScore >= 61) {
+            } else {
                 newTitle = "Egg King";
             }
 
-            // Update title based on the new score
+            // Update title to database based on the new score
             return db.collection("users").doc(userId).update({
                 title: newTitle
             });
