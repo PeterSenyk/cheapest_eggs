@@ -43,7 +43,6 @@ function displayCardsDynamically(collection) {
 }
 
 // eventlistener search
-
 searchButton = document.getElementById('search_button');
 searchButton.addEventListener('click', function () {
     search_item = document.getElementById('search-input').value;
@@ -55,20 +54,6 @@ searchButton.addEventListener('click', function () {
 queryParams = new URLSearchParams(window.location.search);
 search_item = queryParams.get('search_item');
 displayCardsDynamically('products')
-
-// On the search_result.html page
-// document.addEventListener('DOMContentLoaded', function () {
-//     const queryParams = new URLSearchParams(window.location.search);
-//     const searchItem = queryParams.get('search_item');
-//     console.log('search_item:', searchItem);
-
-//     if (searchItem) {
-//         console.log('Search Item:', searchItem);
-//         // Perform actions based on the search item
-//         displayCardsDynamically('products');
-//     }
-// });
-
 
 // eventlistener sort
 sort_button = document.getElementById('sort_button');
@@ -83,6 +68,3 @@ sort_button_desc.addEventListener('click', function () {
     console.log(sort_method)
     displayCardsDynamically('products')
 })
-
-
-// onclick = "displayCardsDynamically('products')"
