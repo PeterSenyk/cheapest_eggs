@@ -155,7 +155,6 @@ function display_sale_products(collection) {
 }
 
 function main() {
-    // console.log('main executed')
     display_sale_products('products');
 }
 
