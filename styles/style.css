@@ -161,7 +161,10 @@ footer.container-fluid {
      align-items: center;
      overflow: hidden;
      padding-bottom: 20px;
-     /* height: 20%; */
+ }
+
+ .sale_product_container>div {
+     width: 25%;
  }
 
  .sale_product_container img {

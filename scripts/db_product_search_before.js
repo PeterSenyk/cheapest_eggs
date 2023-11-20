@@ -6,7 +6,7 @@ sort_method = undefined
 function displayCardsDynamically(collection) {
     console.log('displayCardsDynamically called')
     let cardTemplate = document.getElementById("product_card_template");
-    // let search_item = document.getElementById("search-input").value;
+    let search_item = document.getElementById("search-input").value;
     console.log(search_item)
 
     var products_ref = db.collection("products");
@@ -34,7 +34,6 @@ function displayCardsDynamically(collection) {
                         newcard.querySelector('.card-href').addEventListener("click", add_to_list_from_search);
 
                         document.getElementById(collection + "-go-here").appendChild(newcard);
-                    
                     })
                 })
             }
@@ -43,17 +42,16 @@ function displayCardsDynamically(collection) {
 }
 
 // eventlistener search
+
 searchButton = document.getElementById('search_button');
 searchButton.addEventListener('click', function () {
-    search_item = document.getElementById('search-input').value;
-    console.log('search button clicked');
+    // try defining variable with search input
+    console.log('search button clicked')
+    // window.location.href = "search_result.html";
+    // on new page pull up search input and use in function
 
-    // Append the search item as a query parameter
-    window.location.href = "search_result.html?search_item=" + encodeURIComponent(search_item);
+    displayCardsDynamically('products')
 });
-queryParams = new URLSearchParams(window.location.search);
-search_item = queryParams.get('search_item');
-displayCardsDynamically('products')
 
 // eventlistener sort
 sort_button = document.getElementById('sort_button');
@@ -68,3 +66,6 @@ sort_button_desc.addEventListener('click', function () {
     console.log(sort_method)
     displayCardsDynamically('products')
 })
+
+
+// onclick = "displayCardsDynamically('products')"
