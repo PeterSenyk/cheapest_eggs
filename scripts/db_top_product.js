@@ -1,6 +1,7 @@
 function display_sale_products(collection) {
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in, only signed in users can see add button
+        // Choose 4 random items from the collection
         const items = ['apple', 'banana', 'lettuce', 'kiwi', 'tomato', 'watermelon']
         random1 = Math.floor(Math.random() * items.length)
         random2 = Math.floor(Math.random() * items.length)
@@ -8,6 +9,7 @@ function display_sale_products(collection) {
         random4 = Math.floor(Math.random() * items.length)
 
         if (user) {
+            // Random item 1
             db.collection(collection).get().then(allProducts => {
                 allProducts.forEach(doc => {
                     if (doc.id == items[random1]) {
@@ -36,7 +38,7 @@ function display_sale_products(collection) {
 
                 })
             })
-
+            // Random item 2
             db.collection(collection).get().then(allProducts => {
                 allProducts.forEach(doc => {
                     if (doc.id == items[random2]) {
@@ -64,7 +66,7 @@ function display_sale_products(collection) {
                     }
                 })
             })
-
+            // Random item 3
             db.collection(collection).get().then(allProducts => {
                 allProducts.forEach(doc => {
                     if (doc.id == items[random3]) {
@@ -93,7 +95,7 @@ function display_sale_products(collection) {
 
                 })
             })
-
+            // Random item 4
             db.collection(collection).get().then(allProducts => {
                 allProducts.forEach(doc => {
                     if (doc.id == items[random4]) {
