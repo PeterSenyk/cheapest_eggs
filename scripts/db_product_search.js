@@ -1,4 +1,5 @@
 console.log('db_product_search.js loaded');
+sort_method = undefined
 //------------------------------------------------------------------------------
 // Input parameter is a string representing the collection we are reading from
 //------------------------------------------------------------------------------
@@ -15,7 +16,7 @@ function displayCardsDynamically(collection) {
             if (doc.id == search_item) {
                 document.getElementById('products-go-here').innerHTML = ''
 
-                db.collection(collection).doc(search_item).collection('details').get().then(allProducts => {
+                db.collection(collection).doc(search_item).collection('details').orderBy('price', sort_method).get().then(allProducts => {
                     allProducts.forEach(doc => {
                         var title = doc.data().produce_name;
                         var details = doc.data().details;
@@ -40,7 +41,7 @@ function displayCardsDynamically(collection) {
     })
 }
 
-// eventlistener
+// eventlistener search
 
 searchButton = document.getElementById('search_button');
 searchButton.addEventListener('click', function () {
@@ -51,6 +52,20 @@ searchButton.addEventListener('click', function () {
 
     displayCardsDynamically('products')
 });
+
+// eventlistener sort
+sort_button = document.getElementById('sort_button');
+sort_button.addEventListener('click', function () {
+    sort_method = undefined
+    displayCardsDynamically('products')
+})
+
+sort_button_desc = document.getElementById('sort_button_desc');
+sort_button_desc.addEventListener('click', function () {
+    sort_method = 'desc'
+    console.log(sort_method)
+    displayCardsDynamically('products')
+})
 
 
 // onclick = "displayCardsDynamically('products')"
