@@ -1,7 +1,7 @@
 function display_sale_products(collection) {
     firebase.auth().onAuthStateChanged(user => {
         // Choose 4 random items from the collection
-        const items = ['apple', 'banana', 'lettuce', 'kiwi', 'tomato', 'mango']
+        const items = ['apple', 'banana', 'lettuce', 'kiwi', 'tomato', 'mango', 'broccoli']
         random1 = Math.floor(Math.random() * items.length)
         random2 = Math.floor(Math.random() * items.length)
         random3 = Math.floor(Math.random() * items.length)
