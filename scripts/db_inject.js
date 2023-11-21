@@ -318,25 +318,25 @@ function autoWriteBroccoli(write_count){
       var products_detail_ref = db.collection("products").doc(product).collection('details'); 
       // declare list of PLU codes
       let  product_PLU = [4060, 3277, 4547, 3082, 4548, 4549]
-      // get random PLU code
-      var plu = product_PLU[Math.floor(Math.random() * product_PLU[product].length)] 
       // declare information linked to PLU
       let product_variety = { 
-        4060: ["Unspecified", "All Sizes"], 
-        3277: ["Baby", "All Sizes"], 
-        4547: ["Broccoli Rabe (Italian Rapini)/ Chinese Broccoli (GAI LAN)", "All Sizes"], 
-        3082: ["Crowns", "All Sizes"],
-        4548: ["Florettes", "All Sizes"], 
-        4549: ["Retailer Assigned", "All Sizes"],
-      }
-      // declare list of stores, copilot generated
-      let stores = ["Safeway", "Walmart", "Save-On-Foods", "Costco", "Superstore", 
-                    "T&T Supermarket", "Whole Foods Market", "Choices Market", "Kin's Farm Market", 
-                    "Donald's Market", "IGA", "Nesters Market", "FreshCo", "Thrifty Foods", "Urban Fare", 
-                    "Stong's Market", "Buy-Low Foods", "Famous Foods", "Persia Foods", "H-Mart", "PriceSmart Foods", 
-                    "Tong Li Supermarket"];
-      // declare list of cities
-      let cities = ["Vancouver", "Burnaby", "Richmond", "Coquitlam"]
+          4060: ["Unspecified", "All Sizes"], 
+          3277: ["Baby", "All Sizes"], 
+          4547: ["Broccoli Rabe (Italian Rapini)/ Chinese Broccoli (GAI LAN)", "All Sizes"], 
+          3082: ["Crowns", "All Sizes"],
+          4548: ["Florettes", "All Sizes"], 
+          4549: ["Retailer Assigned", "All Sizes"],
+        }
+        // declare list of stores, copilot generated
+        let stores = ["Safeway", "Walmart", "Save-On-Foods", "Costco", "Superstore", 
+        "T&T Supermarket", "Whole Foods Market", "Choices Market", "Kin's Farm Market", 
+        "Donald's Market", "IGA", "Nesters Market", "FreshCo", "Thrifty Foods", "Urban Fare", 
+        "Stong's Market", "Buy-Low Foods", "Famous Foods", "Persia Foods", "H-Mart", "PriceSmart Foods", 
+        "Tong Li Supermarket"];
+        // declare list of cities
+        let cities = ["Vancouver", "Burnaby", "Richmond", "Coquitlam"]
+        // get random PLU code
+      var plu = product_PLU[Math.floor(Math.random() * product_PLU.length)] 
       // get information linked to PLU
       var information = product_variety[plu];
       // get variety
