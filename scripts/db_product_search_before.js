@@ -41,6 +41,8 @@ function displayCardsDynamically(collection) {
     })
 }
 
+
+
 // eventlistener search
 
 searchButton = document.getElementById('search_button');

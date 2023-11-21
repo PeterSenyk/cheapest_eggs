@@ -42,6 +42,19 @@ function displayCardsDynamically(collection) {
     })
 }
 
+
+async function displayUserShared(search_item) {
+    let query = db.collectionGroup("user_uploads").where("product", "==", "search_item")
+    query.get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+            console.log(doc.id, " => ", doc.data());
+        });
+    }).catch(error => {
+        console.error("Error getting documents: ", error);
+    });
+
+}
+
 // eventlistener search
 searchButton = document.getElementById('search_button');
 searchButton.addEventListener('click', function () {
