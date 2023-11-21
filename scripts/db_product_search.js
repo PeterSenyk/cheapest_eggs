@@ -82,6 +82,7 @@ function displaySharedProducts(sharedDetails, search_item) {
         newcard.querySelector('.share-card-length').textContent = detail.price + " CAD" || 'No price';
         newcard.querySelector('.share-card-text').textContent = detail.variety || 'No details';
         newcard.querySelector('.share-card-image').src = detail.photo || './images/noimg.png';
+        newcard.querySelector('.card-href').addEventListener("click", add_to_list_from_search);
 
         // Add event listener
         let addButton = newcard.querySelector('.card-href');
