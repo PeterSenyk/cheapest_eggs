@@ -96,9 +96,6 @@ function displaySharedProducts(sharedDetails, search_item) {
     });
 }
 
-
-
-
 // eventlistener search
 searchButton = document.getElementById('search_button');
 searchButton.addEventListener('click', function () {
@@ -129,9 +126,6 @@ sort_button_desc.addEventListener('click', function () {
     sort_method = 'desc'
     console.log(sort_method)
     displayCardsDynamically('products')
-<<<<<<< HEAD
-})
-=======
     getSharedProducts(search_item);
 })
 
@@ -145,4 +139,3 @@ function add_to_search_history(search_item) {
         console.log(error);
     })
 }
->>>>>>> 7b2d2fb355d317a50bb8496c1de5a0629b45f220
