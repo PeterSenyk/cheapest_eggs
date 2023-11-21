@@ -28,6 +28,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
     <!------------------>
@@ -79,7 +80,7 @@
             <!--Item container-->
             <div class="row">
                 <div class="col-12">
-                    <div id="user_list"></div>
+                    <div id="user_list" class="d-flex justify-content-center flex-wrap"></div>
                 </div>
             </div>
             <hr>
@@ -98,31 +99,38 @@
     </main>
 
     <template id="list_card">
-        <div class="card py-3 px-3 my-2 mx-2">
-            <img class="card_img" src="..." alt="...">
-            <div>
-                <h5 class="card_title">title</h5>
-                <p class="card_cost">cost</p>
-                <p class="card_store">store</p>
-                <br>
-            </div>
-            <div>
-                <p class="card_text">description</p>
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <button class="btn btn-outline-secondary subtract" type="button">-</button>
+
+        <div class="card py-3 px-3 my-2 mx-2 align-items-center flex-column d-flex" style="width: 10rem;">
+            <img class="card_img px-3" style="width: 100%;" src="..." alt="...">
+            <div class="d-flex py-3">
+                <div class="d-flex flex-column justify-content-between align-items-center text-center">
+                    <div>
+                        <h5 class="card_title">title</h5>
+                        <p class="card_cost">cost</p>
+                        <p class="card_store">store</p>
+                    </div>
+
+                    <div class="py-3">
+                        <button class="btn btn-danger remove">Remove</button>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary subtract" type="button">-</button>
+                        </div>
+                        <input type="text" class="form-control card_quantity" value=".">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary add" type="button">+</button>
+                        </div>
+                    </div>
                 </div>
-                <input type="text" class="form-control card_quantity" value=".">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary add" type="button">+</button>
-                </div>
-              </div>
+            </div>
         </div>
+
     </template>
 
     <template id="undo_block">
-        <div class="card py-3 px-3 my-2 mx-2">
+        <div class="py-3 px-3 my-2 mx-2">
             <p>
                 <span class="item_name"></span> has been removed. 
                     <span class="text-secondary text-decoration-underline cursor-pointer undo">Undo</span> 

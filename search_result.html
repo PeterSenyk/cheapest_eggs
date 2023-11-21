@@ -28,6 +28,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
     <!------------------>
@@ -117,6 +118,27 @@
         </div>
     </template>
 
+    <div class="container product_card">
+        <h1>Search Shared Results</h1>
+        <div class="container">
+            <div id="shared-products-go-here" class="row row-cols-auto container_products">
+                <!-- Product cards will be inserted here -->
+            </div>
+        </div>
+    </div>
+    
+    <template id="shared_product_card_template">
+        <div class="card">
+            <img class="share-card-image card-img-top" src="" alt="..." />
+            <div class="share-card-body">
+                <h5 class="share-card-title">title</h5>
+                <p class="share-card-length">placeholder</p>
+                <br />
+                <p class="share-card-text">Placeholder text</p>
+                <a class="btn btn-primary card-href">Add</a>
+            </div>
+        </div>
+    </template>
 
 
     <!-- </div>

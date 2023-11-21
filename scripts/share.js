@@ -9,9 +9,7 @@ const variety = document.getElementById("varietyBox");
 const plu = document.getElementById("pluBox");
 const storeName = document.getElementById("storeNameBox");
 const address = document.getElementById("addressBox");
-const photoFile = document.getElementById('photoBox').files[0];
 const form = document.getElementById("sharePriceForm");
-
 
 //------------------------------------------------------------------------
 //----------------Connects to the Firestore database----------------------
@@ -20,56 +18,51 @@ const form = document.getElementById("sharePriceForm");
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const userId = firebase.auth().currentUser.uid;  // Get the user ID
-    const timeStamp = new Date().toISOString();      // save the current timestamp to use as the document ID in Firestore and import doc for share_review.js
-    const photoFile = document.getElementById('photoBox').files[0];  // Get the file selected by the user
+    const userId = firebase.auth().currentUser.uid;
+    const timeStamp = new Date().toISOString();
+    let photoFile = document.getElementById('photoBox').files[0];
 
-    if (!photoFile) {
-        console.error("No file selected for upload.");
-        return; // Exit if no file is selected
+    let uploadPromise;
+
+    // Conditionally handle photo upload
+    if (photoFile) {
+        // If a photo is selected, upload it and get the URL
+        uploadPromise = firebase.storage().ref(`photos/${userId}/${timeStamp}`).put(photoFile)
+            .then(snapshot => snapshot.ref.getDownloadURL());
+    } else {
+        // If no photo is selected, resolve the promise with a null URL
+        uploadPromise = Promise.resolve(null);
     }
 
-//------------------------------------------------------------------------
-//----------------First, upload the photo to Firebase Storage-------------
-//------------------------------------------------------------------------
+    uploadPromise.then(photoURL => {
+        // Collect the form data
+        const formData = {
+            product: product.value,
+            price: price.value,
+            amount: amount.value,
+            variety: variety.value,
+            plu: plu.value,
+            storeName: storeName.value,
+            address: address.value,
+            photo: photoURL, // This will be null if no photo was uploaded
+            last_updated: firebase.firestore.FieldValue.serverTimestamp(),
+            user_id: userId,
+        };
 
-    firebase.storage().ref(`photos/${userId}/${timeStamp}`).put(photoFile)
-        .then(snapshot => snapshot.ref.getDownloadURL()) // Get the photo URL from the upload in firebase storage
-        .then(photoURL => { 
-            // Collect the rest of the form data
-            const productBox = product.value;
-            const priceBox = price.value;
-            const amountBox = amount.value;
-            const varietyBox = variety.value;
-            const pluBox = plu.value;
-            const storeNameBox = storeName.value;
-            const addressBox = address.value;
+        // Save the form data to localStorage to be used in share_review.js
+        localStorage.setItem('userId', userId);
+        localStorage.setItem('documentTimestamp', timeStamp);
 
-            // Save the form data to localStorage to be used in share_review.js
-            localStorage.setItem('userId', userId);
-            localStorage.setItem('documentTimestamp', timeStamp);
-
-            // Upload the form data to Firestore
-            return db.collection("users").doc(userId).collection("user_uploads").doc(timeStamp).set({
-                product: productBox,
-                price: priceBox,
-                amount: amountBox,
-                variety: varietyBox,
-                plu: pluBox,
-                storeName: storeNameBox,
-                address: addressBox,
-                photo: photoURL, // Store the URL from the upload in firebase storage, not the file object
-                last_updated: firebase.firestore.FieldValue.serverTimestamp(),
-                user_id: userId,
-            }, { merge: true });
-        })
-        .then(() => {
-            // Increase user's score by 1
-            return db.collection("users").doc(userId).update({
-                score: firebase.firestore.FieldValue.increment(1),
-                last_updated: firebase.firestore.FieldValue.serverTimestamp(),
-            });
-        })
+        // Upload the form data to Firestore
+        return db.collection("users").doc(userId).collection("user_uploads").doc(timeStamp).set(formData, { merge: true });
+    })
+    .then(() => {
+        // Increase user's score by 1
+        return db.collection("users").doc(userId).update({
+            score: firebase.firestore.FieldValue.increment(1),
+            last_updated: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+    })
         .then(() => {
             return db.collection("users").doc(userId).get();
         })
