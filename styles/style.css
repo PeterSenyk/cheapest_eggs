@@ -50,7 +50,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 400px;
+    height: 25em;
     background-image: url('/images/egghand_blur.png');
     background-size: cover;
     background-repeat: repeat;
@@ -283,7 +283,16 @@ This is all commented out due to not wanting to make the final decision for it
     font-style: italic;
     font-size: 20px;
     text-align: center;
+}
 
+table {
+    margin: auto;
+    width: 70%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
 }
 
 /*

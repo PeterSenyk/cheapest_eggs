@@ -79,6 +79,7 @@ function saveUserInfo() {
     document.querySelector('.save').classList.add('btn-secondary');
     document.querySelector('.edit').classList.remove('btn-secondary');
     document.querySelector('.edit').classList.add('btn-success');
+    alert("Your profile has been updated!");
 }
 
 function getOtherInfoFromDB() {
