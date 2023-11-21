@@ -4,10 +4,9 @@ function display_sale_products(collection) {
         const items = ['apple', 'banana', 'lettuce', 'kiwi', 'tomato', 'mango', 'broccoli']
         var arr = [];
         while (arr.length < 4) {
-            var r = Math.floor(Math.random() * (items.length -1)) + 1;
+            var r = Math.floor(Math.random() * items.length);
             if (arr.indexOf(r) === -1) arr.push(r);
         }
-        console.log(arr)
         random1 = arr[0]
         random2 = arr[1]
         random3 = arr[2]
