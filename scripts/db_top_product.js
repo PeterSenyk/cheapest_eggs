@@ -138,13 +138,15 @@ function display_sale_products(collection) {
                                 if (doc.data().good_deal == true) {
                                     var pluCode = doc.data().plu_code;
                                     var productPrice = doc.data().price;
+                                    var productName = doc.data().produce_name;
                                     document.getElementById('product-goes-here').innerHTML += (
                                         `
                                 <div class="sale_product_card">
                                     <div class='img_container'>
                                         <img src =./images/${pluCode}.png alt="cover">
                                     </div>
-                                    <p>Price ${productPrice}</p>
+                                    <p>${productName}</p>
+                                    <p>Price: ${productPrice}$</p>
                                 </div>
                                 `
                                     )
