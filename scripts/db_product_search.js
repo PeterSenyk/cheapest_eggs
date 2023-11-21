@@ -67,6 +67,7 @@ searchButton.addEventListener('click', function () {
 queryParams = new URLSearchParams(window.location.search);
 search_item = queryParams.get('search_item');
 displayCardsDynamically('products')
+add_to_search_history(search_item);
 
 // eventlistener sort
 sort_button = document.getElementById('sort_button');
@@ -81,3 +82,14 @@ sort_button_desc.addEventListener('click', function () {
     console.log(sort_method)
     displayCardsDynamically('products')
 })
+
+function add_to_search_history(search_item){
+    var user = firebase.auth().currentUser;
+    var uid = user.uid;
+    userDoc = db.collection('users').doc(uid);
+    userDoc.update({
+        search_history: firebase.firestore.FieldValue.arrayUnion(search_item)
+    }).catch(function(error){
+        console.log(error);
+    })
+}
