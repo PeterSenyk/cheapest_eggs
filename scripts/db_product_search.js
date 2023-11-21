@@ -57,7 +57,7 @@ function getSharedProducts(search_item) {
         .then((querySnapshot) => {
             const sharedDetails = [];
             querySnapshot.forEach((doc) => {
-                console.log(doc.id, " => ", doc.data());
+                // console.log(doc.id, " => ", doc.data()); // 
                 sharedDetails.push(doc.data());
             });
             // Once all documents are added to sharedDetails, call the display function
