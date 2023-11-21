@@ -1,11 +1,17 @@
 function display_sale_products(collection) {
     firebase.auth().onAuthStateChanged(user => {
-        // Choose 4 random items from the collection
+        // Choose 4 unique random items from the collection
         const items = ['apple', 'banana', 'lettuce', 'kiwi', 'tomato', 'mango', 'broccoli']
-        random1 = Math.floor(Math.random() * items.length)
-        random2 = Math.floor(Math.random() * items.length)
-        random3 = Math.floor(Math.random() * items.length)
-        random4 = Math.floor(Math.random() * items.length)
+        var arr = [];
+        while (arr.length < 4) {
+            var r = Math.floor(Math.random() * (items.length -1)) + 1;
+            if (arr.indexOf(r) === -1) arr.push(r);
+        }
+        console.log(arr)
+        random1 = arr[0]
+        random2 = arr[1]
+        random3 = arr[2]
+        random4 = arr[3]
         // Check if user is signed in, only signed in users can see add button
         if (user) {
             // Random item 1
@@ -126,9 +132,9 @@ function display_sale_products(collection) {
         } else {
             db.collection(collection).get().then(allProducts => {
                 allProducts.forEach(doc => {
-                    // apple is placeholder for now
+                    // Un logged in users can only see apple
                     if (doc.id == 'apple') {
-                        db.collection(collection).doc('apple').collection('details').get().then(allProducts => {
+                        db.collection(collection).doc('apple').collection('details').orderBy("price").limit(5).get().then(allProducts => {
                             allProducts.forEach(doc => {
                                 if (doc.data().good_deal == true) {
                                     var pluCode = doc.data().plu_code;
