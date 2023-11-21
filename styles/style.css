@@ -50,7 +50,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 400px;
+    height: 25em;
     background-image: url('/images/egghand_blur.png');
     background-size: cover;
     background-repeat: repeat;
