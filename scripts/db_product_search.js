@@ -129,6 +129,8 @@ sort_button_desc.addEventListener('click', function () {
     getSharedProducts(search_item);
 })
 
+
+
 function add_to_search_history(search_item) {
     var user = firebase.auth().currentUser;
     var uid = user.uid;
