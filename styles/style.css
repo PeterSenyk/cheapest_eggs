@@ -118,6 +118,10 @@ footer.container-fluid {
     background-color: white;
 }
 
+.user_icon_small {
+    display: none;
+}
+
 /*-------------------------------------
  * FOOTER
  *-------------------------------------
@@ -344,6 +348,16 @@ search confirmation animation
     .navbar{
         padding-bottom: 15px;
     }
+
+
+    .user_icon_small {
+        display: block;
+    }
+
+    .user_icon_large {
+        display: none;
+    }
+
 
     /* .small_nav {
         display: block;
