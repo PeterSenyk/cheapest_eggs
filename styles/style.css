@@ -332,8 +332,12 @@ search confirmation animation
         width: 100%;
     }
 
-    .small_nav {
+    .navbar{
+        padding-bottom: 15px;
+    }
+
+    /* .small_nav {
         display: block;
         width: 100%;
-    }
+    } */
 }
