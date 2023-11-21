@@ -97,9 +97,6 @@ function displaySharedProducts(sharedDetails, search_item) {
     });
 }
 
-
-
-
 // eventlistener search
 searchButton = document.getElementById('search_button');
 searchButton.addEventListener('click', function () {

@@ -283,7 +283,16 @@ This is all commented out due to not wanting to make the final decision for it
     font-style: italic;
     font-size: 20px;
     text-align: center;
+}
 
+table {
+    margin: auto;
+    width: 70%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
 }
 
 /*
