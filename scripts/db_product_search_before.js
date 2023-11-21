@@ -42,48 +42,32 @@ function displayCardsDynamically(collection) {
 }
 
 
+
 // eventlistener search
 
-document.addEventListener('DOMContentLoaded', () => {
-    const searchButton = document.getElementById('search_button');
-    if (searchButton) {
-        searchButton.addEventListener('click', function () {
-            const search_item = document.getElementById("search-input").value; // Get the search term
-            console.log('search button clicked');
-            displayCardsDynamically('products', search_item);
-            displayUserShared(search_item);
-        });
-    } else {
-        console.error('search_button element not found');
-    }
+searchButton = document.getElementById('search_button');
+searchButton.addEventListener('click', function () {
+    // try defining variable with search input
+    console.log('search button clicked')
+    // window.location.href = "search_result.html";
+    // on new page pull up search input and use in function
 
-    const sortButton = document.getElementById('sort_button');
-    if (sortButton) {
-        sortButton.addEventListener('click', function () {
-            sort_method = undefined;
-            const search_item = document.getElementById("search-input").value;
-            displayCardsDynamically('products', search_item);
-            displayUserShared(search_item);
-        });
-    } else {
-        console.error('sort_button element not found');
-    }
-
-    const sortButtonDesc = document.getElementById('sort_button_desc');
-    if (sortButtonDesc) {
-        sortButtonDesc.addEventListener('click', function () {
-            sort_method = 'desc';
-            console.log(sort_method);
-            const search_item = document.getElementById("search-input").value;
-            displayCardsDynamically('products', search_item);
-            displayUserShared(search_item);
-        });
-    } else {
-        console.error('sort_button_desc element not found');
-    }
+    displayCardsDynamically('products')
 });
 
+// eventlistener sort
+sort_button = document.getElementById('sort_button');
+sort_button.addEventListener('click', function () {
+    sort_method = undefined
+    displayCardsDynamically('products')
+})
 
+sort_button_desc = document.getElementById('sort_button_desc');
+sort_button_desc.addEventListener('click', function () {
+    sort_method = 'desc'
+    console.log(sort_method)
+    displayCardsDynamically('products')
+})
 
 
 // onclick = "displayCardsDynamically('products')"
