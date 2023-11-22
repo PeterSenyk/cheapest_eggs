@@ -79,7 +79,12 @@ function saveUserInfo() {
     document.querySelector('.save').classList.add('btn-secondary');
     document.querySelector('.edit').classList.remove('btn-secondary');
     document.querySelector('.edit').classList.add('btn-success');
-    Swal.fire("Your profile has been updated!");
+    // Swal.fire("Your profile has been updated!");
+    Swal.fire({
+        title: "Saved",
+        text: "Your profile has been updated!",
+        icon: "success"
+    });
 }
 
 function getOtherInfoFromDB() {
