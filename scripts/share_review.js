@@ -100,6 +100,11 @@ function saveShareInfo() {
             })
             .then(() => {
                 console.log("Document successfully updated with new photo!");
+                Swal.fire({
+                    title: "Edit Successful",
+                    text: "Your upload has been updated with a new photo!",
+                    icon: "success"
+                });
             })
             .catch(error => {
                 console.error("Error updating document with new photo: ", error);
@@ -118,6 +123,11 @@ function saveShareInfo() {
         })
             .then(() => {
                 console.log("Document successfully updated!");
+                Swal.fire({
+                    title: "Edit Successful",
+                    text: "Your upload has been updated!",
+                    icon: "success"
+                });
             })
             .catch(error => {
                 console.error("Error updating document: ", error);
