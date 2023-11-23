@@ -286,6 +286,12 @@ This is all commented out due to not wanting to make the final decision for it
 
 }
 
+#photoPreview {
+    width: auto;
+    height: 30vh;
+    object-fit: cover;
+}
+
 /*
 search confirmation animation
 */
