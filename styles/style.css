@@ -50,7 +50,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 400px;
+    height: 25em;
     background-image: url('/images/egghand_blur.png');
     background-size: cover;
     background-repeat: repeat;
@@ -116,6 +116,10 @@ footer.container-fluid {
     z-index: 1;
     position: absolute;
     background-color: white;
+}
+
+.user_icon_small {
+    display: none;
 }
 
 /*-------------------------------------
@@ -283,7 +287,16 @@ This is all commented out due to not wanting to make the final decision for it
     font-style: italic;
     font-size: 20px;
     text-align: center;
+}
 
+table {
+    margin: auto;
+    width: 70%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
 }
 
 #photoPreview {
@@ -338,8 +351,22 @@ search confirmation animation
         width: 100%;
     }
 
-    .small_nav {
+    .navbar{
+        padding-bottom: 15px;
+    }
+
+
+    .user_icon_small {
+        display: block;
+    }
+
+    .user_icon_large {
+        display: none;
+    }
+
+
+    /* .small_nav {
         display: block;
         width: 100%;
-    }
+    } */
 }
