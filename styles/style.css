@@ -127,6 +127,10 @@ footer.container-fluid {
  *-------------------------------------
  */
 
+.spacing {
+    margin-top: 100px;
+}
+
 .material-symbols-outlined {
     font-variation-settings:
         'FILL' 0,
