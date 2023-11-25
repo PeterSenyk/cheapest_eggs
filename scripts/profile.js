@@ -25,7 +25,7 @@ function populateUserInfo() {
                         document.getElementById("cityInput").value = userCity;
                     }
                     if (picUrl != null) {
-                        $("#mypic-goes-here").attr("src", picUrl);
+                        document.getElementById("mypic-goes-here").src = picUrl;
                     }
                 })
         } else {
@@ -79,7 +79,7 @@ function saveUserInfo() {
     document.querySelector('.save').classList.add('btn-secondary');
     document.querySelector('.edit').classList.remove('btn-secondary');
     document.querySelector('.edit').classList.add('btn-success');
-    // Swal.fire("Your profile has been updated!");
+    // Alert the user that their profile has been updated
     Swal.fire({
         title: "Saved",
         text: "Your profile has been updated!",

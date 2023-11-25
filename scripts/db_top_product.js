@@ -30,7 +30,7 @@ function display_sale_products(collection) {
                                         <img src =./images/${pluCode}.png alt="cover">
                                     </div>
                                     <p>${productName}</p>
-                                    <p>Price: ${productPrice}$</p>
+                                    <p>Price: $${productPrice}</p>
                                     <button>Add</button>
                                 </div>
                                 `
@@ -59,7 +59,7 @@ function display_sale_products(collection) {
                                         <img src =./images/${pluCode}.png alt="cover">
                                     </div>
                                     <p>${productName}</p>
-                                    <p>Price: ${productPrice}$</p>
+                                    <p>Price: $${productPrice}</p>
                                     <button>Add</button>
                                 </div>
                                 `
@@ -87,7 +87,7 @@ function display_sale_products(collection) {
                                         <img src =./images/${pluCode}.png alt="cover">
                                     </div>
                                     <p>${productName}</p>
-                                    <p>Price: ${productPrice}$</p>
+                                    <p>Price: $${productPrice}</p>
                                     <button>Add</button>
                                 </div>
                                 `
@@ -116,7 +116,7 @@ function display_sale_products(collection) {
                                         <img src =./images/${pluCode}.png alt="cover">
                                     </div>
                                     <p>${productName}</p>
-                                    <p>Price: ${productPrice}$</p>
+                                    <p>Price: $${productPrice}</p>
                                     <button>Add</button>
                                 </div>
                                 `
@@ -146,7 +146,7 @@ function display_sale_products(collection) {
                                         <img src =./images/${pluCode}.png alt="cover">
                                     </div>
                                     <p>${productName}</p>
-                                    <p>Price: ${productPrice}$</p>
+                                    <p>Price: $${productPrice}</p>
                                 </div>
                                 `
                                     )
