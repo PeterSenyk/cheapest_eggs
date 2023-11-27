@@ -26,7 +26,7 @@ function display_sale_products(collection) {
                                     </div>
                                     <p>${productName}</p>
                                     <p>Price: ${productPrice}$</p>
-                                    <button>Add</button>
+                                    <button id="${doc.id} ${productName} false" onclick="add_to_list_from_search(this)">Add</button>
                                 </div>
                                 `
                                     )
@@ -55,7 +55,7 @@ function display_sale_products(collection) {
                                     </div>
                                     <p>${productName}</p>
                                     <p>Price: ${productPrice}$</p>
-                                    <button>Add</button>
+                                    <button id="${doc.id} ${productName} false" onclick="add_to_list_from_search(this)">Add</button>
                                 </div>
                                 `
                                     )
@@ -83,7 +83,7 @@ function display_sale_products(collection) {
                                     </div>
                                     <p>${productName}</p>
                                     <p>Price: ${productPrice}$</p>
-                                    <button>Add</button>
+                                    <button id="${doc.id} ${productName} false" onclick="add_to_list_from_search(this)">Add</button>
                                 </div>
                                 `
                                     )
@@ -112,7 +112,7 @@ function display_sale_products(collection) {
                                     </div>
                                     <p>${productName}</p>
                                     <p>Price: ${productPrice}$</p>
-                                    <button>Add</button>
+                                    <button id="${doc.id} ${productName} false" onclick="add_to_list_from_search(this)">Add</button>
                                 </div>
                                 `
                                     )
