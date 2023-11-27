@@ -1,5 +1,14 @@
 editCard = function(card, product, identifier, shared=false) {
-    card.querySelector(".card_img").src = shared ? product.photo : `./images/${product.plu_code}.png`;
+    if (shared) {card.querySelector(".card_img").src = product.photo ? product.photo : "./images/noimg.png";}
+    else {
+        try {
+            card.querySelector(".card_img").src = `./images/${product.plu_code}.png`;
+        } catch {
+            card.querySelector(".card_img").src = "./images/noimg.png";
+        }
+    }
+
+    // card.querySelector(".card_img").src = shared ? product.photo : `./images/${product.plu_code}.png`;
     card.querySelector(".card_title").innerHTML = shared ? product.product : product.produce_name;
     card.querySelector(".card_cost").innerHTML = "$" + product.price + " CAD";
     card.querySelector(".card_store").innerHTML = shared ? product.storeName : product.store;
@@ -24,7 +33,7 @@ updateTotalCost = function(identifier, change, updateType="add") {
         case "add":
             // add the total cost of the item 
             total += cost * change;
-            break
+            break;
     }
     //update total cost
     document.getElementById("total_cost").innerHTML = (Math.round(total * 100) / 100).toFixed(2);
@@ -142,13 +151,10 @@ generateListCards = async function(collection){
 
     for (const listItem of listSnapshot.docs) {
         const identifier = listItem.id;
-        const { produce_name, itemid, quantity } = listItem.data();
+        const { path, quantity, isShared } = listItem.data();
         let newCard = cardTemplate.content.cloneNode(true);
-        console.log(itemid)
-        let productDoc = listItem.isShared ? (await db.collectionGroup("user_uploads").where("__name__", "==", itemid).get())[0] 
-        : await db.collection("products").doc(produce_name).collection("details").doc(itemid).get(); 
-        console.log(productDoc)
-        editCard(newCard, productDoc.data(), identifier, listItem.isShared);
+        let productDoc = await db.doc(path).get();
+        editCard(newCard, productDoc.data(), identifier, isShared);
         
         newCard.querySelector(".card_quantity").value = quantity;
         addCardEvents(newCard, identifier, listItem);
