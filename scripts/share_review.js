@@ -3,20 +3,25 @@ var currentUser;
 
 document.addEventListener('DOMContentLoaded', (event) => {
     // Attempt to retrieve user ID and document timestamp from localStorage from the previous page share.html to populate the form fields
+    // these are set to localStorage in share.js
     const userId = localStorage.getItem('userId');
     const documentTimestamp = localStorage.getItem('documentTimestamp');
-    console.log("Timestamp:", documentTimestamp);
+    // log timestamp, uncomment for debugging
+    // console.log("Timestamp:", documentTimestamp);
 
+    // Check if the user ID and document timestamp exist in localStorage
     if (userId && documentTimestamp) {
         // Reference to the specific document in the user_uploads collection based on the document timestamp
         currentUser = db.collection("users").doc(userId);
         currentUser.collection("user_uploads").doc(documentTimestamp).get()
             .then((doc) => {
+                // check if the document exists
                 if (doc.exists) {
-                    const data = doc.data();
-                    console.log("Retrieved data:", data);
+                    const data = doc.data(); // Retrieve the document data
+                    // log data, uncomment for debugging
+                    // console.log("Retrieved data:", data);
 
-                    // Populate the form fields with the data from the previous share.html page
+                    // Populate the form fields with the data from the previous share.html page by calling it from firestore
                     document.getElementById('productBox').value = data.product || '';
                     document.getElementById('priceBox').value = data.price || '';
                     document.getElementById('amountBox').value = data.amount || '';
@@ -25,29 +30,33 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     document.getElementById('storeNameBox').value = data.storeName || '';
                     document.getElementById('addressBox').value = data.address || '';
 
-                    // Populate the photo if it exists
+                    //If a photo URL is available, set it as the source for the photo preview
                     if (data.photo) {
                         document.getElementById('photoPreview').src = data.photo;
                     }
                 } else {
+                    // doc.data() will be undefined in this case
                     console.log("No such document!");
                 }
             })
             .catch((error) => {
+                // log error to console
                 console.error("Error getting document:", error);
             });
     }
 
     // Set event listeners for the buttons and file input
-    document.getElementById('photoBox').addEventListener('change', handleFileSelect, false);
-    document.getElementById('editBtn').addEventListener('click', editShareInfo);
-    document.getElementById('saveBtn').addEventListener('click', saveShareInfo);
+    document.getElementById('photoBox').addEventListener('change', handleFileSelect, false); // For file input - to handle file selection for photo upload
+    document.getElementById('editBtn').addEventListener('click', editShareInfo); // For edit button - to enable editing of the form fields
+    document.getElementById('saveBtn').addEventListener('click', saveShareInfo); // For save button - to save the updated information to Firestore
 });
 
 function handleFileSelect(event) {
     const reader = new FileReader();
+
+    // Event handler for file reader load event
     reader.onload = function (e) {
-        // Update the photo preview from the previous share.html page   **** change CSS to better fit the page and be responsive
+        // Update the photo preview from the previous share.html page
         document.getElementById('photoPreview').src = e.target.result;
     };
 
@@ -56,12 +65,20 @@ function handleFileSelect(event) {
 }
 
 function editShareInfo() {
-    // Enable the form fields      **** change the form fields to start out disabled
+    // log to console to make sure the function is being called
     console.log("Inside editShareInfo");
+    // Enable all form fields and the save button
     var formElements = document.getElementById('reviewPriceForm').elements;
+    //  iterate through the form elements and enable them
     for (var i = 0, len = formElements.length; i < len; ++i) {
         formElements[i].disabled = false;
     }
+    // Enable the save button
+    var saveBtn = document.getElementById('saveBtn');
+    saveBtn.disabled = false
+    
+    // Attach the event listener to the save button
+    saveBtn.addEventListener('click', saveShareInfo);
 }
 
 function saveShareInfo() {
@@ -85,7 +102,7 @@ function saveShareInfo() {
         firebase.storage().ref(`photos/${userId}/${documentTimestamp}`).put(photoFile)
             .then(snapshot => snapshot.ref.getDownloadURL())
             .then(photoURL => {
-                // Update the document with the new photo URL and other form data
+                // Update firestore with the new photo URL and other form data
                 return currentUser.collection("user_uploads").doc(documentTimestamp).update({
                     product: productValue,
                     price: priceValue,
@@ -100,6 +117,7 @@ function saveShareInfo() {
             })
             .then(() => {
                 console.log("Document successfully updated with new photo!");
+                // display success message
                 Swal.fire({
                     title: "Edit Successful",
                     text: "Your upload has been updated with a new photo!",
@@ -107,6 +125,7 @@ function saveShareInfo() {
                 });
             })
             .catch(error => {
+                // log error to console
                 console.error("Error updating document with new photo: ", error);
             });
     } else {
@@ -122,7 +141,9 @@ function saveShareInfo() {
             last_updated: firebase.firestore.FieldValue.serverTimestamp(),
         })
             .then(() => {
+                // log success to console
                 console.log("Document successfully updated!");
+                // display success message
                 Swal.fire({
                     title: "Edit Successful",
                     text: "Your upload has been updated!",
@@ -130,6 +151,7 @@ function saveShareInfo() {
                 });
             })
             .catch(error => {
+                // log error to console
                 console.error("Error updating document: ", error);
             });
     }

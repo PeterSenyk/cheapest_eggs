@@ -22,6 +22,7 @@
 .orange_strong {
     color: #ECA753;
 }
+
 /* color standard  */
 
 
@@ -162,46 +163,46 @@ footer.container-fluid {
  * INDEX and MAIN
  *-------------------------------------
  */
- .sale_product_container {
-     display: flex;
-     flex-direction: row;
-     justify-content: center;
-     align-items: center;
-     overflow: hidden;
-     padding-bottom: 20px;
- }
+.sale_product_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding-bottom: 20px;
+}
 
- .sale_product_container>div {
-     width: 25%;
- }
+.sale_product_container>div {
+    width: 25%;
+}
 
- .sale_product_container img {
-     width: 100%;
- }
+.sale_product_container img {
+    width: 100%;
+}
 
- .sale_product_card {
-     padding: 1%;
-     background-color: white;
-     text-align: center;
-     border-radius: 10px;
-     margin: 2px;
- }
+.sale_product_card {
+    padding: 1%;
+    background-color: white;
+    text-align: center;
+    border-radius: 10px;
+    margin: 2px;
+}
 
- button {
-     background-color: green;
-     color: white;
-     border-radius: 10px;
-     border-style: none;
- }
+button {
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+    border-style: none;
+}
 
- .welcome_banner {
-     overflow: hidden;
-     text-align: center;
- }
+.welcome_banner {
+    overflow: hidden;
+    text-align: center;
+}
 
- .title {
-     color: white;
- }
+.title {
+    color: white;
+}
 
 /*-------------------------------------
  * SHARE
@@ -233,6 +234,21 @@ footer.container-fluid {
 .form-group {
     margin-bottom: 10px;
 }
+
+/* Style for disabled input fields and select elements */
+input:disabled, select:disabled {
+    background-color: #e9ecef; /* Light grey background */
+    color: #6c757d; /* Grey text */
+    cursor: not-allowed;
+}
+
+/* Style for disabled buttons */
+button:disabled {
+    background-color: #6c757d; /* Darker grey background */
+    color: #ffffff; /* White text */
+    cursor: not-allowed;
+}
+
 
 /*
 This is all commented out due to not wanting to make the final decision for it
@@ -279,7 +295,8 @@ This is all commented out due to not wanting to make the final decision for it
     padding-bottom: 20px;
 }
 
-.aboutbtn, .contact {
+.aboutbtn,
+.contact {
     margin-bottom: 100px;
 }
 
@@ -299,7 +316,9 @@ table {
     border-collapse: collapse;
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 1px solid black;
 }
 
@@ -312,35 +331,40 @@ table, th, td {
 /*
 search confirmation animation
 */
-@keyframes search_confirm{
-    0%{
+@keyframes search_confirm {
+    0% {
         background-color: #0275d8;
     }
-    50%{
+
+    50% {
         background-color: #198754;
     }
-    100%{
+
+    100% {
         background-color: #0275d8;
     }
 }
 
-@keyframes search_deny{
-    0%{
+@keyframes search_deny {
+    0% {
         background-color: #0275d8;
     }
-    50%{
+
+    50% {
         background-color: #d9534f;
     }
-    100%{
+
+    100% {
         background-color: #0275d8;
     }
 }
 
-.confirm{
+.confirm {
     animation-name: search_confirm;
     animation-duration: 0.5s;
 }
-.deny{
+
+.deny {
     animation-name: search_deny;
     animation-duration: 0.5s;
 }
@@ -355,7 +379,7 @@ search confirmation animation
         width: 100%;
     }
 
-    .navbar{
+    .navbar {
         padding-bottom: 15px;
     }
 
