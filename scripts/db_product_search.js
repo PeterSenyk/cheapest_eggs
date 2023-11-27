@@ -130,6 +130,13 @@ sort_button_desc.addEventListener('click', function () {
     getSharedProducts(search_item);
 })
 
+// button toggle
+add_button = document.getElementById('add_btn');
+console.log('testtttt')
+add_button.addEventListener('click', function () {
+    console.log('button.id')
+    add_button.style.display = 'none'
+})
 
 
 function add_to_search_history(search_item) {
