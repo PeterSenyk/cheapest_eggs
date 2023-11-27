@@ -56,12 +56,15 @@ function handleFileSelect(event) {
 }
 
 function editShareInfo() {
-    // Enable the form fields      **** change the form fields to start out disabled
+    // log to console to make sure the function is being called
     console.log("Inside editShareInfo");
+    // Enable all form fields and the save button
     var formElements = document.getElementById('reviewPriceForm').elements;
+    //  iterate through the form elements and enable them
     for (var i = 0, len = formElements.length; i < len; ++i) {
         formElements[i].disabled = false;
     }
+    // Enable the save button
     var saveBtn = document.getElementById('saveBtn');
     saveBtn.disabled = false
     
@@ -90,7 +93,7 @@ function saveShareInfo() {
         firebase.storage().ref(`photos/${userId}/${documentTimestamp}`).put(photoFile)
             .then(snapshot => snapshot.ref.getDownloadURL())
             .then(photoURL => {
-                // Update the document with the new photo URL and other form data
+                // Update firestore with the new photo URL and other form data
                 return currentUser.collection("user_uploads").doc(documentTimestamp).update({
                     product: productValue,
                     price: priceValue,
@@ -105,6 +108,7 @@ function saveShareInfo() {
             })
             .then(() => {
                 console.log("Document successfully updated with new photo!");
+                // display success message
                 Swal.fire({
                     title: "Edit Successful",
                     text: "Your upload has been updated with a new photo!",
@@ -112,6 +116,7 @@ function saveShareInfo() {
                 });
             })
             .catch(error => {
+                // log error to console
                 console.error("Error updating document with new photo: ", error);
             });
     } else {
@@ -127,7 +132,9 @@ function saveShareInfo() {
             last_updated: firebase.firestore.FieldValue.serverTimestamp(),
         })
             .then(() => {
+                // log success to console
                 console.log("Document successfully updated!");
+                // display success message
                 Swal.fire({
                     title: "Edit Successful",
                     text: "Your upload has been updated!",
@@ -135,6 +142,7 @@ function saveShareInfo() {
                 });
             })
             .catch(error => {
+                // log error to console
                 console.error("Error updating document: ", error);
             });
     }
