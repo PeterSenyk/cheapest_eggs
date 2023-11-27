@@ -62,6 +62,11 @@ function editShareInfo() {
     for (var i = 0, len = formElements.length; i < len; ++i) {
         formElements[i].disabled = false;
     }
+    var saveBtn = document.getElementById('saveBtn');
+    saveBtn.disabled = false
+    
+    // Attach the event listener to the save button
+    saveBtn.addEventListener('click', saveShareInfo);
 }
 
 function saveShareInfo() {
