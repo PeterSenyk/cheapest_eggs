@@ -1,6 +1,5 @@
 // this function adds the corresponding item to the list from the search_results page
 async function add_to_list_from_search(path, isShared) {
-    console.log("called with:", path, isShared);
     const uid = localStorage.getItem("uid");
     const userList = db.collection("users").doc(uid).collection("user_list");
     const querySnapshot = await userList.where("path", "==", path).get();
@@ -8,6 +7,15 @@ async function add_to_list_from_search(path, isShared) {
     if (!querySnapshot.empty) {
         console.log("item already in list");
 
+        Swal.fire({
+            toast: true,
+            position: 'bottom',
+            showConfirmButton: false,
+            timer: 1000,
+            text: "Item already in list!",
+            icon: "error",
+            timerProgressBar: true,
+        });
     } else {
         console.log("item added to list");
         
@@ -16,6 +24,16 @@ async function add_to_list_from_search(path, isShared) {
             quantity: 1,
             isShared: isShared,
         })
+
+        Swal.fire({
+            toast: true,
+            position: 'bottom',
+            showConfirmButton: false,
+            timer: 500,
+            text: "Item added to list!",
+            icon: "success",
+            timerProgressBar: true,
+        });
     }
 }
 
