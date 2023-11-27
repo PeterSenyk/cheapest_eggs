@@ -1,24 +1,27 @@
 // this function adds the corresponding item to the list from the search_results page
-async function add_to_list_from_search() {
+async function add_to_list_from_search(button) {
+    console.log("called by" + button.id)
     const uid = localStorage.getItem("uid");
-    const item_id = this.id.split(" ")[0];
-    const produce = this.id.split(" ")[1].toLowerCase();
+    const item_id = button.id.split(" ")[0];
+    const produce = button.id.split(" ")[1].toLowerCase();
+    const isShared = button.id.split(" ")[2] === "true";
     const doc = await db.collection("users").doc(uid).collection("user_list").doc(item_id).get();
     if (doc.exists) {
         console.log("item already in list");
-        this.classList.remove("deny");
-        void this.offsetWidth; // trick to restart animation
-        this.classList.add("deny");
+        button.classList.remove("deny");
+        void button.offsetWidth; // trick to restart animation
+        button.classList.add("deny");
     } else {
         console.log("item added to list");
-        this.classList.remove("confirm");
-        void this.offsetWidth; // trick to restart animation
-        this.classList.add("confirm");
+        button.classList.remove("confirm");
+        void button.offsetWidth; // trick to restart animation
+        button.classList.add("confirm");
     }
     db.collection("users").doc(uid).collection("user_list").doc(item_id).set({
         produce_name: produce,
         itemid: item_id,
-        quantity: 1
+        quantity: 1,
+        isShared: isShared,
     })
 }
 

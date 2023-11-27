@@ -36,7 +36,7 @@ function displayCardsDynamically(collection) {
                         newcard.querySelector('.card-image').src = `./images/${pluCode}.png`;
                         // newcard.querySelector('a').href = "eachProduct.html?docID=" + docID; for later
                         newcard.querySelector('.card-href').setAttribute("id", `${docID} ${title} false`);
-                        newcard.querySelector('.card-href').addEventListener("click", add_to_list_from_search);
+                        newcard.querySelector('.card-href').setAttribute("onclick", "add_to_list_from_search(this)");
 
                         document.getElementById(collection + "-go-here").appendChild(newcard);
 
@@ -91,7 +91,7 @@ function displaySharedProducts(sharedDetails, search_item) {
         newcard.querySelector('.share-card-text').textContent = detail.variety || 'No details';
         newcard.querySelector('.share-card-image').src = detail.photo || './images/noimg.png';
         newcard.querySelector('.card-href').setAttribute("id", `${detail.id} ${detail.product} true`); // add information to button
-        newcard.querySelector('.card-href').addEventListener("click", add_to_list_from_search);
+        newcard.querySelector('.card-href').setAttribute("onclick", "add_to_list_from_search(this)");
 
         container.appendChild(newcard);
     });

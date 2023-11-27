@@ -1,22 +1,31 @@
-editCard = function(card, item, identifier) {
-    card.querySelector(".card_img").src = `./images/${item.plu_code}.png`;
-    card.querySelector(".card_title").innerHTML = item.produce_name;
-    card.querySelector(".card_cost").innerHTML = "$" + item.price + " CAD";
-    card.querySelector(".card_store").innerHTML = item.store;
+editCard = function(card, product, identifier, shared=false) {
+    card.querySelector(".card_img").src = shared ? product.photo : `./images/${product.plu_code}.png`;
+    card.querySelector(".card_title").innerHTML = shared ? product.product : product.produce_name;
+    card.querySelector(".card_cost").innerHTML = "$" + product.price + " CAD";
+    card.querySelector(".card_store").innerHTML = shared ? product.storeName : product.store;
     card.querySelector(".card").setAttribute("id", "card_" + identifier);
     card.querySelector(".card_cost").setAttribute("id", "cost_" + identifier);
     card.querySelector(".card_quantity").setAttribute("id", "quantity_" + identifier);
 }
 
-updateTotalCost = function(identifier, previousQuantity=0) {
+updateTotalCost = function(identifier, change, updateType="add") {
     //get total cost
-    total = document.getElementById("total_cost").innerHTML
+    total = Number(document.getElementById("total_cost").innerHTML)
+    //get quantity
+    quantity = document.getElementById(`quantity_${identifier}`).value;
     //get cost of item without dollar sign and " CAD"
     cost = document.getElementById(`cost_${identifier}`).innerHTML.slice(1, this.length - 4);
-    //calculate what the total cost is without the item
-    total -= cost * previousQuantity;
-    //add the cost of the new quantity of the item
-    total += cost * document.getElementById(`quantity_${identifier}`).value;
+    //switch case of the update type
+    switch (updateType){
+        case "remove":
+            // remove the total cost of the item
+            total -= cost * change;
+            break;
+        case "add":
+            // add the total cost of the item 
+            total += cost * change;
+            break
+    }
     //update total cost
     document.getElementById("total_cost").innerHTML = (Math.round(total * 100) / 100).toFixed(2);
 }
@@ -42,10 +51,11 @@ function deleteCard(card, listItem) {
 }
 
 function restoreCard(card, previous_info, lastQuantity, identifier, listItem, deleteTimer) {
+    console.log(lastQuantity)
     card.innerHTML = previous_info;
     document.getElementById(`quantity_${identifier}`).value = lastQuantity;
     listItem.ref.update({quantity: lastQuantity});
-    updateTotalCost(identifier);
+    updateTotalCost(identifier, lastQuantity);
     clearTimeout(deleteTimer);
 }
 
@@ -68,7 +78,8 @@ removeCard = function(identifier, lastQuantity=1, listItem) {
         } else if (event.target.classList.contains("hide")) {
             deleteCard(card, listItem);
         }
-    });
+    }, 
+    {once: true}); // makes the event listener only work once
 
     card.innerHTML = "";
     card.appendChild(blockClone); 
@@ -81,27 +92,39 @@ handleQuantityChange = async function(identifier, listItem, change) {
     document.getElementById(`quantity_${identifier}`).value = newQuantity;
     
     listItem.ref.update({quantity: newQuantity});
-    updateTotalCost(identifier, previousQuantity);
+    updateTotalCost(identifier, change);
     if (newQuantity <= 0) {
         removeCard(identifier, previousQuantity, listItem);
     } 
 }
 
-handleEvent = function(event, identifier, listItem) {
+handleEvent = async function(event, identifier, listItem) {
     const target = event.target;
-    if (target.closest(".subtract")) {
-        handleQuantityChange(identifier, listItem, -1);
-    } else if (target.closest(".add")) {
-        handleQuantityChange(identifier, listItem, 1);
-    } else if (target.closest(".remove")){
-        handleQuantityChange(identifier, listItem, -listItem.data().quantity);
-    } else if (target.closest(".card_quantity")) {
+    let quantityChange;
+
+    if (event.type === "click") {
+        if (target.closest(".subtract")) {
+            quantityChange = -1;
+        } else if (target.closest(".add")) {
+            quantityChange = 1;
+        } else if (target.closest(".remove")) {
+            const doc = await listItem.ref.get();
+            quantityChange = -doc.data().quantity;
+        }
+    } else if (target.closest(".card_quantity") && event.type === "change") {
+        const doc = await listItem.ref.get();
         let new_quantity = Number(document.getElementById(`quantity_${identifier}`).value);
-        handleQuantityChange(identifier, listItem, new_quantity - listItem.data().quantity);
+        quantityChange = new_quantity - doc.data().quantity;
+    }
+
+    if (quantityChange !== undefined) {
+        handleQuantityChange(identifier, listItem, quantityChange);
     }
 }
+
 addCardEvents = function(cardFragment, identifier, listItem) {
     const card = cardFragment.querySelector(".card");
+    // add event listeners to the card for delegation
     card.addEventListener("click", event => handleEvent(event, identifier, listItem));
     card.addEventListener("change", event => handleEvent(event, identifier, listItem));
 }
@@ -121,11 +144,11 @@ generateListCards = async function(collection){
         const identifier = listItem.id;
         const { produce_name, itemid, quantity } = listItem.data();
         let newCard = cardTemplate.content.cloneNode(true);
-        let productDoc = await db.collection("products")
-        .doc(produce_name).collection("details")
-        .doc(itemid).get();
-
-        editCard(newCard, productDoc.data(), identifier);
+        console.log(itemid)
+        let productDoc = listItem.isShared ? (await db.collectionGroup("user_uploads").where("__name__", "==", itemid).get())[0] 
+        : await db.collection("products").doc(produce_name).collection("details").doc(itemid).get(); 
+        console.log(productDoc)
+        editCard(newCard, productDoc.data(), identifier, listItem.isShared);
         
         newCard.querySelector(".card_quantity").value = quantity;
         addCardEvents(newCard, identifier, listItem);
@@ -133,7 +156,7 @@ generateListCards = async function(collection){
         document.getElementById("user_list").appendChild(newCard);
        
         
-        updateTotalCost(identifier);
+        updateTotalCost(identifier, 1);
     };
 }
 
