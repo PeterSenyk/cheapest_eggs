@@ -18,6 +18,16 @@ const form = document.getElementById("sharePriceForm");
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
+    // Validate mandatory fields
+    if (!product.value.trim() || !price.value.trim() || !amount.value.trim() || !storeName.value.trim() || !address.value.trim()) {
+        Swal.fire({
+            title: "Error",
+            text: "Please fill out all mandatory fields",
+            icon: "warning"
+        });
+        return; // Stop the function if validation fails
+    }
+
     const userId = firebase.auth().currentUser.uid;
     const timeStamp = new Date().toISOString();
     let photoFile = document.getElementById('photoBox').files[0];
@@ -56,13 +66,13 @@ form.addEventListener("submit", (e) => {
         // Upload the form data to Firestore
         return db.collection("users").doc(userId).collection("user_uploads").doc(timeStamp).set(formData, { merge: true });
     })
-    .then(() => {
-        // Increase user's score by 1
-        return db.collection("users").doc(userId).update({
-            score: firebase.firestore.FieldValue.increment(1),
-            last_updated: firebase.firestore.FieldValue.serverTimestamp(),
-        });
-    })
+        .then(() => {
+            // Increase user's score by 1
+            return db.collection("users").doc(userId).update({
+                score: firebase.firestore.FieldValue.increment(1),
+                last_updated: firebase.firestore.FieldValue.serverTimestamp(),
+            });
+        })
         .then(() => {
             return db.collection("users").doc(userId).get();
         })
