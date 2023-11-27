@@ -31,10 +31,14 @@ function display_sale_products(collection) {
                                     </div>
                                     <p>${productName}</p>
                                     <p>Price: $${productPrice}</p>
-                                    <button>Add</button>
+                                    <button id="0">Add</button>
                                 </div>
                                 `
                                     )
+                                    document.getElementById('0').addEventListener('click', () => {
+                                        console.log("Click!")
+                                        add_to_list_from_search(doc.ref.path, false)
+                                    })
                                 }
                             })
                         })
@@ -60,10 +64,14 @@ function display_sale_products(collection) {
                                     </div>
                                     <p>${productName}</p>
                                     <p>Price: $${productPrice}</p>
-                                    <button>Add</button>
+                                    <button id="1">Add</button>
                                 </div>
                                 `
                                     )
+                                    document.getElementById('1').addEventListener('click', () => {
+                                        console.log("Click!")
+                                        add_to_list_from_search(doc.ref.path, false)
+                                    })
                                 }
                             })
                         })
@@ -88,10 +96,14 @@ function display_sale_products(collection) {
                                     </div>
                                     <p>${productName}</p>
                                     <p>Price: $${productPrice}</p>
-                                    <button>Add</button>
+                                    <button id="2">Add</button>
                                 </div>
                                 `
                                     )
+                                    document.getElementById('2').addEventListener('click', () => {
+                                        console.log("Click!")
+                                        add_to_list_from_search(doc.ref.path, false)
+                                    })
                                 }
                             })
                         })
@@ -117,10 +129,14 @@ function display_sale_products(collection) {
                                     </div>
                                     <p>${productName}</p>
                                     <p>Price: $${productPrice}</p>
-                                    <button>Add</button>
+                                    <button id="3">Add</button>
                                 </div>
                                 `
                                     )
+                                    document.getElementById('3').addEventListener('click', () => {
+                                        console.log("Click!")
+                                        add_to_list_from_search(doc.ref.path, false)
+                                    })
                                 }
                             })
                         })

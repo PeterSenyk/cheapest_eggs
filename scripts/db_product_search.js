@@ -35,8 +35,9 @@ function displayCardsDynamically(collection) {
                         newcard.querySelector('.card-text').innerHTML = `${details}, ${postCode}`;
                         newcard.querySelector('.card-image').src = `./images/${pluCode}.png`;
                         // newcard.querySelector('a').href = "eachProduct.html?docID=" + docID; for later
-                        newcard.querySelector('.card-href').setAttribute("id", `${docID} ${title} false`);
-                        newcard.querySelector('.card-href').setAttribute("onclick", "add_to_list_from_search(this)");
+                        newcard.querySelector('.card-href').addEventListener('click', () => {
+                            add_to_list_from_search(doc.ref.path, false);
+                        });
 
                         document.getElementById(collection + "-go-here").appendChild(newcard);
 
@@ -65,7 +66,7 @@ function getSharedProducts(search_item) {
                 In this use, the doc.data() is spread into a new object, which will contain all the information from the document, 
                 and then the id of the doc is added to the new object, as it won't be available through it.
                 */
-                docData = {...doc.data(), id: doc.id };
+                docData = {...doc.data(), path: doc.ref.path };
                 sharedDetails.push(docData);
             });
             // Once all documents are added to sharedDetails, call the display function
@@ -90,8 +91,9 @@ function displaySharedProducts(sharedDetails, search_item) {
         newcard.querySelector('.share-card-length').textContent = detail.price + " CAD" || 'No price';
         newcard.querySelector('.share-card-text').textContent = detail.variety || 'No details';
         newcard.querySelector('.share-card-image').src = detail.photo || './images/noimg.png';
-        newcard.querySelector('.card-href').setAttribute("id", `${detail.id} ${detail.product} true`); // add information to button
-        newcard.querySelector('.card-href').setAttribute("onclick", "add_to_list_from_search(this)");
+        newcard.querySelector('.card-href').addEventListener('click', () => {
+            add_to_list_from_search(detail.path, true);
+        });
 
         container.appendChild(newcard);
     });
