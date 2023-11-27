@@ -50,7 +50,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 400px;
+    height: 25em;
     background-image: url('/images/egghand_blur.png');
     background-size: cover;
     background-repeat: repeat;
@@ -118,10 +118,18 @@ footer.container-fluid {
     background-color: white;
 }
 
+.user_icon_small {
+    display: none;
+}
+
 /*-------------------------------------
  * FOOTER
  *-------------------------------------
  */
+
+.spacing {
+    margin-top: 100px;
+}
 
 .material-symbols-outlined {
     font-variation-settings:
@@ -295,6 +303,12 @@ table, th, td {
     border: 1px solid black;
 }
 
+#photoPreview {
+    width: auto;
+    height: 30vh;
+    object-fit: cover;
+}
+
 /*
 search confirmation animation
 */
@@ -341,8 +355,22 @@ search confirmation animation
         width: 100%;
     }
 
-    .small_nav {
+    .navbar{
+        padding-bottom: 15px;
+    }
+
+
+    .user_icon_small {
+        display: block;
+    }
+
+    .user_icon_large {
+        display: none;
+    }
+
+
+    /* .small_nav {
         display: block;
         width: 100%;
-    }
+    } */
 }
