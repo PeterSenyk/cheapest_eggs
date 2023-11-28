@@ -15,7 +15,7 @@ function editCard(card, product, identifier, shared=false) {
     }
     // populate card with product info
     card.querySelector(".card_title").innerHTML = shared ? product.product : product.produce_name;
-    card.querySelector(".card_cost").innerHTML = "$" + product.price + " CAD";
+    card.querySelector(".card_cost").innerHTML = "$" + product.price.toFixed(2) + " CAD";
     card.querySelector(".card_store").innerHTML = shared ? product.storeName : product.store;
     card.querySelector(".card").setAttribute("id", "card_" + identifier);
     card.querySelector(".card_cost").setAttribute("id", "cost_" + identifier);
@@ -107,7 +107,7 @@ function removeCard(identifier, lastQuantity=1, listItem) {
     let deleteTimer = setTimeout(async function() {
         deleteCard(card, listItem);
     }, 10000)
-    // add event listeners to the card for delegation
+    // add event listener to the card for delegation
     card.addEventListener("click", function(event){
         if (event.target.classList.contains("undo")) {
                 // replace undo block with card info
