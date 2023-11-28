@@ -12,7 +12,7 @@ const address = document.getElementById("addressBox");
 const form = document.getElementById("sharePriceForm");
 
 //------------------------------------------------------------------------
-//----------------Connects to the Firestore database----------------------
+//----------------Submits input fields to the Firestore database----------
 //------------------------------------------------------------------------
 
 form.addEventListener("submit", (e) => {
