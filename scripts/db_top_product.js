@@ -38,10 +38,11 @@ function display_sale_products(collection) {
                                 </div>
                                 `
                                     )
-                                    document.getElementById('0').addEventListener('click', () => {
-                                        console.log("Click!")
-                                        add_to_list_from_search(doc.ref.path, false)
-                                    })
+                                    setTimeout(() => {
+                                        document.getElementById('0').addEventListener('click', () => {
+                                            console.log("Click!")
+                                            add_to_list_from_search(doc.ref.path, false)
+                                        })}, 0);
                                 }
                             })
                         })
@@ -71,10 +72,11 @@ function display_sale_products(collection) {
                                 </div>
                                 `
                                     )
-                                    document.getElementById('1').addEventListener('click', () => {
-                                        console.log("Click!")
-                                        add_to_list_from_search(doc.ref.path, false)
-                                    })
+                                    setTimeout(() => {
+                                        document.getElementById('1').addEventListener('click', () => {
+                                            console.log("Click!")
+                                            add_to_list_from_search(doc.ref.path, false)
+                                        })}, 0);
                                 }
                             })
                         })
@@ -103,10 +105,11 @@ function display_sale_products(collection) {
                                 </div>
                                 `
                                     )
+                                    setTimeout(() => {
                                     document.getElementById('2').addEventListener('click', () => {
                                         console.log("Click!")
                                         add_to_list_from_search(doc.ref.path, false)
-                                    })
+                                    })}, 0);
                                 }
                             })
                         })
@@ -136,10 +139,11 @@ function display_sale_products(collection) {
                                 </div>
                                 `
                                     )
-                                    document.getElementById('3').addEventListener('click', () => {
-                                        console.log("Click!")
-                                        add_to_list_from_search(doc.ref.path, false)
-                                    })
+                                    setTimeout(() => {
+                                        document.getElementById('3').addEventListener('click', () => {
+                                            console.log("Click!")
+                                            add_to_list_from_search(doc.ref.path, false)
+                                        })}, 0);
                                 }
                             })
                         })
