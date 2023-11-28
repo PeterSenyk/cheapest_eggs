@@ -1,4 +1,6 @@
-// Code will be added later
+//------------------------------------------------------------------------------
+// Takes data and inject into document 'detail'
+//------------------------------------------------------------------------------
 function writeProducts() {
     //define a variable for the collection you want to create in Firestore to populate data
     var products_ref = db.collection("products");
@@ -39,7 +41,9 @@ function writeProducts() {
     })
 }
 
-
+//------------------------------------------------------------------------------
+// Take data and to collection
+//------------------------------------------------------------------------------
 function writeProducts_doc() {
     //define a variable for the collection you want to create in Firestore to populate data
     var products_ref = db.collection("products");
@@ -94,60 +98,3 @@ function writeProducts_doc() {
         sale_date: firebase.firestore.Timestamp.fromDate(new Date("December 10, 2020")),
     })
 }
-
-// //------------------------------------------------------------------------------
-// // Input parameter is a string representing the collection we are reading from
-// //------------------------------------------------------------------------------
-// function displayCardsDynamically(collection) {
-//     let cardTemplate = document.getElementById("product_card_template"); 
-
-//     db.collection(collection).get()   
-//         .then(allProducts => {
-
-//             allProducts.forEach(doc => { 
-//                 var title = doc.data().produce_name;     
-//                 var details = doc.data().details;  
-//                 var pluCode = doc.data().plu_code;   
-//                 var productPrice = doc.data().price; 
-//                 var docID = doc.id;
-//                 let newcard = cardTemplate.content.cloneNode(true); 
-
-//                 newcard.querySelector('.card-title').innerHTML = title;
-//                 newcard.querySelector('.card-length').innerHTML = productPrice + " CAD";
-//                 newcard.querySelector('.card-text').innerHTML = details;
-//                 newcard.querySelector('.card-image').src = `./images/${pluCode}.png`; 
-//                 newcard.querySelector('a').href = "eachProduct.html?docID=" + docID;
-
-//                 document.getElementById(collection + "-go-here").appendChild(newcard);
-//             })
-//         })
-// }
-
-// displayCardsDynamically("products");  //input param is the name of the collection
-
-
-
-
-
-
-// function display_product_info() {
-//     let params = new URL(window.location.href); //get URL of search bar
-//     let ID = params.searchParams.get("docID"); //get value for key "id"
-//     console.log(ID);
-
-//     // doublecheck: is your collection called "Reviews" or "reviews"?
-//     db.collection("products")
-//         .doc(ID)
-//         .get()
-//         .then(doc => {
-//             this_product = doc.data();
-//             product_code = this_product.code;
-//             product_name = doc.data().name;
-
-//             // only populate title, and image
-//             document.getElementById("product_name").innerHTML = product_name;
-//             let imgEvent = document.querySelector(".product-img");
-//             imgEvent.src = "../images/" + product_code + ".jpg";
-//         });
-// }
-// display_product_info();

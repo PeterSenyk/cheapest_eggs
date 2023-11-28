@@ -1,3 +1,6 @@
+//------------------------------------------------------------------------------
+// Take 4 random sale items from database and inject to hero on home page
+//------------------------------------------------------------------------------
 function display_sale_products(collection) {
     firebase.auth().onAuthStateChanged(user => {
         // Choose 4 unique random items from the collection
