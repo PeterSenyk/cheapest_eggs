@@ -46,9 +46,7 @@
 </head>
 
 <body>
-    <!------------>
-    <!-- navbar -->
-    <!------------>
+    <!-- Navbar placeholder -->
     <nav id="navbarPlaceholder"></nav>
 
 
@@ -60,11 +58,14 @@
                 <h2>Account</h2>
                 <!-- Users can modify their info here -->
                 <form>
+                    <!-- Personal information fields -->
                     <fieldset class="mb-3" id="personalInfoFields" disabled>
+                        <!-- Profile picture -->
                         <div class="profile-container text-center">
                             <img id="mypic-goes-here" src="./images/default_profile_pic.png" width=150 height=150 />
                             <input type="file" id="mypic-input" accept="image/*" />
                         </div>
+                        <!-- Form input fields -->
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text" id="nameInput" class="form-control" placeholder="Enter your name"
@@ -79,6 +80,7 @@
                             <input type="text" id="cityInput" class="form-control" placeholder="Enter your city">
                         </div>
                     </fieldset>
+                    <!-- Buttons for editing and saving user info -->
                     <div class="d-flex justify-content-end mt-5">
                         <!-- event-listener that call the functions after clicking on the buttons. -->
                         <button type="button" class="btn btn-success edit" onclick="editUserInfo()">Edit</button>
@@ -86,6 +88,7 @@
                         <button type="button" class="btn btn-secondary save" onclick="saveUserInfo()">Save</button>
                     </div>
                 </form>
+                <!-- Display user information from the database -->
                 <div class="col-12">
                     <!-- info read from database -->
                     <p>Email: <span id="email"></span></p>
@@ -132,14 +135,18 @@
                 </div>
             </div>
 
+            <!-- Sign-out Section -->
             <div class="sign-out row profile-card">
+                <!-- Sign-out button -->
                 <button id="sign-out" class="btn btn-success">Sign Out</button>
             </div>
 
+            <!-- Sharing Section -->
             <!-- Display user's latest sharing items -->
             <div class="sharing container row profile-card">
                 <h2>My Latest Sharing</h2>
                 <p>Share more items to get scores, you can become the next Egg King!</p>
+                <!-- Container for sharing cards -->
                 <div class="card-container">
                     <div id="shareCardGroup" class="row row-cols-auto">
                         <!-- Card templates here -->
@@ -166,7 +173,7 @@
         </div>
     </main>
 
-    <!-- footer -->
+    <!-- Footer placeholder -->
     <footer id="footerPlaceholder"></footer>
 
     <!---------------------------------------------->
