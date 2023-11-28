@@ -20,12 +20,13 @@ form.addEventListener("submit", (e) => {
 
     // Validate mandatory fields
     if (!product.value.trim() || !price.value.trim() || !amount.value.trim() || !storeName.value.trim() || !address.value.trim()) {
+        // If any of the mandatory fields are empty, show an error message to alert the user
         Swal.fire({
             title: "Error",
             text: "Please fill out all mandatory fields",
             icon: "warning"
         });
-        return; // Stop the function if validation fails
+        return; // Stop the function if validation fails (prevents the code below from running)
     }
 
     const userId = firebase.auth().currentUser.uid;
