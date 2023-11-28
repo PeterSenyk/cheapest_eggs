@@ -60,7 +60,6 @@ function deleteCard(card, listItem) {
 }
 
 function restoreCard(card, previous_info, lastQuantity, identifier, listItem, deleteTimer) {
-    console.log(lastQuantity)
     card.innerHTML = previous_info;
     document.getElementById(`quantity_${identifier}`).value = lastQuantity;
     listItem.ref.update({quantity: lastQuantity});
