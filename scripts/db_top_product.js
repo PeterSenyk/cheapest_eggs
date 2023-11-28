@@ -42,7 +42,7 @@ function display_sale_products(collection) {
                                         document.getElementById('0').addEventListener('click', () => {
                                             console.log("Click!")
                                             add_to_list_from_search(doc.ref.path, false)
-                                        })}, 0);
+                                        })}, 60); // for some reason, this needs a large delay to work
                                 }
                             })
                         })
