@@ -28,12 +28,10 @@ function displayCardsDynamically(collection) {
                         var productPrice = doc.data().price;
                         var docID = doc.id;
                         let newcard = cardTemplate.content.cloneNode(true);
-
                         newcard.querySelector('.card-title').innerHTML = title;
                         newcard.querySelector('.card-length').innerHTML = productPrice + " CAD";
                         newcard.querySelector('.card-text').innerHTML = `${details}, ${postCode}`;
                         newcard.querySelector('.card-image').src = `./images/${pluCode}.png`;
-                        // newcard.querySelector('a').href = "eachProduct.html?docID=" + docID; for later
                         newcard.querySelector('.card-href').addEventListener('click', () => {
                             add_to_list_from_search(doc.ref.path, false);
                         });
