@@ -31,8 +31,9 @@
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
-        <!------SweetAlert2 script link--------------------------->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!------SweetAlert2 script link--------------------------->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!------------------>
     <!-- Google fonts -->
     <!------------------>
@@ -53,6 +54,7 @@
     <!-- Load css styles -->
     <!--------------------->
     <link rel="stylesheet" href="./styles/style.css">
+    
 </head>
 
 <body>
@@ -73,13 +75,15 @@
                         <input type="text" class="form-control" id="priceBox" placeholder="example: 4.99">
                     </div>
                     <div class="form-group">
-                        <label for="formControlSelectAmount">Amount Per <span style="color: red;;">*</span><span style="color: gray;">select from dropdown</span></label>
+                        <label for="formControlSelectAmount">Amount Per <span style="color: red;;">*</span><span
+                                style="color: gray;">select from dropdown</span></label>
                         <select class="form-control" id="amountBox">
+                            <option>Select from dropdown menu</option>
                             <option>Item</option>
                             <option>1 dozen</option>
                             <option>Kilogram - kg</option>
                             <option>Pound - lb</option>
-                            </select>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="formControlInputVariety">Variety <span style="color: gray;">optional</span></label>
@@ -95,7 +99,8 @@
                     </div>
                     <div class="form-group">
                         <label for="formControlInputAddress">Address<span style="color: red;;">*</span></label>
-                        <input type="text" class="form-control" id="addressBox" placeholder="example: 1313 Main St, Vancouver">
+                        <input type="text" class="form-control" id="addressBox"
+                            placeholder="example: 1313 Main St, Vancouver">
                     </div>
                     <div class="form-group">
                         <label form="formControlFilePhoto">Attach Photo</label>
@@ -121,4 +126,5 @@
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/share.js"></script>
 </body>
+
 </html>
