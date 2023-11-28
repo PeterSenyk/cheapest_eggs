@@ -5,12 +5,11 @@ sort_method = undefined
 var search_item;
 
 //------------------------------------------------------------------------------
-// Input parameter is a string representing the collection we are reading from
+// Takes search value and pulls 'store' data from product firebase and injects to search results
 //------------------------------------------------------------------------------
 function displayCardsDynamically(collection) {
     console.log('displayCardsDynamically called')
     let cardTemplate = document.getElementById("product_card_template");
-    // let search_item = document.getElementById("search-input").value;
     console.log(search_item)
 
     var products_ref = db.collection("products");
@@ -38,9 +37,7 @@ function displayCardsDynamically(collection) {
                         newcard.querySelector('.card-href').addEventListener('click', () => {
                             add_to_list_from_search(doc.ref.path, false);
                         });
-
                         document.getElementById(collection + "-go-here").appendChild(newcard);
-
                     })
                 })
             }
@@ -49,10 +46,12 @@ function displayCardsDynamically(collection) {
 }
 
 
+//------------------------------------------------------------------------------
+// Takes search value and pulls 'shared' data from product firebase and injects to search results
+//------------------------------------------------------------------------------
 function getSharedProducts(search_item) {
     console.log('getSharedProducts called with item:', search_item);
     const db = firebase.firestore(); // Ensure Firebase is initialized
-
     db.collectionGroup("user_uploads") // This will search across all 'user_uploads' subcollections in the database
         .where("product", "==", search_item)
         .get()
@@ -77,6 +76,10 @@ function getSharedProducts(search_item) {
         });
 }
 
+
+//------------------------------------------------------------------------------
+// Inject search results for shared items to search_result page
+//------------------------------------------------------------------------------
 function displaySharedProducts(sharedDetails, search_item) {
     const template = document.getElementById('shared_product_card_template'); // Use the correct template ID
     const container = document.getElementById('shared-products-go-here'); // Use the correct container ID
@@ -99,7 +102,10 @@ function displaySharedProducts(sharedDetails, search_item) {
     });
 }
 
-// eventlistener search
+
+//------------------------------------------------------------------------------
+// Event listener for when search_button is clicked
+//------------------------------------------------------------------------------
 searchButton = document.getElementById('search_button');
 searchButton.addEventListener('click', function () {
     search_item = document.getElementById('search-input').value;
@@ -108,6 +114,9 @@ searchButton.addEventListener('click', function () {
     // Append the search item as a query parameter
     window.location.href = "search_result.html?search_item=" + encodeURIComponent(search_item);
 });
+
+
+// create URL 
 queryParams = new URLSearchParams(window.location.search);
 search_item = queryParams.get('search_item');
 displayCardsDynamically('products');
@@ -116,7 +125,10 @@ if (search_item) {
     getSharedProducts(search_item);
 };
 
-// eventlistener sort
+
+//------------------------------------------------------------------------------
+// Event listener for when sort_button is clicked
+//------------------------------------------------------------------------------
 sort_button = document.getElementById('sort_button');
 sort_button.addEventListener('click', function () {
     sort_method = undefined
@@ -124,6 +136,10 @@ sort_button.addEventListener('click', function () {
     getSharedProducts(search_item);
 })
 
+
+//------------------------------------------------------------------------------
+// Event listener for when sort_button_desc is clicked
+//------------------------------------------------------------------------------
 sort_button_desc = document.getElementById('sort_button_desc');
 sort_button_desc.addEventListener('click', function () {
     sort_method = 'desc'
@@ -132,15 +148,10 @@ sort_button_desc.addEventListener('click', function () {
     getSharedProducts(search_item);
 })
 
-// button toggle
-add_button = document.getElementById('add_btn');
-console.log('testtttt')
-add_button.addEventListener('click', function () {
-    console.log('button.id')
-    add_button.style.display = 'none'
-})
 
-
+//------------------------------------------------------------------------------
+// function that adds searched item to search history
+//------------------------------------------------------------------------------
 function add_to_search_history(search_item) {
     var user = firebase.auth().currentUser;
     var uid = user.uid;
