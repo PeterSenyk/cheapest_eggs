@@ -236,6 +236,14 @@ button {
     margin-bottom: 10px;
 }
 
+#saveBtn {
+    margin-bottom: 150px;
+}
+
+#editBtn {
+    margin-bottom: 150px;
+}
+
 
 /*-------------------------------------
  * Style for disabling
