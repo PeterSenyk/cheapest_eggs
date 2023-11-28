@@ -123,7 +123,7 @@ function removeCard(identifier, lastQuantity=1, listItem) {
             deleteCard(card, listItem);
         }
     }, {once: true}); // makes the event listener only work once
-    // replace the card with the undo block
+    // replace the card contents with the undo block
     card.innerHTML = "";
     card.appendChild(blockClone); 
 }
