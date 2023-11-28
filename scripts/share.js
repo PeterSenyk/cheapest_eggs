@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------
-//----------------Returns the form inputs as variables--------------------
+//----------------Returns the form field inputs as variables--------------
 //------------------------------------------------------------------------
 
 const product = document.getElementById("productBox");
