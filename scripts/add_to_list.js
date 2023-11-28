@@ -29,7 +29,7 @@ async function add_to_list_from_search(path, isShared) {
             toast: true,
             position: 'bottom',
             showConfirmButton: false,
-            timer: 500,
+            timer: 1000,
             text: "Item added to list!",
             icon: "success",
             timerProgressBar: true,
