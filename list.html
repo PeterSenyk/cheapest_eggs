@@ -53,12 +53,18 @@
     <link rel="stylesheet" href="./styles/style.css">
     <style>
         main img {
-    width: 20vw;
-    justify-self: center;
-    align-self: center;
+            width: 20vw;
+            justify-self: center;
+            align-self: center;
         }
         .card_quantity {
             text-align: center;
+        }
+        .total {
+            font-size: 1.25rem;
+        }
+        #clear {
+            font-size: 1.25rem;
         }
     </style>
     
@@ -88,7 +94,7 @@
             <div class="row">
                 <!--Total cost-->
                 <div class="col-md-6">
-                    <p>Total Item Cost: $<span id="total_cost">0</span> CAD</p>
+                    <p class="total">Total Item Cost: $<span id="total_cost">0</span> CAD</p>
                 </div>
                 <!--Clear all button-->
                 <div class="col-md-6">
