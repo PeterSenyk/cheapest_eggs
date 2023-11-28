@@ -1,14 +1,19 @@
+//--------------------------------------------------
+// Populate the list card with product info.
+//--------------------------------------------------
 editCard = function(card, product, identifier, shared=false) {
-    if (shared) {card.querySelector(".card_img").src = product.photo ? product.photo : "./images/noimg.png";}
-    else {
+    // populate card with product image
+    if (shared) {
+        card.querySelector(".card_img").src = product.photo ? product.photo : "./images/noimg.png";
+    } else {
+        // try to get the product image, if it doesn't exist, use the noimg image
         try {
             card.querySelector(".card_img").src = `./images/${product.plu_code}.png`;
         } catch {
             card.querySelector(".card_img").src = "./images/noimg.png";
         }
     }
-
-    // card.querySelector(".card_img").src = shared ? product.photo : `./images/${product.plu_code}.png`;
+    // populate card with product info
     card.querySelector(".card_title").innerHTML = shared ? product.product : product.produce_name;
     card.querySelector(".card_cost").innerHTML = "$" + product.price + " CAD";
     card.querySelector(".card_store").innerHTML = shared ? product.storeName : product.store;
@@ -17,6 +22,9 @@ editCard = function(card, product, identifier, shared=false) {
     card.querySelector(".card_quantity").setAttribute("id", "quantity_" + identifier);
 }
 
+//--------------------------------------------------
+// Update total cost.
+//--------------------------------------------------
 updateTotalCost = function(identifier, change, updateType="add") {
     //get total cost
     total = Number(document.getElementById("total_cost").innerHTML)
@@ -39,6 +47,9 @@ updateTotalCost = function(identifier, change, updateType="add") {
     document.getElementById("total_cost").innerHTML = (Math.round(total * 100) / 100).toFixed(2);
 }
 
+//--------------------------------------------------
+// Check if list is empty.
+//--------------------------------------------------
 checkIfListEmpty = function() {
     // fetch list
     let list = document.getElementById("user_list");
@@ -49,56 +60,74 @@ checkIfListEmpty = function() {
     }
 }
 
+//--------------------------------------------------
+// Delete the list card.
+//--------------------------------------------------
 function deleteCard(card, listItem) {
+    // remove the card from the page and database
     card.remove();
     listItem.ref.delete().then(() => {
         console.log("Document successfully deleted!");
     }).catch((error) => {
         console.error("Error removing document: ", error);
     });
+    // check if list is empty
     checkIfListEmpty();
 }
 
+//--------------------------------------------------
+// Restore the list card.
+//--------------------------------------------------
 function restoreCard(card, previous_info, lastQuantity, identifier, listItem, deleteTimer) {
+    // replace undo block with card info
     card.innerHTML = previous_info;
+    // update quantity in page and database
     document.getElementById(`quantity_${identifier}`).value = lastQuantity;
     listItem.ref.update({quantity: lastQuantity});
+    // update total cost
     updateTotalCost(identifier, lastQuantity);
+    // clear the timer
     clearTimeout(deleteTimer);
 }
 
+//--------------------------------------------------
+// Remove the list card.
+//--------------------------------------------------
 removeCard = function(identifier, lastQuantity=1, listItem) {
     let card = document.getElementById(`card_${identifier}`);
     const previous_info = card.innerHTML;
     const undoBlock = document.getElementById("undo_block");
     const itemName = card.querySelector(".card_title").innerHTML;
-
+    // clone the undo block
     let blockClone = undoBlock.content.cloneNode(true);
     blockClone.querySelector(".item_name").innerHTML = itemName;
-
+    // set a timer to delete the card
     let deleteTimer = setTimeout(async function() {
         deleteCard(card, listItem);
     }, 10000)
-
+    // add event listeners to the card for delegation
     card.addEventListener("click", function(event){
         if (event.target.classList.contains("undo")) {
             restoreCard(card, previous_info, lastQuantity, identifier, listItem, deleteTimer);
         } else if (event.target.classList.contains("hide")) {
             deleteCard(card, listItem);
         }
-    }, 
-    {once: true}); // makes the event listener only work once
-
+    }, {once: true}); // makes the event listener only work once
+    // replace the card with the undo block
     card.innerHTML = "";
     card.appendChild(blockClone); 
 }
 
+//--------------------------------------------------
+// Handle quantity changes for the list cards.
+//--------------------------------------------------
 handleQuantityChange = async function(identifier, listItem, change) {
+    // get realtime updated quantity
     listItem = await listItem.ref.get();
     let previousQuantity = listItem.data().quantity;
     let newQuantity = previousQuantity + change;
     document.getElementById(`quantity_${identifier}`).value = newQuantity;
-    
+    // update quantity in database
     listItem.ref.update({quantity: newQuantity});
     updateTotalCost(identifier, change);
     if (newQuantity <= 0) {
@@ -106,10 +135,13 @@ handleQuantityChange = async function(identifier, listItem, change) {
     } 
 }
 
+//--------------------------------------------------
+// Handle events for the list cards.
+//--------------------------------------------------
 handleEvent = async function(event, identifier, listItem) {
     const target = event.target;
     let quantityChange;
-
+    // if the target is a button
     if (event.type === "click") {
         if (target.closest(".subtract")) {
             quantityChange = -1;
@@ -119,6 +151,7 @@ handleEvent = async function(event, identifier, listItem) {
             const doc = await listItem.ref.get();
             quantityChange = -doc.data().quantity;
         }
+        // if the target is a quantity input
     } else if (target.closest(".card_quantity") && event.type === "change") {
         const doc = await listItem.ref.get();
         let new_quantity = Number(document.getElementById(`quantity_${identifier}`).value);
@@ -130,6 +163,9 @@ handleEvent = async function(event, identifier, listItem) {
     }
 }
 
+//--------------------------------------------------
+// Add event listeners to the list cards.
+//--------------------------------------------------
 addCardEvents = function(cardFragment, identifier, listItem) {
     const card = cardFragment.querySelector(".card");
     // add event listeners to the card for delegation
@@ -137,41 +173,53 @@ addCardEvents = function(cardFragment, identifier, listItem) {
     card.addEventListener("change", event => handleEvent(event, identifier, listItem));
 }
 
+
+//--------------------------------------------------
+// Generate the list cards.
+//--------------------------------------------------
 generateListCards = async function(collection){
+    // const variables
     const user = localStorage.getItem("uid");
     const cardTemplate = document.getElementById("list_card");
     const listSnapshot = await db.collection(collection).doc(user).collection("user_list").get();
     const list = document.getElementById("user_list");
-
+    // if the list is empty, display message
     if (listSnapshot.empty) {
         list.innerHTML = "Your list is empty, add some items!";
         return;
     }
-
+    // iterate through each item in the list
     for (const listItem of listSnapshot.docs) {
+        // get the document id, path, quantity, and isShared
         const identifier = listItem.id;
+        // uses destructuring to get the data from the document
         const { path, quantity, isShared } = listItem.data();
         let newCard = cardTemplate.content.cloneNode(true);
         let productDoc = await db.doc(path).get();
+        // edit the card with the product document data
         editCard(newCard, productDoc.data(), identifier, isShared);
-        
+        // add quantity to the card
         newCard.querySelector(".card_quantity").value = quantity;
+        // add event listeners to the card
         addCardEvents(newCard, identifier, listItem);
-        
+        // append the card to the list
         document.getElementById("user_list").appendChild(newCard);
-       
-        
         updateTotalCost(identifier, 1);
     };
 }
 
+//--------------------------------------------------
+// Add event listener to the clear list button.
+//--------------------------------------------------
 addClearListEvent = function() {
+    // const variables
     const user = localStorage.getItem("uid");
     const clearButton = document.getElementById("clear");
-
+    // add event listener to the clear list button
     clearButton.addEventListener("click", function(){
+        // get the list collection
         const list = db.collection("users").doc(user).collection("user_list");
-        
+        // delete all documents in the list collection
         list.get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 doc.ref.delete();
@@ -183,6 +231,9 @@ addClearListEvent = function() {
     });
 }
 
+//--------------------------------------------------
+// Check if user is signed in.
+//--------------------------------------------------
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         localStorage.setItem("uid", user.uid);
