@@ -30,7 +30,7 @@
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
-    
+
     <!------SweetAlert2 script link--------------------------->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -62,14 +62,22 @@
     <nav id="navbarPlaceholder"></nav>
 
     <main>
+        <!-------------------------------------------------------------------------------------------------------------->
+        <!---------Notification of a successful upload to inform the user that their post was completed----------------->
+        <!-------------------------------------------------------------------------------------------------------------->
         <div class="container-fluid">
             <p id="post_successful">Post Successfully! You earned 1 score!</p>
             <p class="center">Check your score, title and latest sharing on profile page.</p>
         </div>
+        <!----------------------------Button redirects user if they want to make another post------------------------------>
         <div class="welcome_banner_one container">
             <a class="btn btn-success btn-lg" href="./share.html" role="button">Post Another Item</a>
         </div>
         <br>
+        <!---------------------------------------------------------------------------------------------------->
+        <!---------Text fields populated by the user's upload form share.html (previous page)----------------->
+        <!---------------------------------------------------------------------------------------------------->
+        <!----------Informs User that the recent post can be edited by scrolling down----------------------->
         <p class="center">You can edit your upload below.</p>
         <div class="container-fluid">
             <div class="text_box">
