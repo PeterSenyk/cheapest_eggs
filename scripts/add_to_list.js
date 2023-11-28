@@ -1,13 +1,14 @@
-// ---------------------------------------------------------------------------------------
+//--------------------------------------------------
 // Add the corresponding item to the list.
-// ---------------------------------------------------------------------------------------
+//--------------------------------------------------
 async function add_to_list_from_search(path, isShared) {
     const uid = localStorage.getItem("uid");
     const userList = db.collection("users").doc(uid).collection("user_list");
     const querySnapshot = await userList.where("path", "==", path).get();
-    
+    // check for document existence
     if (!querySnapshot.empty) {
         Swal.fire({
+            // display error toast
             toast: true,
             position: 'bottom',
             showConfirmButton: false,
@@ -22,7 +23,7 @@ async function add_to_list_from_search(path, isShared) {
             quantity: 1,
             isShared: isShared,
         })
-
+        // display success toast
         Swal.fire({
             toast: true,
             position: 'bottom',
@@ -34,7 +35,6 @@ async function add_to_list_from_search(path, isShared) {
         });
     }
 }
-
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
