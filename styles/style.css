@@ -38,7 +38,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 400px; */
     background-image: url('/images/grocery_welcome_blur.jpg');
     background-size: cover;
     background-repeat: repeat;
@@ -258,26 +257,8 @@ button:disabled {
 }
 
 
-/*
-This is all commented out due to not wanting to make the final decision for it
-    
-    these lines make the footer stick to the bottom of the page 
-    rather than the bottom of the viewport when the screen is large enough
-
-.fixed-bottom {
-    position: relative;
-}
-
-@media (min-width:576px) {
-    .fixed-bottom {
-        position: fixed;
-    }
-}
-*/
-
-
 /*-------------------------------------
- * PROFILE AND ABOUT
+ * PROFILE AND ABOUT (profile.html)
  *-------------------------------------
  */
 .profile-card {
@@ -289,7 +270,6 @@ This is all commented out due to not wanting to make the final decision for it
 }
 
 #mypic-goes-here {
-    /* width: 100%; */
     border-radius: 50%;
 }
 
