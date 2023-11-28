@@ -118,7 +118,7 @@ function displaySharedProducts(sharedDetails, search_item) {
 //------------------------------------------------------------------------------
 // Event listener for when search_button is clicked
 //------------------------------------------------------------------------------
-searchButton = document.getElementById('search_button');
+searchButton = document.getElementById('search_button'); // this id isn't assigned in the HTML
 searchButton.addEventListener('click', function () {
     search_item = document.getElementById('search-input').value;
     console.log('search button clicked');
@@ -127,11 +127,11 @@ searchButton.addEventListener('click', function () {
     window.location.href = "search_result.html?search_item=" + encodeURIComponent(search_item);
 });
 
-
+// this block shouldn't be here, it causes the error in all the pages except search_result.html
 // create URL 
 queryParams = new URLSearchParams(window.location.search);
 search_item = queryParams.get('search_item');
-displayCardsDynamically('products');
+displayCardsDynamically('products'); 
 add_to_search_history(search_item);
 if (search_item) {
     getSharedProducts(search_item);
