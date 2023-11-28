@@ -1,7 +1,7 @@
 //--------------------------------------------------
 // Populate the list card with product info.
 //--------------------------------------------------
-editCard = function(card, product, identifier, shared=false) {
+function editCard(card, product, identifier, shared=false) {
     // populate card with product image
     if (shared) {
         card.querySelector(".card_img").src = product.photo ? product.photo : "./images/noimg.png";
@@ -25,7 +25,7 @@ editCard = function(card, product, identifier, shared=false) {
 //--------------------------------------------------
 // Update total cost.
 //--------------------------------------------------
-updateTotalCost = function(identifier, change, updateType="add") {
+function updateTotalCost(identifier, change, updateType="add") {
     //get total cost
     total = Number(document.getElementById("total_cost").innerHTML)
     //get quantity
@@ -50,7 +50,7 @@ updateTotalCost = function(identifier, change, updateType="add") {
 //--------------------------------------------------
 // Check if list is empty.
 //--------------------------------------------------
-checkIfListEmpty = function() {
+function checkIfListEmpty() {
     // fetch list
     let list = document.getElementById("user_list");
     // if list is empty, display message
@@ -93,8 +93,10 @@ function restoreCard(card, previous_info, lastQuantity, identifier, listItem, de
 //--------------------------------------------------
 // Remove the list card.
 //--------------------------------------------------
-removeCard = function(identifier, lastQuantity=1, listItem) {
+function removeCard(identifier, lastQuantity=1, listItem) {
+    // clone the card
     let card = document.getElementById(`card_${identifier}`);
+    // get the card info
     const previous_info = card.innerHTML;
     const undoBlock = document.getElementById("undo_block");
     const itemName = card.querySelector(".card_title").innerHTML;
@@ -108,7 +110,15 @@ removeCard = function(identifier, lastQuantity=1, listItem) {
     // add event listeners to the card for delegation
     card.addEventListener("click", function(event){
         if (event.target.classList.contains("undo")) {
-            restoreCard(card, previous_info, lastQuantity, identifier, listItem, deleteTimer);
+                // replace undo block with card info
+            card.innerHTML = previous_info;
+            // update quantity in page and database
+            document.getElementById(`quantity_${identifier}`).value = lastQuantity;
+            listItem.ref.update({quantity: lastQuantity});
+            // update total cost
+            updateTotalCost(identifier, lastQuantity);
+            // clear the timer
+            clearTimeout(deleteTimer);
         } else if (event.target.classList.contains("hide")) {
             deleteCard(card, listItem);
         }
@@ -121,7 +131,7 @@ removeCard = function(identifier, lastQuantity=1, listItem) {
 //--------------------------------------------------
 // Handle quantity changes for the list cards.
 //--------------------------------------------------
-handleQuantityChange = async function(identifier, listItem, change) {
+async function handleQuantityChange(identifier, listItem, change) {
     // get realtime updated quantity
     listItem = await listItem.ref.get();
     let previousQuantity = listItem.data().quantity;
@@ -138,8 +148,10 @@ handleQuantityChange = async function(identifier, listItem, change) {
 //--------------------------------------------------
 // Handle events for the list cards.
 //--------------------------------------------------
-handleEvent = async function(event, identifier, listItem) {
+async function handleEvent(event, identifier, listItem) {
+    // get the target
     const target = event.target;
+    // declare quantityChange variable
     let quantityChange;
     // if the target is a button
     if (event.type === "click") {
@@ -166,7 +178,7 @@ handleEvent = async function(event, identifier, listItem) {
 //--------------------------------------------------
 // Add event listeners to the list cards.
 //--------------------------------------------------
-addCardEvents = function(cardFragment, identifier, listItem) {
+function addCardEvents(cardFragment, identifier, listItem) {
     const card = cardFragment.querySelector(".card");
     // add event listeners to the card for delegation
     card.addEventListener("click", event => handleEvent(event, identifier, listItem));
@@ -177,8 +189,8 @@ addCardEvents = function(cardFragment, identifier, listItem) {
 //--------------------------------------------------
 // Generate the list cards.
 //--------------------------------------------------
-generateListCards = async function(collection){
-    // const variables
+async function generateListCards(collection){
+    // const variable declaration
     const user = localStorage.getItem("uid");
     const cardTemplate = document.getElementById("list_card");
     const listSnapshot = await db.collection(collection).doc(user).collection("user_list").get();
@@ -211,8 +223,8 @@ generateListCards = async function(collection){
 //--------------------------------------------------
 // Add event listener to the clear list button.
 //--------------------------------------------------
-addClearListEvent = function() {
-    // const variables
+function addClearListEvent() {
+    // const variable declaration
     const user = localStorage.getItem("uid");
     const clearButton = document.getElementById("clear");
     // add event listener to the clear list button
