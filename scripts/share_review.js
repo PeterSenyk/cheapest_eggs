@@ -117,7 +117,7 @@ function saveShareInfo() {
             })
             .then(() => {
                 console.log("Document successfully updated with new photo!");
-                // display success message
+                // display success message on successful update
                 Swal.fire({
                     title: "Edit Successful",
                     text: "Your upload has been updated with a new photo!",
