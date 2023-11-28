@@ -236,6 +236,10 @@ button {
     margin-bottom: 10px;
 }
 
+/*-------------------------------------
+ * Avoid buttons from being hidden by the sticky footer
+ *-------------------------------------
+ */
 #saveBtn {
     margin-bottom: 150px;
 }
