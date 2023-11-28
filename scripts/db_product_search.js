@@ -8,33 +8,47 @@ var search_item;
 // Takes search value and pulls 'store' data from product firebase and injects to search results
 //------------------------------------------------------------------------------
 function displayCardsDynamically(collection) {
-    console.log('displayCardsDynamically called')
+    // get html template from specific ID, store it 
     let cardTemplate = document.getElementById("product_card_template");
-    console.log(search_item)
-
+    // get reference for 'products' in firebase, store it
     var products_ref = db.collection("products");
+
+    // retrieve all documents from firebase collection
     db.collection(collection).get().then(allProducts => {
 
+        // iterate through each item in document
         allProducts.forEach(doc => {
+            // if document matches search item
             if (doc.id == search_item) {
-                document.getElementById('products-go-here').innerHTML = ''
 
+                // clear out initial HTML div so we can add new HTML template
+                document.getElementById('products-go-here').innerHTML = ''
+                // based on lowest price, inject template cards to specified div
                 db.collection(collection).doc(search_item).collection('details').orderBy('price', sort_method).get().then(allProducts => {
                     allProducts.forEach(doc => {
+                        // extract data from firebase document
                         var title = doc.data().produce_name;
                         var details = doc.data().store;
                         var pluCode = doc.data().plu_code;
                         var postCode = doc.data().postal_code;
                         var productPrice = doc.data().price;
                         var docID = doc.id;
+
+                        // Clone the content of the template card
                         let newcard = cardTemplate.content.cloneNode(true);
+
+                        // Populate cloned template card with extracted data
                         newcard.querySelector('.card-title').innerHTML = title;
                         newcard.querySelector('.card-length').innerHTML = productPrice + " CAD";
                         newcard.querySelector('.card-text').innerHTML = `${details}, ${postCode}`;
                         newcard.querySelector('.card-image').src = `./images/${pluCode}.png`;
+
+                        // event listener that triggers the function that will add item to shopping list
                         newcard.querySelector('.card-href').addEventListener('click', () => {
                             add_to_list_from_search(doc.ref.path, false);
                         });
+                        
+                        // appending newcard with data to specified ID element in HTML
                         document.getElementById(collection + "-go-here").appendChild(newcard);
                     })
                 })
