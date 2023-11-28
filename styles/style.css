@@ -1,4 +1,7 @@
-/* color standard  */
+/*-------------------------------------
+ * Color standards
+ *-------------------------------------
+ */
 .green_subtle {
     color: #D4E09B;
 }
@@ -23,13 +26,14 @@
     color: #ECA753;
 }
 
-/* color standard  */
-
-
 * {
     box-sizing: border-box;
 }
 
+/*-------------------------------------
+ * Main
+ *-------------------------------------
+ */
 .welcome_banner {
     display: flex;
     justify-content: center;
@@ -149,15 +153,13 @@ footer.container-fluid {
     color: white;
 }
 
-/*
-    Firebase
-        
-    Uses integer literal for color, will change to variable if used more than this
-*/
+/*-------------------------------------
+ * Firebase, use integer literal for color, will change to variable if used more than this
+ *-------------------------------------
+ */
 .mdl-button--colored {
     background-color: #198754 !important;
 }
-
 
 /*-------------------------------------
  * INDEX and MAIN
@@ -234,6 +236,12 @@ button {
 .form-group {
     margin-bottom: 10px;
 }
+
+
+/*-------------------------------------
+ * Style for disabling
+ *-------------------------------------
+ */
 
 /* Style for disabled input fields and select elements */
 input:disabled, select:disabled {
@@ -350,10 +358,4 @@ td {
     .user_icon_large {
         display: none;
     }
-
-
-    /* .small_nav {
-        display: block;
-        width: 100%;
-    } */
 }
