@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-// Take 4 random sale items from database and inject to hero on home page
+// Take 4 random sale items from database and inject to hero on main page
 //------------------------------------------------------------------------------
 function display_sale_products(collection) {
     const getRandomItems = (items, count) => {
@@ -12,7 +12,6 @@ function display_sale_products(collection) {
 
     const addEventListener = (id, path) => {
         document.getElementById(id).addEventListener('click', () => {
-            console.log("Click!");
             add_to_list_from_search(path, false);
         });
     };
@@ -46,6 +45,7 @@ function display_sale_products(collection) {
                 });
             });
         } else {
+            // Unauthenticated users can only see apple deals on index page
             db.collection(collection).doc('apple').collection('details').orderBy("price").limit(5).get().then(allProducts => {
                 allProducts.forEach(doc => {
                     if (doc.data().good_deal == true) {
