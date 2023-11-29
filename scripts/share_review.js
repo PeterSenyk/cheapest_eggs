@@ -1,6 +1,9 @@
 // Global reference to the current user's document
 var currentUser;
 
+//------------------------------------------------------------------------
+//--------------Retrieves previous upload from Firestore database---------
+//------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', (event) => {
     // Attempt to retrieve user ID and document timestamp from localStorage from the previous page share.html to populate the form fields
     // these are set to localStorage in share.js
@@ -51,6 +54,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('saveBtn').addEventListener('click', saveShareInfo); // For save button - to save the updated information to Firestore
 });
 
+//-------------------------------------------------------------------------
+//----Handles uploading a new photo, and using the reference as a display--
+//-------------------------------------------------------------------------
 function handleFileSelect(event) {
     const reader = new FileReader();
 
@@ -64,6 +70,9 @@ function handleFileSelect(event) {
     reader.readAsDataURL(event.target.files[0]);
 }
 
+//---------------------------------------------------------------------------------------
+//-----------Enables the save button and fields on share_review.html to be edited--------
+//---------------------------------------------------------------------------------------
 function editShareInfo() {
     // log to console to make sure the function is being called
     console.log("Inside editShareInfo");
@@ -76,11 +85,14 @@ function editShareInfo() {
     // Enable the save button
     var saveBtn = document.getElementById('saveBtn');
     saveBtn.disabled = false
-    
+
     // Attach the event listener to the save button
     saveBtn.addEventListener('click', saveShareInfo);
 }
 
+//--------------------------------------------------------------------------
+//-----Edits the previous upload and updates the Firestore database---------
+//--------------------------------------------------------------------------
 function saveShareInfo() {
     // Retrieve values from the form fields and update the Firestore document with any changes
     var productValue = document.getElementById('productBox').value;
@@ -117,7 +129,7 @@ function saveShareInfo() {
             })
             .then(() => {
                 console.log("Document successfully updated with new photo!");
-                // display success message
+                // display success message on successful update
                 Swal.fire({
                     title: "Edit Successful",
                     text: "Your upload has been updated with a new photo!",
