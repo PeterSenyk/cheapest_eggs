@@ -13,9 +13,10 @@ List team members and/or short bio's here...
 	
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
-* HTML, CSS, JavaScript
-* SQL
-* 
+* HTML, CSS, JavaScript, JQuery
+* Firebase, Firebase storage, Firestore
+* Sweet Alert 2
+* Google Fonts
 * ...
 
 ## 4. Complete setup/installion/usage
@@ -54,8 +55,24 @@ It has the following subfolders and files:
     /blah.js                 # 
 ├── styles                   # Folder for styles
     /blah.css                # 
-
-
+```
+## Preliminary folder structure
+```
+.
+├── images                              # Folder for images
+        └── # images                    # need to replace this with all images
+├── scripts                             # Folder for scripts
+        └── # js files                  # need to replace with all js files
+├── styles                              # Folder for styles
+        └── style.css                   # 
+├── text                                # Folder for skeleton HTML files
+        ├── footer_after_login.html     #
+        ├── footer_before_login.html    #
+        ├── nav_after_login.html        #
+        └── nav_before_login.html       #
+# HTML files                            # need to decide on making folders for HTML, add all HTML files
+├── .gitignore                          # Git ignore file
+└── README.md
 
 ```
 
