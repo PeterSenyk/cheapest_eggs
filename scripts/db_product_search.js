@@ -119,7 +119,7 @@ function displaySharedProducts(sharedDetails, search_item) {
 // Event listener for when search_button is clicked
 //------------------------------------------------------------------------------
 searchButton = document.getElementById('search_button'); // this id isn't assigned in the HTML
-searchButton.addEventListener('click', function () {
+searchButton.addEventListener('click', () => {
     search_item = document.getElementById('search-input').value;
     console.log('search button clicked');
 
@@ -139,10 +139,10 @@ if (search_item) {
 
 
 //------------------------------------------------------------------------------
-// Event listener for when sort_button is clicked
+// Event listener for when sort_button is clicked (cheapest to most expensive)
 //------------------------------------------------------------------------------
 sort_button = document.getElementById('sort_button');
-sort_button.addEventListener('click', function () {
+sort_button.addEventListener('click', () => {
     sort_method = undefined
     displayCardsDynamically('products');
     getSharedProducts(search_item);
@@ -150,10 +150,10 @@ sort_button.addEventListener('click', function () {
 
 
 //------------------------------------------------------------------------------
-// Event listener for when sort_button_desc is clicked
+// Event listener for when sort_button_desc is clicked (most expensive to cheapest)
 //------------------------------------------------------------------------------
 sort_button_desc = document.getElementById('sort_button_desc');
-sort_button_desc.addEventListener('click', function () {
+sort_button_desc.addEventListener('click', () => {
     sort_method = 'desc'
     console.log(sort_method)
     displayCardsDynamically('products')
