@@ -165,10 +165,15 @@ sort_button_desc.addEventListener('click', () => {
 // function that adds searched item to search history
 //------------------------------------------------------------------------------
 function add_to_search_history(search_item) {
+    // get current user
     var user = firebase.auth().currentUser;
+    // get user id
     var uid = user.uid;
+    // go into user document based off user's id
     userDoc = db.collection('users').doc(uid);
+    // update user's search history with search item
     userDoc.update({
+        // search history is an array, so we use arrayUnion to add to it
         search_history: firebase.firestore.FieldValue.arrayUnion(search_item)
     }).catch(function (error) {
         console.log(error);
