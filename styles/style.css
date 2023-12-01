@@ -122,7 +122,11 @@ footer.container-fluid {
 }
 
 .user_icon_small .material-symbols-outlined {
-    font-size: 35px;
+    display: none;
+}
+
+.user_icon_large .material-symbols-outlined {
+    display: none;
 }
 
 /*-------------------------------------
@@ -345,8 +349,9 @@ td {
         padding-bottom: 15px;
     }
 
-    .user_icon_small {
+    .user_icon_small .material-symbols-outlined {
         display: block;
+        font-size: 35px;
     }
 
     .user_icon_large {
