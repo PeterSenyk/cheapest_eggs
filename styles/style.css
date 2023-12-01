@@ -1,31 +1,7 @@
 /*-------------------------------------
- * Color standards
+ * General
  *-------------------------------------
  */
-.green_subtle {
-    color: #D4E09B;
-}
-
-#green_subtle_background {
-    background-color: #D4E09B !important;
-}
-
-.green_mute {
-    color: #9CB380;
-}
-
-.blue_mute {
-    color: #94A89A;
-}
-
-.brown_mute {
-    color: #C7AC92;
-}
-
-.orange_strong {
-    color: #ECA753;
-}
-
 * {
     box-sizing: border-box;
 }
@@ -61,7 +37,6 @@
     background-position: center;
     box-sizing: content-box;
 }
-
 
 .share_card {
     text-align: center;
@@ -133,18 +108,8 @@ footer.container-fluid {
  * FOOTER
  *-------------------------------------
  */
-
 .spacing {
     margin-top: 100px;
-}
-
-.material-symbols-outlined {
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24;
-    color: white;
 }
 
 .footer_icon {
@@ -156,7 +121,7 @@ footer.container-fluid {
 }
 
 /*-------------------------------------
- * Firebase, use integer literal for color, will change to variable if used more than this
+ * LOGIN
  *-------------------------------------
  */
 .mdl-button--colored {
@@ -239,10 +204,7 @@ button {
     margin-bottom: 10px;
 }
 
-/*-------------------------------------
- * Avoid buttons from being hidden by the sticky footer
- *-------------------------------------
- */
+ /* Avoid buttons from being hidden by the sticky footer */
 #saveBtn {
     margin-bottom: 150px;
 }
@@ -250,11 +212,6 @@ button {
 #editBtn {
     margin-bottom: 150px;
 }
-
-
-/*-------------------------------------
- * Style for disabling
- *-------------------------------------*/
 
 /* Style for disabled input fields and select elements */
 input:disabled,
@@ -277,7 +234,7 @@ button:disabled {
 
 
 /*-------------------------------------
- * PROFILE AND ABOUT (profile.html)
+ * PROFILE AND ABOUT
  *-------------------------------------
  */
 .profile-card {
