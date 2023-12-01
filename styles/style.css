@@ -87,7 +87,6 @@ footer.container-fluid {
  * NAVBAR
  *-------------------------------------
  */
-
 .small_nav {
     display: none;
 }
@@ -122,8 +121,8 @@ footer.container-fluid {
     background-color: white;
 }
 
-.user_icon_small {
-    display: none;
+.user_icon_small .material-symbols-outlined {
+    font-size: 35px;
 }
 
 /*-------------------------------------
@@ -254,16 +253,21 @@ button {
  *-------------------------------------*/
 
 /* Style for disabled input fields and select elements */
-input:disabled, select:disabled {
-    background-color: #e9ecef; /* Light grey background */
-    color: #6c757d; /* Grey text */
+input:disabled,
+select:disabled {
+    background-color: #e9ecef;
+    /* Light grey background */
+    color: #6c757d;
+    /* Grey text */
     cursor: not-allowed;
 }
 
 /* Style for disabled buttons */
 button:disabled {
-    background-color: #6c757d; /* Darker grey background */
-    color: #ffffff; /* White text */
+    background-color: #6c757d;
+    /* Darker grey background */
+    color: #ffffff;
+    /* White text */
     cursor: not-allowed;
 }
 
@@ -340,7 +344,6 @@ td {
     .navbar {
         padding-bottom: 15px;
     }
-
 
     .user_icon_small {
         display: block;
