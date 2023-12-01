@@ -84,15 +84,14 @@
     
 </head>
 
-<body style="height: 2000px;">
-
+<body>
     <!-- navbar -->
     <nav id="navbarPlaceholder"></nav>
 
     <main>
         <div class="container">
             <!--Header-->
-            <div class="row">
+            <div class="column">
                 <div class="col-12">
                     <h1 class="text-center">Shopping List</h1>
                 </div>
@@ -121,15 +120,17 @@
     <!--Template for cards injected to list container-->
     <template id="list_card">
 
-        <div class="card py-3 px-3 my-2 mx-2 align-items-center flex-column d-flex" style="width: 10rem;">
-            <img class="card_img px-3" style="width: 100%;" src="..." alt="...">
+        <div class="card py-3 px-3 my-2 mx-2 align-items-center flex-row d-flex" >
+            <img class="card_img px-3 img-fluid g-0" style="width: 100%; max-width: 30vw;" src="..." alt="...">
             <div class="d-flex py-3">
                 <div class="d-flex flex-column justify-content-between align-items-center text-center">
-                    <div>
-                        <h5 class="card_title">title</h5>
-                        <p class="card_cost">cost</p>
-                        <p class="card_store">store</p>
-                    </div>
+                    
+                        <h5 class="card_title align-self-start">title</h5>
+                        <div class="d-flex flex-row justify-content-between" style="width: 100%;">
+                            <p class="card_cost">cost</p>
+                            <p class="card_store">store</p>
+                        </div>
+                    
 
                     <div class="py-3">
                         <button class="btn btn-danger remove">Remove</button>
@@ -164,7 +165,7 @@
     <!---------------------->
     <!---This is footer  --->
     <!---------------------->
-    <footer id="footerPlaceholder"></footer>
+    <footer id="footerPlaceholder" style="height: 10vh;"></footer>
 
     <!---------------------------------------------->
     <!--- Your own JavaScript functions go here  --->
