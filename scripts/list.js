@@ -15,7 +15,7 @@ function editCard(card, product, identifier, shared=false) {
     }
     // populate card with product info
     card.querySelector(".card_title").innerHTML = shared ? product.product : product.produce_name;
-    card.querySelector(".card_cost").innerHTML = "$" + product.price.toFixed(2) + " CAD";
+    card.querySelector(".card_cost").innerHTML = "$" + Number(product.price).toFixed(2) + " CAD";
     card.querySelector(".card_store").innerHTML = shared ? product.storeName : product.store;
     card.querySelector(".card").setAttribute("id", "card_" + identifier);
     card.querySelector(".card_cost").setAttribute("id", "cost_" + identifier);
