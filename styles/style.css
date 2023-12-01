@@ -193,7 +193,6 @@ button {
     font-size: 30px;
     color: green;
     font-weight: bold;
-
 }
 
 .center {
@@ -204,13 +203,12 @@ button {
     margin-bottom: 10px;
 }
 
- /* Avoid buttons from being hidden by the sticky footer */
-#saveBtn {
-    margin-bottom: 150px;
-}
+/* Avoid form and buttons from being hidden by the sticky footer */
+.form-group > p{
+    margin-bottom: 100px;}
 
-#editBtn {
-    margin-bottom: 150px;
+#saveBtn, #editBtn {
+    margin-bottom: 100px;
 }
 
 /* Style for disabled input fields and select elements */
