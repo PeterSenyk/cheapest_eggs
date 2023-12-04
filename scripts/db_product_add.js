@@ -1,12 +1,13 @@
 //------------------------------------------------------------------------------
-// Takes data and inject into document 'detail'
+// Takes data and inject into document 'detail' (For making mock data only)
 //------------------------------------------------------------------------------
 function writeProducts() {
-    //define a variable for the collection you want to create in Firestore to populate data
+    // define a variable for the collection you want to create in Firestore to populate data
     var products_ref = db.collection("products");
 
     var products_detail_ref = products_ref.doc('watermelon').collection('details'); // change doc('name') based on item you inject
 
+    // inject data into document 'details'
     products_detail_ref.add({
         plu_code: 3421,
         produce_name: "Watermelon",
@@ -23,6 +24,7 @@ function writeProducts() {
         good_deal: true, // true of false just make it random
     })
 
+    // same as above, just different data
     products_detail_ref.add({
         plu_code: 3308,
         produce_name: "Watermelon",
@@ -41,13 +43,14 @@ function writeProducts() {
     })
 }
 
-//------------------------------------------------------------------------------
-// Take data and to collection
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
+// Old data add method, where we added document to collection (replaced with above function)
+//------------------------------------------------------------------------------------------
 function writeProducts_doc() {
-    //define a variable for the collection you want to create in Firestore to populate data
+    // define a variable for the collection you want to create in Firestore to populate data
     var products_ref = db.collection("products");
 
+    // inject data into product collection
     products_ref.add({
         plu_code: 4099,
         produce_name: "Apple", 
@@ -64,7 +67,8 @@ function writeProducts_doc() {
         sale_date: firebase.firestore.Timestamp.fromDate(new Date("December 10, 2020")),
         good_deal: true,
     })
-
+    
+    // same as above, just different data
     products_ref.add({
         plu_code: 4129,
         produce_name: "Apple",
@@ -82,6 +86,7 @@ function writeProducts_doc() {
         good_deal: true,
     })
 
+    // same as above, just different data
     products_ref.add({
         plu_code: 4129,
         produce_name: "Apple",
