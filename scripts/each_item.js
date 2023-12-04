@@ -1,3 +1,6 @@
+//---------------------------------------
+// This script is for the product page
+//---------------------------------------
 function display_product_info() {
     let params = new URL(window.location.href); //get URL of search bar
     let ID = params.searchParams.get("docID"); //get value for key "id"
