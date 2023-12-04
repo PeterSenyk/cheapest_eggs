@@ -18,7 +18,7 @@ const form = document.getElementById("sharePriceForm");
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // Validate mandatory fields
+    // Validate mandatory fields w/ .trim() to remove whitespace for product, or price, or amount, or storeName, or address
     if (!product.value.trim() || !price.value.trim() || !amount.value.trim() || !storeName.value.trim() || !address.value.trim()) {
         // If any of the mandatory fields are empty, show an error message to alert the user
         Swal.fire({
