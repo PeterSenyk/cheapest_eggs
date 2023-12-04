@@ -102,10 +102,10 @@ function displaySharedProducts(sharedDetails, search_item) {
         let newcard = template.content.cloneNode(true);
 
         // Update selectors to match your template's classes or IDs
-        newcard.querySelector('.share-card-title').textContent = detail.product || 'No title';
-        newcard.querySelector('.share-card-length').textContent = detail.price + " CAD" || 'No price';
-        newcard.querySelector('.share-card-text').textContent = detail.variety || 'No details';
-        newcard.querySelector('.share-card-image').src = detail.photo || './images/noimg.png';
+        newcard.querySelector('#share-card-title').textContent = detail.product || 'No title';
+        newcard.querySelector('#share-card-length').textContent = detail.price + " CAD" || 'No price';
+        newcard.querySelector('#share-card-text').textContent = detail.variety || 'No details';
+        newcard.querySelector('#share-card-image').src = detail.photo || './images/noimg.png';
         newcard.querySelector('.card-href').addEventListener('click', () => {
             add_to_list_from_search(detail.path, true);
         });

@@ -86,22 +86,21 @@
                 display: flex;
                 flex-direction: row;
             }
-            .share-card {
+            /* .share-card {
                 flex: 0 0 100%;
                 display: flex;
                 flex-direction: row;
-                /* justify-content: space-between; */
-            }
+            } */
 
             .card-image {
                 width: 35%;
                 height: 35%;
             }
 
-            .share-card-image {
+            /* .share-card-image {
                 width: 35%;
                 height: 35%;
-            }
+            } */
 
             .card-body {
                 display: flex;
@@ -109,11 +108,11 @@
                 justify-content: flex-end;
             }
 
-            .share-card-body {
+            /* .share-card-body {
                 display: flex;
                 flex-direction: row;
                 justify-content: flex-end;
-            }
+            } */
 
             .card-body .btn {
                 text-align: center;
@@ -121,10 +120,14 @@
                 height: 45px;
             }
 
-            .share-card-body .btn {
+            /* .share-card-body .btn {
                 text-align: center;
                 display: inline-block;
                 height: 45px;
+            } */
+
+            #text-box {
+                width: 126.55px;
             }
         }
     </style>
@@ -181,13 +184,13 @@
     
     <template id="shared_product_card_template">
         <div class="card">
-            <img class="share-card-image card-img-top" src="" alt="..." />
-            <div class="share-card-body">
-                <div class="text-body">
-                    <h5 class="share-card-title">title</h5>
-                    <p class="share-card-length">placeholder</p>
+            <img class="card-image card-img-top" id="share-card-image" alt="..." />
+            <div class="card-body">
+                <div class="text-body" id="text-box">
+                    <h5 class="card-title" id="share-card-title">title</h5>
+                    <p class="card-length" id="share-card-length">placeholder</p>
                     <br />
-                    <p class="share-card-text">Placeholder text</p>
+                    <p class="card-text" id="share-card-text">Placeholder text</p>
                 </div>
                 <a class="add_btn btn btn-success card-href">+</a>
             </div>
