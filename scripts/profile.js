@@ -1,7 +1,9 @@
 // Global variable to store the document reference of the logged-in user
 let currentUser;
 
+//-----------------------------------------------------------
 // Function to populate user information on the profile page
+//-----------------------------------------------------------
 function populateUserInfo() {
     // Firebase authentication state change listener
     firebase.auth().onAuthStateChanged(user => {
@@ -42,7 +44,9 @@ function populateUserInfo() {
 // Call the function to populate user information
 populateUserInfo();
 
+//-----------------------------------------------------------
 // Function to enable form fields for editing user information
+//-----------------------------------------------------------
 function editUserInfo() {
     //Enable the form fields
     document.getElementById('personalInfoFields').disabled = false;
@@ -54,7 +58,9 @@ function editUserInfo() {
     document.querySelector('.edit').classList.add('btn-secondary');
 }
 
+//--------------------------------------------------
 // Function to save edited user information
+//--------------------------------------------------
 function saveUserInfo() {
     firebase.auth().onAuthStateChanged(user => {
         // Reference to the storage for user profile pictures
@@ -97,7 +103,9 @@ function saveUserInfo() {
     });
 }
 
+//-----------------------------------------------------------
 // Function to fetch and display additional user information
+//-----------------------------------------------------------
 function getOtherInfoFromDB() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in
@@ -148,7 +156,9 @@ document.getElementById("about").addEventListener("click", () => {
 // Global variable to store the File Object reference for user profile picture
 let ImageFile;
 
+//--------------------------------------------------
 // Function to handle file input and update preview
+//--------------------------------------------------
 function chooseFileListener() {
     const fileInput = document.getElementById("mypic-input"); // Pointer #1
     const image = document.getElementById("mypic-goes-here"); // Pointer #2
@@ -168,7 +178,9 @@ function chooseFileListener() {
 // Run the function to enable file input listener
 chooseFileListener();
 
+//----------------------------------------------------
 // Function to populate share card section on the page
+//----------------------------------------------------
 function populateShare() {
     const shareCardTemplate = document.getElementById("shareCardTemplate");
     const shareCardGroup = document.getElementById("shareCardGroup");
