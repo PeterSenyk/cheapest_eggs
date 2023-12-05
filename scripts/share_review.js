@@ -66,7 +66,7 @@ function handleFileSelect(event) {
         document.getElementById('photoPreview').src = e.target.result;
     };
 
-    // Read the selected file as a data URL
+    // Read the selected file as a data URL <- points to the firebase storage 
     reader.readAsDataURL(event.target.files[0]);
 }
 
