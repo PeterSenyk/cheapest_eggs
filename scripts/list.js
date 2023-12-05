@@ -25,24 +25,19 @@ function editCard(card, product, identifier, shared=false) {
 //--------------------------------------------------
 // Update total cost.
 //--------------------------------------------------
-function updateTotalCost(identifier, change, updateType="add") {
+function updateTotalCost(identifier, change) {
     //get total cost
+    console.log(change);
     total = Number(document.getElementById("total_cost").innerHTML)
+    console.log(total);
     //get quantity
     quantity = document.getElementById(`quantity_${identifier}`).value;
     //get cost of item without dollar sign and " CAD"
     cost = document.getElementById(`cost_${identifier}`).innerHTML.slice(1, this.length - 4);
-    //switch case of the update type
-    switch (updateType){
-        case "remove":
-            // remove the total cost of the item
-            total -= cost * change;
-            break;
-        case "add":
-            // add the total cost of the item 
-            total += cost * change;
-            break;
-    }
+    console.log(cost);
+    // add the total cost of the item 
+    total += cost * change;
+    console.log(total);
     //update total cost
     document.getElementById("total_cost").innerHTML = (Math.round(total * 100) / 100).toFixed(2);
 }
@@ -67,12 +62,16 @@ function deleteCard(card, listItem) {
     // remove the card from the page and database
     card.remove();
     listItem.ref.delete().then(() => {
-        console.log("Document successfully deleted!");
+        checkIfListEmpty();
     }).catch((error) => {
-        console.error("Error removing document: ", error);
+        swal.fire({
+            title: "Error",
+            text: "An error occured while trying to delete the item from your list!",
+            icon: "error",
+            timer: 1000,
+            timerProgressBar: true,
+        })
     });
-    // check if list is empty
-    checkIfListEmpty();
 }
 
 //--------------------------------------------------
@@ -110,7 +109,7 @@ function removeCard(identifier, lastQuantity=1, listItem) {
     // add event listener to the card for delegation
     card.addEventListener("click", function(event){
         if (event.target.classList.contains("undo")) {
-                // replace undo block with card info
+            // replace undo block with card info
             card.innerHTML = previous_info;
             // update quantity in page and database
             document.getElementById(`quantity_${identifier}`).value = lastQuantity;
@@ -170,8 +169,10 @@ async function handleEvent(event, identifier, listItem) {
         quantityChange = new_quantity - doc.data().quantity;
     }
 
-    if (quantityChange !== undefined) {
+    if (quantityChange !== undefined && typeof quantityChange === "number") {
         handleQuantityChange(identifier, listItem, quantityChange);
+    } else {
+        console.log("Error: quantityChange is undefined or not a number")
     }
 }
 
@@ -202,6 +203,11 @@ async function generateListCards(collection){
     }
     // iterate through each item in the list
     for (const listItem of listSnapshot.docs) {
+        // check that the document has a quantity greater than 0
+        if (listItem.data().quantity <= 0) {
+            listItem.ref.delete();
+            continue;
+        }
         // get the document id, path, quantity, and isShared
         const identifier = listItem.id;
         // uses destructuring to get the data from the document
@@ -232,11 +238,13 @@ function addClearListEvent() {
         // get the list collection
         const list = db.collection("users").doc(user).collection("user_list");
         // delete all documents in the list collection
-        list.get().then((querySnapshot) => {
+        list.get()
+        .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 doc.ref.delete();
             })
-        }).then(() => {
+        })
+        .then(() => {
             document.getElementById("user_list").innerHTML = "";
             checkIfListEmpty();
         })
