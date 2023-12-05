@@ -222,7 +222,7 @@ async function generateListCards(collection){
         addCardEvents(newCard, identifier, listItem);
         // append the card to the list
         document.getElementById("user_list").appendChild(newCard);
-        updateTotalCost(identifier, 1);
+        updateTotalCost(identifier, quantity);
     };
 }
 
