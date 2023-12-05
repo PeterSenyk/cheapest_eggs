@@ -8,8 +8,7 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**",
-      "/scripts/firebaseAPI_Team08.js"
+      "**/node_modules/**"
     ]
   },
   "storage": {
