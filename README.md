@@ -84,6 +84,11 @@ Here are the steps ...
 - **Separate Sections in Search Results:**
   - The search result has two separate sections: products from the database and user-uploaded products. We couldn't figure out how to display all products together in the same section.
 
+- **Database latency and timings for list:**
+  - If a user clicks on either the add or remove button on a card in list.html too fast, the database does not receive actual quantity, but price is added as if the database did.
+  - If a user removes an item from their cart and does not close the popup or let it time out before leaving the page, the item will still be in the database
+    and prevent a user from re-adding the item until they return to the list page.
+    
 
 ## 6. Features for Future
 What we'd like to build in the future:
