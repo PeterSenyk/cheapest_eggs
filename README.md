@@ -75,10 +75,15 @@ Here are the steps ...
 
 
 ## 5. Known Bugs and Limitations
-Here are some known bugs:
-* Data from user shared products is not verified, it was out of the scope during 
-* ...
-* ...
+- **Unverified User-Shared Product Data:**
+  - Data from user-shared products is not verified; it was out of the scope during development.
+
+- **Lack of API Data from Supermarkets:**
+  - We can't retrieve API data from supermarkets, and the products in our database aren't real data.
+
+- **Separate Sections in Search Results:**
+  - The search result has two separate sections: products from the database and user-uploaded products. We couldn't figure out how to display all products together in the same section.
+
 
 ## 6. Features for Future
 What we'd like to build in the future:
