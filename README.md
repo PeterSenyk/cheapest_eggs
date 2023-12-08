@@ -105,7 +105,7 @@ What we'd like to build in the future:
 These planned features aim to enhance the functionality and user experience of the "Cheapest Eggs" web application in the future.
 	
 ## 7. Contents of Folder
-Content of the project folder:
+### Content of the project folder:
 
 ```
  Top level of project folder: 
@@ -127,7 +127,7 @@ Content of the project folder:
 ├── .firebaserc                  # Firebase generated file
 └── README.md                    # Complete project description
 ```
-## It has the following subfolders and files:
+### It has the following subfolders and files:
 ```
 .
 ├── images                              # Folder for images
