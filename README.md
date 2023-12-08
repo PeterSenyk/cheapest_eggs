@@ -109,23 +109,31 @@ These planned features aim to enhance the functionality and user experience of t
 
 ```
  Top level of project folder: 
-├── .gitignore                   # Git ignore file
-├── index.html                   # landing HTML file, this is what users see if they aren't logged in
-├── share.html                   # HTML file that allows users to share good deals that they find on grocery products
-├── share_review.html            # HTML file that verifies that a users product upload was successful, also giving them a chance to edit the upload.            
-├── search_result.html           # HTML file displaying the users search result as cards, this page is currently split into store results, and user shared results
-├── profile.html                 # HTML file where user can see all the information associated with their account
-├── main.html                    # landing HTML page/ home page if user is logged in
-├── login.html                   # User login page
-├── list.html                    # Page after user login   
-├── about.html                   # HTML page containing all the information about The Cheapest Egg
-├── 404.html                     # Firebase generated file
-├── storage.rules                # Firebase generated file
-├── firestore.rules              # Firebase generated file
-├── firestore.indexes.json       # Firebase generated file
-├── firebase.json                # Firebase generated file
+├── .firebase                    # Firebase generated file
+├── images                       # Folder for images
+├── scripts                      # Folder for Javascript files
+├── styles                       # Folder for CSS file
+├── text                         # Folder for text files
 ├── .firebaserc                  # Firebase generated file
-└── README.md                    # Complete project description
+├── .gitignore                   # Git ignore file
+├── 404.html                     # Firebase generated file
+├── about.html                   # HTML page containing all the information about The Cheapest Eggs team
+├── favicon.ico                  # Firebase generated file
+├── firebase.json                # Firebase generated file
+├── firestore.indexes.json       # Firebase generated file
+├── firestore.rules              # Firebase generated file
+├── index.html                   # landing HTML file, this is what users see if they aren't logged in
+├── list.html                    # Page after user login  
+├── login.html                   # User login page
+├── main.html                    # landing HTML page/ home page if user is logged in
+├── profile.html                 # HTML file where user can see all the information associated with their account
+├── README.md                    # Complete project description
+├── search_result.html           # HTML file displaying the users search result as cards, this page is currently split into 
+├── share_review.html            # HTML file that verifies that a users product upload was successful, also giving them a chance to edit the upload.
+├── share.html                   # HTML file that allows users to share good deals that they find on grocery products            
+store results, and user shared results
+├── storage.rules                # Firebase generated file
+└── template.html
 ```
 ### It has the following subfolders and files:
 ```
