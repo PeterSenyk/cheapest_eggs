@@ -153,14 +153,14 @@ These planned features aim to enhance the functionality and user experience of t
         └── # no_img.jpg                # Placeholder if there is no picture uploaded
         └── # noimg.png                 # Placeholder if there is no picture uploaded
 ├── scripts                             # Folder for scripts
-        └── # add_to_list.js                  
+        └── # add_to_list.js            # Add functionality to add buttons on pages, manage creation on user_list documents in DB
         └── # authorization.js          # Firebase authentication       
         └── # db_product_search.js      # Based on search value, finds matching document in database and displays search result 
                                         # Order products based on price ascending and descending
         └── # db_top_product.js         # Randomly display 4 product cards containing good deals from database selected based on price
         └── # each_item.js
         └── # firebaseAPI_Tea08.js      # Links the web app to the firebase database and storage
-        └── # list.js                   # 
+        └── # list.js                   # Create and manage cards in list page, dynamically update information on cards in page
         └── # profile.js                # Display users' info on the profile page, allow users to modify their info, also showing sharing product cards
         └── # scripts.js                # Log out users
         └── # share_review.js           # Retrieves the data from the users most recent upload, and populates the form field allowing users to edit details if needed
