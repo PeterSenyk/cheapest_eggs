@@ -29,7 +29,7 @@ Here are the steps ...
 
 ## 5. Known Bugs and Limitations
 Here are some known bugs:
-* ...
+* Data from user shared products is not verified, it was out of the scope during 
 * ...
 * ...
 
@@ -46,9 +46,9 @@ Content of the project folder:
  Top level of project folder: 
 ├── .gitignore               # Git ignore file
 ├── index.html               # landing HTML file, this is what users see if they aren't logged in
-├── share.html         # HTML file that allows users to share their grocery deals
-├── share_review.html           #            
-├── search_result.html          # 
+├── share.html                  # HTML file that allows users to share good deals that they find on grocery products
+├── share_review.html           # HTML file that verifies that a users product upload was successful, also giving them a chance to edit the upload.            
+├── search_result.html          # HTML file displaying the users search result as cards, this page is currently split into store results, and user shared results
 ├── profile.html             # HTML file where user can see all the information associated with their account
 ├── main.html           # landing HTML page/ home page if user is logged in
 ├── login.html               # User login page
@@ -98,12 +98,12 @@ It has the following subfolders and files:
         └── # db_product_search.js  
         └── # db_top_product.js  
         └── # each_item.js
-        └── # firebaseAPI_Tea08.js  
+        └── # firebaseAPI_Tea08.js      # Links the web app to the firebase database and storage
         └── # list.js  
         └── # profile.js
         └── # scripts.js
-        └── # share_review.js
-        └── # share.js
+        └── # share_review.js           # Retrieves the data from the users most recent upload, and populates the form field allowing users to edit details if needed
+        └── # share.js                  # Takes data from the form field and uploads it to the firebase database, and firebase storage for photos
         └── # skeleton.js
 ├── styles                              # Folder for styles
         └── style.css                   # Main CSS file
