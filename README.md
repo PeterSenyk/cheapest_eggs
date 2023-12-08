@@ -58,20 +58,20 @@ Here are the steps ...
    - You will win 1 score each time you share 1 item.
 
 ### 9. Profile Page
-    - Click on your profile icon to access your profile page.
+   - Click on your profile icon to access your profile page.
     - See the information of your profile and ensure it reflects your preferences.
     - Check your current title based on your score.
 
 ### 10. Modify Profile
-    - On your profile page, find the "Edit" option.
+   - On your profile page, find the "Edit" option.
     - Update your personal information as needed.
     
 ### 11. About
-    - Know our team in the about page.
+   - Know our team in the about page.
     - Follow our social media to get more information.
 
 ### 12. Logout (Optional)
-    - If you're using a shared computer or for security reasons, find the logout option and click to log out securely.
+   - If you're using a shared computer or for security reasons, find the logout option and click to log out securely.
 
 
 ## 5. Known Bugs and Limitations
