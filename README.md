@@ -109,51 +109,42 @@ Content of the project folder:
 
 ```
  Top level of project folder: 
-├── .gitignore               # Git ignore file
-├── index.html               # landing HTML file, this is what users see if they aren't logged in
-├── share.html                  # HTML file that allows users to share good deals that they find on grocery products
-├── share_review.html           # HTML file that verifies that a users product upload was successful, also giving them a chance to edit the upload.            
-├── search_result.html          # HTML file displaying the users search result as cards, this page is currently split into store results, and user shared results
-├── profile.html             # HTML file where user can see all the information associated with their account
-├── main.html           # landing HTML page/ home page if user is logged in
-├── login.html               # User login page
-├── list.html                # Page after user login   
-├── for_injecting_data.html            # HTML page used for injecting mock API data to our database
-├── about.html          # HTML page containing all the information about The Cheapest Egg
-├── 404.html              # Firebase generated file
-├── storage.rules             # Firebase generated file
-├── firestore.rules             # Firebase generated file
-├── firestore.indexes.json               # Firebase generated file
+├── .gitignore                   # Git ignore file
+├── index.html                   # landing HTML file, this is what users see if they aren't logged in
+├── share.html                   # HTML file that allows users to share good deals that they find on grocery products
+├── share_review.html            # HTML file that verifies that a users product upload was successful, also giving them a chance to edit the upload.            
+├── search_result.html           # HTML file displaying the users search result as cards, this page is currently split into store results, and user shared results
+├── profile.html                 # HTML file where user can see all the information associated with their account
+├── main.html                    # landing HTML page/ home page if user is logged in
+├── login.html                   # User login page
+├── list.html                    # Page after user login   
+├── for_injecting_data.html      # HTML page used for injecting mock API data to our database
+├── about.html                   # HTML page containing all the information about The Cheapest Egg
+├── 404.html                     # Firebase generated file
+├── storage.rules                # Firebase generated file
+├── firestore.rules              # Firebase generated file
+├── firestore.indexes.json       # Firebase generated file
 ├── firebase.json                # Firebase generated file
-├── .firebaserc           # Firebase generated file
-└── README.md               # Complete project description
-
-It has the following subfolders and files:
-├── .git                     # Folder for git repo
-├── images                   # Folder for images
-    /blah.jpg                # Acknowledge source
-├── scripts                  # Folder for scripts
-    /blah.js                 # 
-├── styles                   # Folder for styles
-    /blah.css                # 
+├── .firebaserc                  # Firebase generated file
+└── README.md                    # Complete project description
 ```
-## Preliminary folder structure
+## It has the following subfolders and files:
 ```
 .
 ├── images                              # Folder for images
-        └── # 3061.png                  # Pictures of items
-        └── # 3277.png
-        └── # 4011.png
-        └── # 4076.png
-        └── # 4099.png
-        └── # 4129.png
-        └── # 4234.png
-        └── # 4301.png
-        └── # 4959.png
+        └── # 3061.png                  # Picture of products
+        └── # 3277.png                  # Picture of products
+        └── # 4011.png                  # Picture of products
+        └── # 4076.png                  # Picture of products
+        └── # 4099.png                  # Picture of products
+        └── # 4129.png                  # Picture of products
+        └── # 4234.png                  # Picture of products
+        └── # 4301.png                  # Picture of products
+        └── # 4959.png                  # Picture of products
         └── # default_profile_pic.png   #Default profile picture
         └── # egg_logo.png              # Website Logo
-        └── # egghand_blur.png          # index page background 
-        └── # grocery_welcome_blur.jpg  # index page background
+        └── # egghand_blur.png          # Index page background 
+        └── # grocery_welcome_blur.jpg  # Index page background
         └── # no_img.jpg                # Placeholder if there is no picture uploaded
         └── # noimg.png                 # Placeholder if there is no picture uploaded
 ├── scripts                             # Folder for scripts
@@ -177,9 +168,6 @@ It has the following subfolders and files:
         ├── footer_before_login.html    #
         ├── nav_after_login.html        #
         └── nav_before_login.html       #
-├── .gitignore                          # Git ignore file
-└── README.md
-
 ```
 
 
