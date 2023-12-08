@@ -105,39 +105,37 @@ What we'd like to build in the future:
 These planned features aim to enhance the functionality and user experience of the "Cheapest Eggs" web application in the future.
 	
 ## 7. Contents of Folder
-### Content of the project folder:
+### Top level of project folder: 
 
 ```
- Top level of project folder: 
 ├── .firebase                    # Firebase generated file
 ├── images                       # Folder for images
 ├── scripts                      # Folder for Javascript files
 ├── styles                       # Folder for CSS file
 ├── text                         # Folder for text files
 ├── .firebaserc                  # Firebase generated file
-├── .gitignore                   # Git ignore file
+├── .gitignore                   # Gitignore file
 ├── 404.html                     # Firebase generated file
 ├── about.html                   # HTML page containing all the information about The Cheapest Eggs team
 ├── favicon.ico                  # Firebase generated file
 ├── firebase.json                # Firebase generated file
 ├── firestore.indexes.json       # Firebase generated file
 ├── firestore.rules              # Firebase generated file
-├── index.html                   # landing HTML file, this is what users see if they aren't logged in
-├── list.html                    # Page after user login  
-├── login.html                   # User login page
-├── main.html                    # landing HTML page/ home page if user is logged in
-├── profile.html                 # HTML file where user can see all the information associated with their account
+├── index.html                   # HTML file of landing page, this is what users see if they aren't logged in
+├── list.html                    # HTML file of shopping list page
+├── login.html                   # HTML file of user login page
+├── main.html                    # HTML file of page after user is logged in
+├── profile.html                 # HTML file of profile page, where user can see all the information associated with their account
 ├── README.md                    # Complete project description
-├── search_result.html           # HTML file displaying the users search result as cards, this page is currently split into 
+├── search_result.html           # HTML file of search result page, this page is currently split into Search Results and Search Shared Results
 ├── share_review.html            # HTML file that verifies that a users product upload was successful, also giving them a chance to edit the upload.
-├── share.html                   # HTML file that allows users to share good deals that they find on grocery products            
-store results, and user shared results
+├── share.html                   # HTML file that allows users to share good deals that they find on grocery products
 ├── storage.rules                # Firebase generated file
-└── template.html
+└── template.html                # HTML file of the template
 ```
-### It has the following subfolders and files:
+### Sub folders and files:
+
 ```
-.
 ├── images                              # Folder for images
         └── # 3061.png                  # Picture of products
         └── # 3277.png                  # Picture of products
@@ -156,18 +154,18 @@ store results, and user shared results
         └── # noimg.png                 # Placeholder if there is no picture uploaded
 ├── scripts                             # Folder for scripts
         └── # add_to_list.js                  
-        └── # authorization.js  
+        └── # authorization.js          # Firebase authentication 
         └── # db_product_add.js  
         └── # db_product_search.js  
         └── # db_top_product.js  
         └── # each_item.js
         └── # firebaseAPI_Tea08.js      # Links the web app to the firebase database and storage
         └── # list.js  
-        └── # profile.js
-        └── # scripts.js
+        └── # profile.js                # Display users' info on the profile page, allow users to modify their info, also showing sharing product cards
+        └── # scripts.js                # Log out users
         └── # share_review.js           # Retrieves the data from the users most recent upload, and populates the form field allowing users to edit details if needed
         └── # share.js                  # Takes data from the form field and uploads it to the firebase database, and firebase storage for photos
-        └── # skeleton.js
+        └── # skeleton.js               # Nav bar and footer depend on if users log in
 ├── styles                              # Folder for styles
         └── style.css                   # Main CSS file
 ├── text                                # Folder for skeleton HTML files
