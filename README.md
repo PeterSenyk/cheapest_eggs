@@ -118,7 +118,6 @@ Content of the project folder:
 ├── main.html                    # landing HTML page/ home page if user is logged in
 ├── login.html                   # User login page
 ├── list.html                    # Page after user login   
-├── for_injecting_data.html      # HTML page used for injecting mock API data to our database
 ├── about.html                   # HTML page containing all the information about The Cheapest Egg
 ├── 404.html                     # Firebase generated file
 ├── storage.rules                # Firebase generated file
