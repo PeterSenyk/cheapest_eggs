@@ -82,9 +82,22 @@ Here are some known bugs:
 
 ## 6. Features for Future
 What we'd like to build in the future:
-* ...
-* ...
-* ...
+1. **Use Supermarket API for Real Price Data:**
+   - Implement integration with supermarket APIs to fetch real-time price data, providing users with the most up-to-date information.
+
+2. **Blurry Search Functionality:**
+   - Enable a blurry search feature to enhance user experience, allowing users to find products even with partially entered or misspelled queries.
+
+3. **User-Initiated Deletion of Shared Items:**
+   - Allow users to delete items they have shared, providing more control over their contributions to the community.
+
+4. **Review and Validation for User Uploads:**
+   - Implement a review process for user uploads to ensure the validity and accuracy of shared items. This helps maintain the quality of information in the database.
+
+5. **Set Time Limits for Deals:**
+   - Introduce a feature that allows users to set expiration times for deals, ensuring that the information remains relevant and timely.
+
+These planned features aim to enhance the functionality and user experience of the "Cheapest Eggs" web application in the future.
 	
 ## 7. Contents of Folder
 Content of the project folder:
