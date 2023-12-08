@@ -154,13 +154,13 @@ These planned features aim to enhance the functionality and user experience of t
         └── # noimg.png                 # Placeholder if there is no picture uploaded
 ├── scripts                             # Folder for scripts
         └── # add_to_list.js                  
-        └── # authorization.js          # Firebase authentication 
-        └── # db_product_add.js  
-        └── # db_product_search.js  
-        └── # db_top_product.js  
+        └── # authorization.js          # Firebase authentication       
+        └── # db_product_search.js      # Based on search value, finds matching document in database and displays search result 
+                                        # Order products based on price ascending and descending
+        └── # db_top_product.js         # Randomly display 4 product cards containing good deals from database selected based on price
         └── # each_item.js
         └── # firebaseAPI_Tea08.js      # Links the web app to the firebase database and storage
-        └── # list.js  
+        └── # list.js                   # 
         └── # profile.js                # Display users' info on the profile page, allow users to modify their info, also showing sharing product cards
         └── # scripts.js                # Log out users
         └── # share_review.js           # Retrieves the data from the users most recent upload, and populates the form field allowing users to edit details if needed
@@ -169,10 +169,10 @@ These planned features aim to enhance the functionality and user experience of t
 ├── styles                              # Folder for styles
         └── style.css                   # Main CSS file
 ├── text                                # Folder for skeleton HTML files
-        ├── footer_after_login.html     #
-        ├── footer_before_login.html    #
-        ├── nav_after_login.html        #
-        └── nav_before_login.html       #
+        ├── footer_after_login.html     # HTML footer to be displayed to any users who has been authenticated
+        ├── footer_before_login.html    # HTML footer to be displayed to any users who has not been authenticated
+        ├── nav_after_login.html        # HTML nav bar to be displayed to any users who has been authenticated
+        └── nav_before_login.html       # HTML nav bar to be displayed to any users who has not been authenticated
 ```
 
 
