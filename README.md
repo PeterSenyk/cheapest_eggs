@@ -1,13 +1,15 @@
 # Project Title
+Cheapest Eggs
 
 ## 1. Project Description
-State your app in a nutshell, or one-sentence pitch. Give some elaboration on what the core features are.  
-This browser based web application to ... 
+Hey we’re CheapestEggs and we want to help you save money on groceries. 
+
+Cheapest Eggs, our web application, is dedicated to assisting users in discovering the most affordable groceries. Users can search for product prices, create shopping lists using our extensive database, and benefit from our unique selling point—accessing not only prices from major supermarkets but also discovering great deals from local stores through user uploads.
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
 * Hi, my name is Cai Chun (Steven) Yan! I am excited to be here!
-* My name is Yifei, I am excited too!!!
+* My name is Yifei Zeng, I am excited too!!! I wrote the profile page and the score system.
 * My name is Peter Senyk, and I'm excited to work on this project and learn about designing and creating a web app. 
 * My name is Jaiden Duncan. I'm excited to work on this to gain experience with working with a team and web design.
 	
@@ -15,9 +17,8 @@ List team members and/or short bio's here...
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
 * HTML, CSS, JavaScript, JQuery
 * Firebase, Firebase storage, Firestore
-* Sweet Alert 2
-* Google Fonts
-* ...
+* Sweet Alert
+
 
 ## 4. Complete setup/installion/usage
 State what a user needs to do when they come to your project.  How do others start using your code or application?
@@ -75,8 +76,7 @@ It has the following subfolders and files:
 ```
 .
 ├── images                              # Folder for images
-        └── # images                    # need to replace this with all images
-        └── # 3061.png
+        └── # 3061.png                  # Pictures of items
         └── # 3277.png
         └── # 4011.png
         └── # 4076.png
@@ -85,14 +85,14 @@ It has the following subfolders and files:
         └── # 4234.png
         └── # 4301.png
         └── # 4959.png
-        └── # default_profile_pic.png
-        └── # egg_logo.png
-        └── # egghand_blur.png
-        └── # grocery_welcome_blur.jpg
-        └── # no_img.jpg
-        └── # noimg.png
+        └── # default_profile_pic.png   #Default profile picture
+        └── # egg_logo.png              # Website Logo
+        └── # egghand_blur.png          # index page background 
+        └── # grocery_welcome_blur.jpg  # index page background
+        └── # no_img.jpg                # Placeholder if there is no picture uploaded
+        └── # noimg.png                 # Placeholder if there is no picture uploaded
 ├── scripts                             # Folder for scripts
-        └── # add_to_list.js                  # need to replace with all js files
+        └── # add_to_list.js                  
         └── # authorization.js  
         └── # db_product_add.js  
         └── # db_product_search.js  
@@ -106,13 +106,12 @@ It has the following subfolders and files:
         └── # share.js
         └── # skeleton.js
 ├── styles                              # Folder for styles
-        └── style.css                   # 
+        └── style.css                   # Main CSS file
 ├── text                                # Folder for skeleton HTML files
         ├── footer_after_login.html     #
         ├── footer_before_login.html    #
         ├── nav_after_login.html        #
         └── nav_before_login.html       #
-# HTML files                            # need to decide on making folders for HTML, add all HTML files
 ├── .gitignore                          # Git ignore file
 └── README.md
 
