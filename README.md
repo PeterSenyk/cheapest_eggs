@@ -44,8 +44,23 @@ Content of the project folder:
 ```
  Top level of project folder: 
 ├── .gitignore               # Git ignore file
-├── index.html               # landing HTML file, this is what users see when you come to url
-└── README.md
+├── index.html               # landing HTML file, this is what users see if they aren't logged in
+├── share.html         # HTML file that allows users to share their grocery deals
+├── share_review.html           #            
+├── search_result.html          # 
+├── profile.html             # HTML file where user can see all the information associated with their account
+├── main.html           # landing HTML page/ home page if user is logged in
+├── login.html               # User login page
+├── list.html                # Page after user login   
+├── for_injecting_data.html            # HTML page used for injecting mock API data to our database
+├── about.html          # HTML page containing all the information about The Cheapest Egg
+├── 404.html              # Firebase generated file
+├── storage.rules             # Firebase generated file
+├── firestore.rules             # Firebase generated file
+├── firestore.indexes.json               # Firebase generated file
+├── firebase.json                # Firebase generated file
+├── .firebaserc           # Firebase generated file
+└── README.md               # Complete project description
 
 It has the following subfolders and files:
 ├── .git                     # Folder for git repo
@@ -61,8 +76,35 @@ It has the following subfolders and files:
 .
 ├── images                              # Folder for images
         └── # images                    # need to replace this with all images
+        └── # 3061.png
+        └── # 3277.png
+        └── # 4011.png
+        └── # 4076.png
+        └── # 4099.png
+        └── # 4129.png
+        └── # 4234.png
+        └── # 4301.png
+        └── # 4959.png
+        └── # default_profile_pic.png
+        └── # egg_logo.png
+        └── # egghand_blur.png
+        └── # grocery_welcome_blur.jpg
+        └── # no_img.jpg
+        └── # noimg.png
 ├── scripts                             # Folder for scripts
-        └── # js files                  # need to replace with all js files
+        └── # add_to_list.js                  # need to replace with all js files
+        └── # authorization.js  
+        └── # db_product_add.js  
+        └── # db_product_search.js  
+        └── # db_top_product.js  
+        └── # each_item.js
+        └── # firebaseAPI_Tea08.js  
+        └── # list.js  
+        └── # profile.js
+        └── # scripts.js
+        └── # share_review.js
+        └── # share.js
+        └── # skeleton.js
 ├── styles                              # Folder for styles
         └── style.css                   # 
 ├── text                                # Folder for skeleton HTML files
