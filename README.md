@@ -122,7 +122,7 @@ These planned features aim to enhance the functionality and user experience of t
 ├── .gitignore                   # Gitignore file
 ├── 404.html                     # Firebase generated file
 ├── about.html                   # HTML page containing all the information about The Cheapest Eggs team
-├── favicon.ico                  # Firebase generated file
+├── favicon.ico                  # File for browser favicon
 ├── firebase.json                # Firebase generated file
 ├── firestore.indexes.json       # Firebase generated file
 ├── firestore.rules              # Firebase generated file
