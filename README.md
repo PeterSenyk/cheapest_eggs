@@ -20,7 +20,7 @@ List technologies (with version numbers), API's, icons, fonts, images, media or 
 * Sweet Alert
 
 
-## 4. Complete setup/installion/usage
+## 4. Complete setup/installation/usage
 State what a user needs to do when they come to your project.  How do others start using your code or application?
 Here are the steps ...
 ### 1. Visit the Website
@@ -49,13 +49,13 @@ Here are the steps ...
    - Choose ascending or descending to sort the products
 
 ### 7. Create Shopping Lists
-   - If you want to create a shopping list, find the option to add the product to your list.
-   - Adjust quantities and manage your list easily.
+   - You can create a shopping list by finding the product that you want to add from from the search results, and clicking the plus + icon.
+   - Adjust quantities and manage your list easily using the built in features with descriptive buttons.
 
-### 8. Share Good Deal
+### 8. Share Good Deals
    - Discover and share good deals from local stores by using the "Share" feature.
-   - Contribute by uploading any great deals you discover.
-   - You will win 1 score each time you share 1 item.
+   - Contribute by uploading the details of any great deals you discover while shopping  to help others to search and save money.
+   - You will have 1 point added to your account each time you share an item
 
 ### 9. Profile Page
    - Click on your profile icon to access your profile page.
