@@ -163,7 +163,6 @@ These planned features aim to enhance the functionality and user experience of t
         └── # db_product_search.js      # Based on search value, finds matching document in database and displays search result 
                                         # Order products based on price ascending and descending
         └── # db_top_product.js         # Randomly display 4 product cards containing good deals from database selected based on price
-        └── # each_item.js
         └── # firebaseAPI_Tea08.js      # Links the web app to the firebase database and storage
         └── # list.js                   # Create and manage cards in list page, dynamically update information on cards in page
         └── # profile.js                # Display users' info on the profile page, allow users to modify their info, also showing sharing product cards
