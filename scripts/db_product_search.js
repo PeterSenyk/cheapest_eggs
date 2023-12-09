@@ -165,6 +165,9 @@ sort_button_desc.addEventListener('click', () => {
 // function that adds searched item to search history
 //------------------------------------------------------------------------------
 function add_to_search_history(search_item) {
+    if (search_item == null) {
+        return;
+    }
     // get current user
     var user = firebase.auth().currentUser;
     // get user id
